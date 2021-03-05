@@ -1,0 +1,307 @@
+@import url(https://fonts.googleapis.com/css?family=Spartan:200,300,regular,700,800,900);
+@import url(https://fonts.googleapis.com/css?family=Inter:regular,500,600,700,800);
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 62.5%;
+    font-family: 'Spartan', sans-serif;
+}
+:root{
+    --principal-green: #06D6A0;
+    --up: #06D6A0;
+    --down: #ff411f;
+    --dark: #171717;
+    --light: #eeeeee;
+    --title: 'Inter', sans-serif;
+    --title-w: 800;
+    --text: 'Spartan', sans-serif;
+    --text-w: '300';
+}
+#nightMode > img{
+    fill: var(--dark);
+    height: 2.5rem;
+}
+#logoContainer{
+    width: auto;
+    height: 6rem;
+    transition: ease-in-out 1s;
+}
+.body{
+    padding-top: 1rem;
+    transition: ease-in-out 1s;
+}
+h1{
+    font-size: 4rem;
+    font-family: var(--title);
+    font-weight: var(--title-w);
+    color: var(--principal-green);
+}
+h2{
+    font-size: 3rem;
+    font-family: var(--title);
+    font-weight: var(--title-w);
+    color: var(--principal-green);
+}
+h3{
+    font-size: 2.5rem;
+}
+h4, p{
+    font-size: 1.8rem;
+    transition: ease-in .3s;
+}
+.header__nav{
+    display: flex;
+}
+.nav__container{
+    display: inline-flex;
+    list-style-type: none;
+    align-items: center;
+    justify-content: space-around;
+    width: 60vw;
+
+    position: relative;
+    left: 0;
+}
+.header__nav--logo-container{
+    width: 45vw;
+}
+.nav__container--item{
+    font-size: 2rem;
+    width: 13rem;
+    height: 4rem;
+    text-align: center;
+    padding-top: .6rem;
+    font-weight: 600;
+    color: var(--dark);
+    border-radius: .9rem;
+    background: none;
+    border: 4px solid var(--principal-green);
+}
+.nav__container--item:hover{
+    background-color: var(--principal-green);
+    color: var(--dark) !important;
+    transition: ease-in .3s
+}
+
+.nav__container--item-languages{
+    font-size: 1.6rem;
+    
+    font-weight: 400;
+    color: var(--dark);
+    border-radius: .9rem;
+    background: none;
+}
+.button{
+    font-size: 2rem;
+    min-width: 40rem;
+    padding: 1rem 10rem;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 10rem;
+    font-weight: 600;
+    color: var(--dark);
+    border-radius: .9rem;
+    border: 4px solid var(--principal-green);
+}
+
+.active{
+    background-color: var(--principal-green);
+}
+.main__content{
+    margin-top: 15vh;
+    margin-left: 3rem;
+    margin-right: 10rem;
+    width: 40vw;
+}
+.main__content--button-cont{
+    margin-top: 5rem;
+}
+.main{
+    display: inline-flex;
+}
+.main > section:nth-child(2) > img{
+    width: 40vw;
+    margin-top: 15vh;
+}
+.cookies-policy{
+    position: sticky;
+    bottom: 0;
+    background-color: #303030;
+    padding: 3rem;
+}
+.down-arrow{
+    width: 1.5rem;
+}
+.cookies-link{
+    color: #eeeeee;
+    font-size: 1.5rem;
+}
+.cookies-policy > p{
+    color: #eeeeee;
+    margin-bottom: 2rem;
+}
+#auth{
+    color: #171717;
+}    
+.button-sm{
+    font-size: 1.5rem;
+    padding: 0rem 3rem;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 10rem;
+    font-weight: 600;
+    color: var(--dark);
+    border-radius: .9rem;
+    border: 4px solid var(--principal-green);
+}
+.item-languages{
+    position: absolute;
+    font-size: 2.5rem;
+    margin-top: 2rem;
+}
+.item-languages > li{
+    margin-bottom: 1rem;
+    list-style-type: none;
+}
+.item-currencies{
+    position: absolute;
+    font-size: 2.5rem;
+    margin-top: 2rem;
+}
+.item-currencies > li{
+    margin-bottom: 1rem;
+    list-style-type: none;
+}
+.currency-label{
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--dark);
+}
+.language-label{
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--dark);
+}
+.droplist-container{
+    margin-top: 1rem;
+    display: inline-flex;
+    align-items: center;
+}
+.droplist-container > li, img{
+    margin-left: 2rem;
+}
+.nav__container--hamb-icon{
+    display: none;
+    height: 3rem;
+    position: absolute;
+    top: 1rem;
+    right: 3.7rem;
+}
+.nav__container--close-icon{
+    display: none;
+}
+
+
+
+/*--------------Mobile-------------*/
+@media only screen and (max-width: 1000px){
+    html{
+        overflow-x: hidden;
+    }
+    .nav__container--hamb-icon{
+        height: 3rem;
+        position: absolute;
+        top: 1rem;
+        right: 3.7rem;
+        display: block
+    }
+    .nav__container--close-icon{
+        height: 2.5rem;
+        position: absolute;
+        top: 1rem;
+        right: 3.7rem;
+        display: block;
+    }
+    .header{
+        position: sticky;
+        top: 0;
+        padding-bottom: 23rem; /*Configurar que sea al hacer click en el navbar*/
+        backdrop-filter: blur(4px);
+    }
+    .nav__container--item{
+        width: 90vw;
+        margin-top: 1rem;
+    }
+    #logoContainer{
+        height: 5rem;
+    }
+    .nav__container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        width: 100vw;
+
+        position: absolute;
+        left: 0;
+        top: 7rem;
+    }
+    .droplist-container{
+        width: 70vw;
+        align-items: center;
+        margin-left: -2rem;
+        justify-content: space-between;
+    }
+}
+@media only screen and (max-width: 700px){
+    .main{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .main__content{
+        width: 90vw;
+    }
+    .main__content ~ section > img{
+        display: none;
+    }
+    .main__content ~ section{
+        padding-bottom: 15rem;
+    }
+    .header{
+        /*display: none;*/
+    }
+    .cookies-policy > p{
+        font-size: 1rem;
+    }
+    .cookies-link{
+        font-size: 1rem;
+    }
+    .button-sm{
+        font-size: 1rem;
+    }
+}
+@media only screen and (max-width: 320px){
+    #logoContainer{
+        height: 4rem;
+    }
+    .nav__container--hamb-icon{
+        top: 0.5rem;
+        right: 0.9rem;
+    }
+    .main__content{
+        width: 80vw;
+    }
+    .main__content > h1{
+        font-size: 3rem;
+    }
+    .cookies-policy > p{
+        font-size: 1rem;
+    }
+    .cookies-link{
+        font-size: 1rem;
+    }
+    .button-sm{
+        font-size: 1rem;
+    }
+}
