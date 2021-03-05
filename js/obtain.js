@@ -1,7 +1,7 @@
 const obtain = ()=>{
     fetch('https://cors.bridged.cc/https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=ce38fba1-db16-49a7-802e-94ad5d7d0902')
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => console.log(data.data[0].quote.USD.price))
 }
 
 export default obtain;
