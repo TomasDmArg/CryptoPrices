@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precios crypto</title>
+    <link rel="shortcut icon" href="./assets/Bitcoin.svg" type="image/x-icon">
+    <!--CSS: font-family: "Inter", sans-serif;-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../uicons-regular-rounded.css">
+    <link rel="icon" href="../assets/Bitcoin.svg" type="image/svg">
+    <meta property="og:site_name" content="Precios crypto">
+    <meta property="og:title" content="Precios crypto" />
+    <meta property="og:description" content="Ver precios de las criptomonedas mas populares" />
+    <meta property="og:image" itemprop="image" content="../assets/Bitcoin.svg">
+    <meta property="og:type" content="website" />
+</head>
+<body class="body">
+    <main class="main ">
+        <section class="main__container">
+            <section class="section-1">
+                <img src="../assets/Bitcoin.svg" class="img" alt="bitcoin-logo">
+                <div class="item1__text-container"><h2 class="main__section--title">Bitcoin</h2><b class="simbolo">BTC</b></div>
+            </section>
+            <section class="graphic__container">
+                <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container">
+                    <div id="tradingview_fc4d6"></div>
+                    <div class="tradingview-widget-copyright"><a href="https://es.tradingview.com/symbols/BTCUSDT/?exchange=BINANCE" rel="noopener" target="_blank"><span class="blue-text">BTCUSDT Gráfico</span></a> por TradingView</div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                    <script type="text/javascript">
+                    new TradingView.widget(
+                    {
+                    "width": '90%',
+                    "height": '500px',
+                    "symbol": "BINANCE:BTCUSDT",
+                    "interval": "60",
+                    "timezone": "Etc/UTC",
+                    "theme": "dark",
+                    "style": "3",
+                    "locale": "es",
+                    "toolbar_bg": "#202020",
+                    "enable_publishing": false,
+                    "hide_side_toolbar": true,
+                    "allow_symbol_change": true,
+                    "studies": [
+                    "TripleEMA@tv-basicstudies"
+                    ],
+                    "show_popup_button": false,
+                    "popup_width": "1000",
+                    "popup_height": "650",
+                    "container_id": "tradingview_fc4d6"
+                }
+                    );
+                    </script>
+                </div>
+                <!-- TradingView Widget END -->
+            </section>
+        </section>
+    </main>
+    <script src="index.js">
+    </script>
+</body>
+</html>
