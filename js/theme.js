@@ -1,7 +1,7 @@
 import {$, $$, body, logo, allText} from './selector.js'
 const setBg = (element, variable) => element.style.backgroundColor = `var(--${variable})`;
 const setColor = (element, variable) => element.style.color = `var(--${variable})`;
-const checkDark = ()=> body.classList.contains("dark");
+export const checkDark = ()=> body.classList.contains("dark");
 let state = true;
 export const applyMode = ()=>{
     if (checkDark()) {
