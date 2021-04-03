@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRUEBA - CryptoPrices</title>
-    <link rel="stylesheet" href="./css/card.css">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
 </head>
@@ -45,10 +44,16 @@
     <div class="load-container">
         <img src="/assets/logo.svg" alt="" id="animate-load">
     </div>
-    <h1 class="top-title">Top 100 cryptomonedas por marketcap</h1>
-    <p class="top-text text">Estas son las 100 cryptomonedas mas grandes en términos de capitalizacion de mercado</p>
-    <section id="content" class="all-card-container">
-    </section>
+    <main class="main" id="content">
+        <section class="main__content">
+            <h1 class="main__content--title">Los precios de tus criptomonedas favoritas a un click</h1>
+            <p class="main__content--text text">Precios, graficos, conversiones, notificaciones y mas...</p>
+            <section class="main__content--button-cont"><a href="#" class="main__content--button button active">Ver mas</a></section>
+        </section>
+        <section>
+            <img src="./home-graphic.png" alt="">
+        </section>
+    </main>
     <section id="contact-cont">
         <section class="main__form">
             <h2>Envíame un mensaje:</h2>
@@ -65,8 +70,7 @@
         <p>Este sitio web utiliza cookies para guardar información como tema, idioma y moneda, las cookies se eliminan en un plazo máximo de 6 meses <a href="cookies-policy.html" class="cookies-link">Ver politica de cookies</a></p>
         <a href="#" class="button-sm active" id="auth">Aceptar</a>
     </div>
-    <script type="module" src="./js/index.js" async defer></script>
-    <script type="module" src="./js/card.js" async defer></script>
+    <script type="module" src="./js/index.js"></script>
     <!--<script src="./js/part2.js"></script>-->
 </body>
 </html>

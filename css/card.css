@@ -67,12 +67,12 @@
 }
 .card-image{
     border-radius: 50%;
-    height: 6rem;
-    width: 6rem;
-    background-color: rgba(250, 250, 250, 0.7);
+    height: 5.7rem;
+    width: 5.7rem;
+    background-color: rgba(250, 250, 250);
     position: absolute;
     top: 2rem;
-    right: 3rem;
+    right: 2rem;
     animation-name: loading-image;
     animation-duration: .8s;
     animation-iteration-count: infinite;
@@ -181,6 +181,66 @@ input[type=number]::-webkit-outer-spin-button {
 .value-converted{
     font-size: 2rem;
 }
+.search-container{
+    margin-top: 2rem;
+}
+.search-container > div > span > b{
+    padding: 4px 5px;
+    font-size: 1.2rem;
+    margin-left: .5rem;
+    border-radius: 5px;
+    background-color: #06D6A050;
+    border: 2px solid var(--principal-green);
+    color: #06D6A0;
+}
+.search-container > div > input{
+    margin-left: 3rem;
+    width: 30vw;
+    height: 3rem;
+    font-size: 2rem;
+    font-family: 'Inter';
+    border: none;
+    color: #06D6A0;
+    border-bottom: 3px solid var(--principal-green);
+    background-color: transparent;
+} 
+.search-container > div > input::placeholder{
+    font-size: 2rem;
+}
+.search-container > div > input:focus{
+    outline: none;
+    background-color: rgba(250, 250, 250, 0.3);
+}
+.results-container{
+    position: absolute;
+    z-index: 1;
+}
+.search-result{
+    display: none;
+    font-size: 2rem;
+    background-color: var(--principal-green);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    margin-left: 3rem;
+    margin-top: .5rem;
+    width: 30vw;
+}
+.search-result > span{
+    position: absolute;
+    top: 1.7rem;
+    right: 1rem;
+}
+.search-result > span > b{
+    padding: 4px 5px;
+    font-size: 1.2rem;
+    margin-left: .5rem;
+    border-radius: 5px;
+    background-color: #17171750;
+    border: 2px solid var(--dark);
+    
+}
+
 @keyframes loading-text{
     0%{
         background-color: rgba(250, 250, 250, 0.8);
@@ -225,7 +285,7 @@ input[type=number]::-webkit-outer-spin-button {
         left: -2.5rem;
         border-radius: 10px;
         width: 26.5vw;
-        height: 27.5vh;
+        height: 19.2rem;
     }
 }
 @keyframes showup{
@@ -252,7 +312,7 @@ input[type=number]::-webkit-outer-spin-button {
         left: -2.5rem;
         border-radius: 10px;
         width: 26.5vw;
-        height: 27.5vh;
+        height: 19.5rem;
     }
     100%{
         position: absolute;
