@@ -5,10 +5,7 @@ export const checkDark = ()=> body.classList.contains("dark");
 let state = true;
 export const matchColors = ()=>{
     let element = $('.item-languages__options'), style = window.getComputedStyle(element), currentColor = style.getPropertyValue('color');
-    console.log(currentColor)
     let text = $$('.text');
-    $('.text').innerHTML = "holaaaaaaaaaaaa";
-    $('.text').style.color = currentColor;
 
     for (let i = 0; i < text.length; i++) {
         text[i].style.color = currentColor;
