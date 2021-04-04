@@ -6,7 +6,6 @@ let state = true;
 export const matchColors = ()=>{
     let element = $('.item-languages__options'), style = window.getComputedStyle(element), currentColor = style.getPropertyValue('color');
     let text = $$('.text');
-
     for (let i = 0; i < text.length; i++) {
         text[i].style.color = currentColor;
     }

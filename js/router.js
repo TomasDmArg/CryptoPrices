@@ -29,7 +29,7 @@ class Router {
             matchColors();
         }
         this.el.innerHTML = this.routes[index].template;
-
+        matchColors();
     }
     loadPage(){
         let url = this.getUrl();
@@ -40,21 +40,26 @@ class Router {
         switch (mod) {
             case '/#/precios':
                 this.loadRoute(2, mod);
+                
                 // initCards();
                 // initSearch();
                 break;
             case '/#/contacto':
                 this.loadRoute(1, mod);
+                matchColors();
                 break;
             case '/':
                 this.loadRoute(0, mod);
+                matchColors();
                 break;
             case '/#/':
                 this.loadRoute(0, mod);
+                matchColors();
                 break;
         
             default:
                 this.notFound();
+                matchColors();
                 break;
         }
     }

@@ -6,7 +6,7 @@ export const routes = [
             <section class="main__content">
                 <h1 class="main__content--title">Los precios de tus criptomonedas favoritas a un click</h1>
                 <p class="main__content--text text">Precios, graficos, conversiones, notificaciones y mas...</p>
-                <section class="main__content--button-cont"><a href="#" class="main__content--button button active">Ver mas</a></section>
+                <section class="main__content--button-cont"><a href="#" class="main__content--button button active" id="seePrices">Ver mas</a></section>
             </section>
             <section>
                 <img src="./home-graphic.png" alt="">
