@@ -6,7 +6,10 @@ import initLoad from './load.js';
 import {$, $$} from './selector.js';
 import Router from './router.js';
 import {routes} from './routes.js';
+import {matchColors} from './theme.js'
+
 const router = new Router(routes);
+
 const load = ()=>{
     initCookie();
     router.loadPage();
@@ -15,11 +18,9 @@ const load = ()=>{
       navScripts();
       obtain();
     }
-    if ($('.currency-label').style.color === '#eeeeee' ||$('.currency-label').style.color === 'var(--light)') {
-          for (let i = 0; i < $$('.text').length; i++) {
-              $$('.text')[i].style.color = "#eeeeee";
-          }
-      }
+    setTimeout(() => {
+      matchColors();
+    }, 1000);
 }
 load();
 //   document.querySelector("form").addEventListener("submit", handleSubmit);

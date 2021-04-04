@@ -103,11 +103,11 @@ const initCards = ()=>{
             $$('.card-image')[i].style.backgroundColor = '#eeeeee50';
             $$('.card-image-img')[i].style.borderRadius = '50%';
             }
-            if ($('.currency-label').style.color === '#eeeeee' ||$('.currency-label').style.color === 'var(--light)') {
-                for (let i = 0; i < $$('.text').length; i++) {
-                    $$('.text')[i].style.color = "#eeeeee";
-                }
-            }
+            // if ($('.currency-label').style.color === '#eeeeee' ||$('.currency-label').style.color === 'var(--light)') {
+            //     for (let i = 0; i < $$('.text').length; i++) {
+            //         $$('.text')[i].style.color = "#eeeeee";
+            //     }
+            // }
             for (let i = 0; i < cardsArr.length; i++) {
                 ($$('.percent')[i].innerHTML.indexOf("-") >= 0) ? setDown(i) : setUp(i);
                 $$('.convert')[i].addEventListener('click',()=>{
@@ -137,11 +137,6 @@ const initCards = ()=>{
                     }, 800);
                 })
             }
-            
-            setTimeout(() => {
-                $('.card__name-container > h2').innerHTML = 'Bitcoin'
-            }, 1500);
-            
             for (let i = 0; i < $$('input[type=number]').length; i++) {
                 let input = $$('input[type=number')[i];
                 $$('input[type=number]')[i].addEventListener('keydown', ()=>{

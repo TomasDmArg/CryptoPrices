@@ -1,6 +1,6 @@
-import {applyMode, darkMode, lightMode, changeMode} from './theme.js';
 import initCards from './card.js';
 import initSearch from './search.js';
+import {matchColors} from './theme.js';
 class Router {
     constructor(routes){
         this.routes = routes;
@@ -20,9 +20,13 @@ class Router {
                 this.el.innerHTML = this.routes[index].template;
                 initCards();
                 initSearch();
+                matchColors();
             }
             this.pricesState++;
             this.el.innerHTML = this.routes[index].template;
+            initCards();
+            initSearch();
+            matchColors();
         }
         this.el.innerHTML = this.routes[index].template;
 
@@ -36,9 +40,8 @@ class Router {
         switch (mod) {
             case '/#/precios':
                 this.loadRoute(2, mod);
-                console.log('Precios ---')
-                initCards();
-                initSearch();
+                // initCards();
+                // initSearch();
                 break;
             case '/#/contacto':
                 this.loadRoute(1, mod);

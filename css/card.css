@@ -334,3 +334,9 @@ input[type=number]::-webkit-outer-spin-button {
         background-color: #ff411f00;
     }
 }
+@media only screen and (max-width: 768px){
+    .all-card-container{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}

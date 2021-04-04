@@ -1,5 +1,7 @@
-import {$} from '../selector.js'
-const createCard = (name, symbol, price, change, image) => {
+import {$} from '../selector.js';
+import {matchColors} from '../theme.js';
+let counter = 0;
+async function createCard (name, symbol, price, change, image){
     let currency = $('.currency-label').innerText;
     const template = `
     <section class="card-container">
@@ -26,6 +28,7 @@ const createCard = (name, symbol, price, change, image) => {
         </section>
     </section>
     `;
-    $('#content').insertAdjacentHTML('beforeend', template);
+    await $('#content').insertAdjacentHTML('beforeend', template);
+    (counter === 99) ? matchColors() : counter++;
 }
 export default createCard;

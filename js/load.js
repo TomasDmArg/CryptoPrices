@@ -1,6 +1,6 @@
-import {$, $$} from './selector.js'
-const contactHTML = $('#contact-cont')
-import router from './index.js'
+import {$, $$} from './selector.js';
+const contactHTML = $('#contact-cont');
+import router from './index.js';
 const initLoad = ()=>{
     class Page{
         constructor(toggle, url, index){
@@ -11,13 +11,13 @@ const initLoad = ()=>{
         }
         load(){
             router.loadRoute(this.index, this.url)
-            $('.load-container').style.display = 'block'
-            $('.load-container').style.animationName = 'load-cont'
+            $('.load-container').style.display = 'block';
+            $('.load-container').style.animationName = 'load-cont';
             setInterval(() => {
-                $('.load-container').style.animationName = 'unload-cont'
-                $('.load-container').style.animationIterationCount = '1'
+                $('.load-container').style.animationName = 'unload-cont';
+                $('.load-container').style.animationIterationCount = '1';
                 setInterval(() => {
-                    $('.load-container').style.display = 'none'            
+                    $('.load-container').style.display = 'none';  
                 }, 500);
             }, 1000);
         }
