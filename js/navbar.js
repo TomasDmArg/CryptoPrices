@@ -61,7 +61,7 @@ const navScripts = ()=>{
     const showDropList = ()=>{
         if (screen.width < 1000) {
             vState--;
-            $('.header').style.paddingBottom = '15rem';
+            $('.header').style.paddingBottom = '30rem';
             $('.nav__container').style.display = "inline-flex";
             $('.nav__container--hamb-icon').style.display = 'none';
             $('.nav__container--close-icon').style.display = 'block';

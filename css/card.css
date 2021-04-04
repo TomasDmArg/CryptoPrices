@@ -339,4 +339,48 @@ input[type=number]::-webkit-outer-spin-button {
         display: grid;
         grid-template-columns: 1fr;
     }
+    .card-container {
+        width: calc(80vw/1);
+    }
+    .buttons{
+        max-width: 80vh;
+    }
+    .header{
+        z-index: 9999;
+        height: 10vh;
+    }
+    .converter-input {
+        width: 50vw
+    }
+    .bg{
+        min-width: 80vw;
+    }
+    .search > span{
+        display: none;
+    }
+    .search-container > div > input {
+        width: 80vw;
+        
+    }
+    .search-container > div > input:focus{
+        background-color: #06d6a020;
+    }
+    .top-text{
+        width: 80vw;
+    }
+}
+@media only screen and (max-width:400px){
+    .title {
+        font-size: 2.5rem;
+        max-width: 14ch;
+    }
+    .card-image{
+        display: none;
+    }
+    .top-title{
+        font-size: 3rem;
+    }
+    .top-text{
+        font-size: 1.5rem;
+    }
 }
