@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRUEBA - CryptoPrices</title>
+    <link rel="stylesheet" href="./css/card.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/crypto-main.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+</head>
+<body class="body dark">
+    <header class="header">
+        <nav class="header__nav">
+            <section class="header__nav--logo-container"><img src="./" alt="" id="logoContainer"></section>
+            <ul class="nav__container">
+                <li class="nav__container--item active" id="home">Home</li>
+                <li class="nav__container--item text" id="prices">Precios</li>
+                <li class="nav__container--item text" id="contact">Contacto</li>
+                <section class="droplist-container">
+                    <span id="settings"><img src="./assets/settings.svg" alt=""></span>
+                    <section class="settings_items">
+                        <p>Divisa: </p><div class="currency_items"><span>USD</span><span class="settings__active">ARS</span></div>
+                    </section>
+                </section>
+            </ul>
+            <img src="./assets/navbar.svg" class="nav__container--hamb-icon" alt="">
+            <img src="./assets/close.svg" class="nav__container--close-icon" alt="">
+        </nav>
+    </header>
+    <div class="load-container">
+        <img src="/assets/logo.svg" alt="" id="animate-load">
+    </div>
+    <div  data-router>
+        
+    </div>
+    <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
+    <script type="module" src="./js/index.js" async defer></script>
+    <script type="module" src="./js/search.js" async defer></script>
+    <script type="module" src="./js/card.js" async defer></script>
+    
+    <!--<script src="./js/part2.js"></script>-->
+</body>
+</html>

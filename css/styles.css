@@ -18,7 +18,7 @@
     --text: 'Spartan', sans-serif;
     --text-w: '300';
 }
-#nightMode > img{
+#settings > img{
     fill: var(--dark);
     height: 2.5rem;
 }
@@ -53,25 +53,24 @@ h4, p{
 .header__nav{
     display: flex;
 }
-.nav__container{
+.nav__container {
     display: inline-flex;
     list-style-type: none;
     align-items: center;
     justify-content: space-around;
-    width: 60vw;
-
+    width: 43vw;
     position: relative;
-    left: 0;
+    right: -100px;
 }
 .header__nav--logo-container{
     width: 45vw;
 }
 .nav__container--item{
-    font-size: 2rem;
+    font-size: 1.7rem;
     width: 13rem;
     height: 4rem;
     text-align: center;
-    padding-top: .6rem;
+    padding-top: 0.8rem;
     font-weight: 600;
     color: var(--dark);
     border-radius: .9rem;
@@ -107,6 +106,7 @@ h4, p{
 
 .active{
     background-color: var(--principal-green);
+    color: #171717;
 }
 .main__content{
     margin-top: 15vh;
@@ -119,6 +119,7 @@ h4, p{
 }
 .main{
     display: inline-flex;
+    margin-top: 7rem;
 }
 .main > section:nth-child(2) > img{
     width: 40vw;
@@ -203,7 +204,9 @@ h4, p{
 }
 
 
-
+html{
+    overflow-x: hidden;
+}
 /*--------------Mobile-------------*/
 @media only screen and (max-width: 1000px){
     html{
@@ -221,7 +224,7 @@ h4, p{
         position: absolute;
         top: 1rem;
         right: 3.7rem;
-        display: block;
+        display: none;
     }
     .header{
         position: sticky;
@@ -237,12 +240,11 @@ h4, p{
         height: 5rem;
     }
     .nav__container{
-        display: flex;
+        display: none;
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
         width: 100vw;
-
         position: absolute;
         left: 0;
         top: 7rem;
@@ -281,6 +283,12 @@ h4, p{
         font-size: 1rem;
     }
 }
+#animate-load{
+    height: 10rem;
+    animation-name: load;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
 @media only screen and (max-width: 320px){
     #logoContainer{
         height: 4rem;
@@ -304,4 +312,156 @@ h4, p{
     .button-sm{
         font-size: 1rem;
     }
+}
+@keyframes load{
+    0%{
+        transform: scale(1);
+        transform: rotateY(0deg);
+        opacity: 70%;
+    }
+    25%{
+        transform: scale(1.2);
+        transform: rotateY(180deg);
+        opacity: 50%;
+    }
+    50%{
+        transform: scale(1.5);
+        transform: rotateY(360deg);
+        opacity: 50%;
+    }
+    75%{
+        transform: scale(1.2);
+        transform: rotateY(180deg);
+        opacity: 50%;
+    }
+    100%{
+        transform: scale(1);
+        transform: rotateY(0deg);
+        opacity: 70%;
+    }
+}
+.load-container{
+    width: 100vw;
+    z-index: 1;
+    height: 100vh;
+    top: 0;
+    position: absolute;
+    display: none;
+    background-color: #171717;
+    animation-duration: .5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+#animate-load{
+    margin-left: calc(50vw - 5rem);
+    margin-top: calc(50vh - 5rem);
+}
+@keyframes load-cont{
+    0%{
+        opacity: 0%;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes unload-cont{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0%;
+        display: none;
+    }
+}
+.main__form{
+    margin-left: 3.5rem;
+    margin-top: 4rem;
+}
+section > h2{margin-bottom: 1rem;}
+section > p{margin-bottom: 2rem;}
+form > input, textarea{
+    width: 50rem;
+    height: 3rem;
+    padding-left: 3rem;
+    margin-bottom: 1rem;
+    border: 4px solid var(--principal-green);
+    font-size: 1.4rem;
+    color: var(--principal-green);
+    font-family: 'Inter', sans-serif;
+    background-color: transparent;
+    border-radius: 9px;
+}
+textarea{
+    padding-top: .3rem;
+    min-width: 50rem;
+    min-height: 7rem;
+    max-height: 15rem;
+    max-width: 50rem;
+}
+::-webkit-scrollbar{
+    width: 6px;
+    background-color: transparent;
+}
+::-webkit-scrollbar-track{
+    border-radius: 9px;
+    width: 6px;
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb{
+    border-radius: 9px;
+    background-color: #06D6A0;
+}
+form > input:focus{
+    outline: none;
+}
+form > img{
+    position: absolute;
+    height: 1.5rem;
+}
+form > img:nth-child(1){
+    left: 2.5rem;
+    margin-top:.7rem;
+}
+form > img:nth-child(3){
+    left: 2.5rem;
+    margin-top: 4.7rem;
+}
+form > img:nth-child(5){
+    left: 2.5rem;
+    margin-top: 8.9rem;
+}
+form > img:nth-child(7){
+    left: 2.5rem;
+    margin-top: 17rem;
+    height: 2rem;
+}
+#send{
+    padding-left: 0rem;
+    padding-top: 0rem;
+}
+#contact-cont{
+    height: 80vh;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+::placeholder{
+    color: #06D6A0;
+    align-items: center;
+    font-size: 1.4rem;
+}
+.alert{
+    position: absolute;
+    top: 0rem;
+    border: 4px solid var(--principal-green);
+    left: 60vw;
+    width: 10rem;
+}
+.alert > i {
+    font-size: 3rem;
+    color: #eee;
+}
+@keyframes alert{
+
 }
