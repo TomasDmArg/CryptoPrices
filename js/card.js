@@ -56,6 +56,9 @@ const initCards = ()=>{
                 $('#buyDollar').innerHTML = "$" + data.ask;
                 $('#sellDollar').innerHTML = "$" + data.bid;
             });
+                $('#seemoredollar').addEventListener('click', ()=>{
+                    let url = "/#/dolar";
+                });
         for (let i = 0; i < 100; i++) {
                 let name = data[i].name;
                 let symbol = data[i].symbol.toUpperCase();
