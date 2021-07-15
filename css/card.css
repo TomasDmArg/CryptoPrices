@@ -18,6 +18,14 @@
     margin-right: 3.5rem;
     margin-top: 3rem;
 }
+.active, .d-active{
+    color: var(--dark);
+}
+#seemoredollar{
+    background-color: var(--principal-green);
+    position: relative;
+    top: 2rem;
+}
 .card-container{
     margin-bottom: 3rem;
     height: 20rem;
@@ -26,7 +34,7 @@
     border-radius: 1rem;
     position: relative;
 }
-.card-container > section{
+.card-container > section, .dollar-name-cont{
     margin-left: 2rem;
     margin-top: 2rem;
     position: relative;
@@ -35,7 +43,7 @@
     display: flex;
     align-items: baseline;
     max-height: 3.5rem;
-    
+     
     
 }
 .card__name-container > h2{
@@ -88,7 +96,7 @@
     margin-top: 2rem;
     margin-left: -0.5rem;
 }
-.card-button{
+.card-button, .dollar-button{
     font-size: 1.8rem;
     min-width: 0rem;
     padding: 1vh 1.3vw;
@@ -172,7 +180,7 @@ input[type=number]::-webkit-outer-spin-button {
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
-.card-button:hover{
+.card-button:hover, .card-button:hover{
     background-color: var(--principal-green);
     color: var(--dark) !important;
     transition: ease-in .3s;
@@ -238,8 +246,83 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: 5px;
     background-color: #17171750;
     border: 2px solid var(--dark);
+}
+.settings_items{
+    display: none;
+    position: absolute;
+    top: 6rem;
+    right: 1rem;
+    padding: 3rem;
+    z-index: 9999;
+    background-color: #40404080;
+    width: 20rem;
+    color: var(--light);
+    height: 20rem;
+}
+.currency_items{
+    width: 10rem;
+    height: 4rem;
+    color: var(--light);
+    background-color: var(--dark);
+    text-align: center;
+    /* padding: 0rem; */
+}
+.currency_items > span{
+    font-size: 1.6rem;
+    font-weight: 700;
+    padding-top: 0.75rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    line-height: 4.25rem;
+    background-color: var(--dark);
+    color: var(--light);
+    transition: 0.5s;
+}
+.currency_items > span:nth-child(1){
+    margin-right: 1rem;
+}
+.currency_items > span.settings__active{
+    color: var(--dark);
+    background-color: var(--principal-green);
+    transition: 0.5s;
+}
+.currencyLabel{
+    font-size: 3rem;
+    font-family: var(--title);
+    font-weight: var(--title-w);
+}
+.dollar-info{
+    margin-bottom: 3rem;
+    height: 20rem;
+    width: calc(80vw/3);
+    border: 5px solid var(--principal-green);
+    border-radius: 1rem;
+    position: relative;
+}
+#buyDollar{
+    color: var(--principal-green);
+    font-weight: 800;
+    font-size: 2rem;
+}
+#sellDollar{
+    color: var(--down);
+    font-weight: 800;
+    font-size: 2rem;
     
 }
+.quote{
+    color: var(--light);
+    font-weight: 400;
+    font-size: 1.8rem;
+    margin-top: 1rem;
+}
+.dollar-buttons{
+    margin-left: 2rem;
+}
+
+
+
 
 @keyframes loading-text{
     0%{

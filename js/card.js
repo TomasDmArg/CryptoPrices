@@ -1,12 +1,16 @@
 import {$, $$, allText} from './selector.js'
 import {applyMode, darkMode, checkDark} from './theme.js'
 import createCard from './html/card.js'
+import loadCrypto from './html/currency.js'
+import getValue from './binanceP2P.js';
+
 const nameArr = $$('.card__name-container > h2');
 const symbolArr = $$('.card__name-container > h4');
 const priceArr = $$('.card-container > section > .price');
 const changeArr = $$('.percent');
 const imgArr = $$('.card-image-img');
 const converterTextArr = $$('.bg-text');
+
 const converterInputArr = $$('.converter-input');
 const converterCurrencyArr = $$('.converter-currency');
 let cardsArr = $$('.all-card-container');
@@ -43,15 +47,15 @@ const initCards = ()=>{
         $$('.bg')[i].style.backgroundColor = '#06D6A0';
         $$('.card-image-img')[i].style.border = '4px solid #06D6A0';
     }
-    
-    
-    
-    
-    
-    fetch('https://cors.bridged.cc/https://api.coingecko.com/api/v3/coins/markets/?vs_currency=usd')
+    fetch('https://api.coingecko.com/api/v3/coins/markets/?vs_currency=usd')
     .then(response => response.json())
     .then(data => {
-        
+        fetch('https://cors.bridged.cc/https://api.exchange.ripio.com/api/v1/rate/DAI_ARS/')
+            .then(response => response.json())
+            .then(data => {
+                $('#buyDollar').innerHTML = "$" + data.ask;
+                $('#sellDollar').innerHTML = "$" + data.bid;
+            });
         for (let i = 0; i < 100; i++) {
                 let name = data[i].name;
                 let symbol = data[i].symbol.toUpperCase();
@@ -61,8 +65,13 @@ const initCards = ()=>{
                 let price = data[i].current_price.toFixed(3);
                 let change = data[i].price_change_percentage_24h;
                 let image = data[i].image;
+                let id = data[i].id;
                 
-                createCard(name, symbol, price, change, image);
+                createCard(name, symbol, price, change, image, id);
+                $$('.seemorebtn')[i].addEventListener('click', ()=>{
+                    let url = "/#c/" + data[i].id;
+                    loadCrypto(url);
+                });
                 if (name.length >= 10) {
                     $$('.card__name-container > h2')[i].style.fontSize = '2rem'
                 }
@@ -96,18 +105,14 @@ const initCards = ()=>{
                         })
                     }, 800);
                 })
-                        
             $$('.card__name-container')[i].style.animationDuration = '0s';
             $$('.price')[i].style.animationDuration = '0s';
             $$('.card-image')[i].style.animationDuration = '0s';
             $$('.card-image')[i].style.backgroundColor = '#eeeeee50';
             $$('.card-image-img')[i].style.borderRadius = '50%';
             }
-            // if ($('.currency-label').style.color === '#eeeeee' ||$('.currency-label').style.color === 'var(--light)') {
-            //     for (let i = 0; i < $$('.text').length; i++) {
-            //         $$('.text')[i].style.color = "#eeeeee";
-            //     }
-            // }
+            
+
             for (let i = 0; i < cardsArr.length; i++) {
                 ($$('.percent')[i].innerHTML.indexOf("-") >= 0) ? setDown(i) : setUp(i);
                 $$('.convert')[i].addEventListener('click',()=>{
@@ -134,9 +139,23 @@ const initCards = ()=>{
                                 $$('.bg')[i].style.animationName = 'converter-hide';
                             }, 200);
                         })
-                    }, 800);
+                    }, 400);
                 })
             }
+               
+
+
+
+            getValue();
+            const getCurrencyValue = (id)=>{
+                let element = $('.settings__active');
+                let hiddenValue = $$('.hidden-value')[id].innerHTML;
+                if (element.innerHTML == "ARS") {
+                    return hiddenValue*170;
+                }else{
+                    return hiddenValue;
+                }
+            };
             for (let i = 0; i < $$('input[type=number]').length; i++) {
                 let input = $$('input[type=number')[i];
                 $$('input[type=number]')[i].addEventListener('keydown', ()=>{
@@ -144,7 +163,8 @@ const initCards = ()=>{
                         if (input.value > 20000000) {
                             return false;
                         }
-                        let value = (input.value*$$('.hidden-value')[i].innerHTML).toFixed(2)
+                        let currency = getCurrencyValue(i);
+                        let value = (input.value*currency).toFixed(2)
                         $$('.value-converted')[i].innerHTML = `$${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
                     },100)
                 })

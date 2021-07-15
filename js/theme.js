@@ -4,7 +4,7 @@ const setColor = (element, variable) => element.style.color = `var(--${variable}
 export const checkDark = ()=> body.classList.contains("dark");
 let state = true;
 export const matchColors = ()=>{
-    let element = $('.item-languages__options'), style = window.getComputedStyle(element), currentColor = style.getPropertyValue('color');
+    let currentColor = '#eeeeee'
     let text = $$('.text');
     for (let i = 0; i < text.length; i++) {
         text[i].style.color = currentColor;
@@ -15,8 +15,6 @@ export const applyMode = ()=>{
         setBg(body, 'dark');
         allText.forEach(element => setColor(element, 'light'));
         logo.setAttribute('src', './assets/complete-logo-dark.svg');
-        document.cookie = "Theme=dark; expires=Mon, 25 May 2021 11:12:13 UTC; path=/";
-        $('#nightMode > img').setAttribute('src', '../assets/brightness.svg')
         $$('.down-arrow').forEach(element => element.setAttribute('src', '../assets/down-arrow-dark.svg'));
         matchColors();
     }else{
@@ -25,7 +23,6 @@ export const applyMode = ()=>{
         allText.forEach(element => setColor(element, 'dark'));
         logo.setAttribute('src', './assets/complete-logo.svg');
         $('#nightMode > img').setAttribute('src', '../assets/moon.svg')
-        document.cookie = "Theme=light; expires=Mon, 25 May 2021 11:12:13 UTC; path=/";
         matchColors();
     }
 };

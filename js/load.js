@@ -1,8 +1,8 @@
 import {$, $$} from './selector.js';
+import initSearch from './search.js';
 const contactHTML = $('#contact-cont');
 import router from './index.js';
 const initLoad = ()=>{
-    let active
     class Page{
         constructor(toggle, url, index){
             this.toggle = toggle;
@@ -30,36 +30,44 @@ const initLoad = ()=>{
             this.toggle.setAttribute('class', 'nav__container--item');
             this.state = 0;
         }
+        setTo(ione, itwo){
+            $$('.nav__container--item')[ione].setAttribute('class', 'nav__container--item');
+            $$('.nav__container--item')[ione].style.color = "var(--light)";
+            $$('.nav__container--item')[ione].style.backgroundColor = "var(--dark)";
+            $$('.nav__container--item')[itwo].style.backgroundColor = "var(--dark)";
+            $$('.nav__container--item')[itwo].setAttribute('class', 'nav__container--item');
+            $$('.nav__container--item')[itwo].style.color = "var(--light)";
+        }
         enableToggle(){
             this.toggle.addEventListener('click', ()=>{
                 this.load();
                 this.activeButton();
+                $$('.nav__container--item')[this.index].style.backgroundColor = "var(--principal-green)";
+                $$('.nav__container--item')[this.index].style.color = "var(--dark)";
                 switch (this.index){
                     case 0:
-                        $$('.nav__container--item')[1].setAttribute('class', 'nav__container--item');
-                        $$('.nav__container--item')[2].setAttribute('class', 'nav__container--item');
+                        this.setTo(1,2);
+                        const seePrices = new Page($('.main__content--button'), '/#/precios', 1);
+                        seePrices.enableToggle();
                         break;
                     case 1:
-                        $$('.nav__container--item')[0].setAttribute('class', 'nav__container--item');
-                        $$('.nav__container--item')[2].setAttribute('class', 'nav__container--item');
+                        this.setTo(0,2);
+                        initSearch();
                         break;
                     case 2:
-                        $$('.nav__container--item')[0].setAttribute('class', 'nav__container--item');
-                        $$('.nav__container--item')[2].setAttribute('class', 'nav__container--item');
-                        break;
-                    default:
-                        $$('.nav__container--item')[0].setAttribute('class', 'nav__container--item');
-                        $$('.nav__container--item')[1].setAttribute('class', 'nav__container--item');
-                        $$('.nav__container--item')[2].setAttribute('class', 'nav__container--item');
+                        this.setTo(0,1);
                         break;
                 }
             })
         }
     }
-    const contactPage = new Page($('#contact'), '/#/contacto', 1);
+    const contactPage = new Page($('#contact'), '/#/contacto', 2);
     const home = new Page($('#home'), '/#/', 0);
-    const pricesPage = new Page($('#prices'), '/#/precios', 2);
-    // const seePrices = new Page($('#seePrices'), '/#/precios', 2);
+    const pricesPage = new Page($('#prices'), '/#/precios', 1);
+    if($$('.main__content--button').length === 1){
+        const seePrices = new Page($('.main__content--button'), '/#/precios', 1);
+        seePrices.enableToggle();
+    }
     contactPage.enableToggle();
     pricesPage.enableToggle();
     home.enableToggle();

@@ -1,9 +1,10 @@
 import {$, $$} from './selector.js';
 import list from './cryptolist.js';
+import loadCrypto from './html/currency.js';
 let state = 0;
+let getResult;
 const initSearch = ()=>{
         let INP = $('.search-container > div > input');
-        console.log(INP)
         INP.addEventListener('focus', ()=>{
             $('.search-result').style.display = 'block';
         })
@@ -30,14 +31,16 @@ const initSearch = ()=>{
                     $$('.search-result')[i].innerHTML = `${arr[i].name}`;
                     $$('.search-result')[i].style.display = 'block';
                     $$('.search-result')[i].addEventListener('click', ()=>{
-                        window.location.href('http://127.0.0.1:5501/')
-                        alert('Click')
+                        loadCrypto("/#c/" + getResult[i].id);
                     })
                     INP.addEventListener('focus', ()=>{
                         $$('.search-result')[i].style.display = 'block';
                     })
                     INP.addEventListener('blur', ()=>{
-                        //$$('.search-result')[i].style.display = 'none';
+                        $$('.search-result')[i].style.display = 'block';
+                        setTimeout(() => {
+                            $$('.search-result')[i].style.display = 'none !important';
+                        }, 1200)
                     })
                 }
             }else{
@@ -45,7 +48,7 @@ const initSearch = ()=>{
                     $$('.search-result')[i].innerHTML = `${arr[i].name}`;
                     $$('.search-result')[i].style.display = 'block';
                     $$('.search-result')[i].addEventListener('click', ()=>{
-                        
+                        loadCrypto("/#c/" + getResult[i].id);
                     })
                     INP.addEventListener('focus', ()=>{
                         $$('.search-result')[i].style.display = 'block';
@@ -73,6 +76,7 @@ const initSearch = ()=>{
                     if (filterResult.length === 0) {
                         console.log("Ningun resultado encontrado");
                     }else{
+                        getResult = filterResult;
                         showResults(filterResult);
                     }
                 }

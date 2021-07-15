@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRUEBA - CryptoPrices</title>
     <link rel="stylesheet" href="./css/card.css">
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/crypto-main.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 </head>
-<body class="body light">
+<body class="body dark">
     <header class="header">
         <nav class="header__nav">
             <section class="header__nav--logo-container"><img src="./" alt="" id="logoContainer"></section>
@@ -17,25 +20,10 @@
                 <li class="nav__container--item text" id="prices">Precios</li>
                 <li class="nav__container--item text" id="contact">Contacto</li>
                 <section class="droplist-container">
-                    <li class="nav__container--item-languages text language"><b class="language-label text">Español</b> <img class="down-arrow" src="./assets/down-arrow.svg" alt="">
-                        <ul class="item-languages">
-                            <li class="item-languages__options" id="op1">English</li>
-                            <li class="item-languages__options" id="op2">Español</li>
-                            <li class="item-languages__options" id="op3">Portuguese</li>
-                        </ul>
-                    </li>
-                    <li class="nav__container--item-languages text currency"><b class="currency-label text">ARS</b> <img class="down-arrow" src="./assets/down-arrow.svg" alt="">
-                        <ul class="item-currencies">
-                            <li class="item-currencies__options" id="cu1">USD</li>
-                            <li class="item-currencies__options" id="cu2">EUR</li>
-                            <li class="item-currencies__options" id="cu3">ARS</li>
-                            <li class="item-currencies__options" id="cu4">BRL</li>
-                            <li class="item-currencies__options" id="cu5">CHF</li>
-                            <li class="item-currencies__options" id="cu6">CAD</li>
-                        </ul>
-                    
-                    </li>
-                    <span id="nightMode"><img src="./assets/moon.svg" alt=""></span>
+                    <span id="settings"><img src="./assets/settings.svg" alt=""></span>
+                    <section class="settings_items">
+                        <p>Divisa: </p><div class="currency_items"><span>USD</span><span class="settings__active">ARS</span></div>
+                    </section>
                 </section>
             </ul>
             <img src="./assets/navbar.svg" class="nav__container--hamb-icon" alt="">
@@ -45,13 +33,8 @@
     <div class="load-container">
         <img src="/assets/logo.svg" alt="" id="animate-load">
     </div>
-    <main  data-router>
+    <div  data-router>
         
-    </main>
-        
-    <div class="cookies-policy">
-        <p>Este sitio web utiliza cookies para guardar información como tema, idioma y moneda, las cookies se eliminan en un plazo máximo de 6 meses <a href="cookies-policy.html" class="cookies-link">Ver politica de cookies</a></p>
-        <a href="#" class="button-sm active" id="auth">Aceptar</a>
     </div>
     <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
     <script type="module" src="./js/index.js" async defer></script>

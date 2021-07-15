@@ -18,7 +18,7 @@
     --text: 'Spartan', sans-serif;
     --text-w: '300';
 }
-#nightMode > img{
+#settings > img{
     fill: var(--dark);
     height: 2.5rem;
 }
@@ -53,25 +53,24 @@ h4, p{
 .header__nav{
     display: flex;
 }
-.nav__container{
+.nav__container {
     display: inline-flex;
     list-style-type: none;
     align-items: center;
     justify-content: space-around;
-    width: 60vw;
-
+    width: 43vw;
     position: relative;
-    left: 0;
+    right: -100px;
 }
 .header__nav--logo-container{
     width: 45vw;
 }
 .nav__container--item{
-    font-size: 2rem;
+    font-size: 1.7rem;
     width: 13rem;
     height: 4rem;
     text-align: center;
-    padding-top: .6rem;
+    padding-top: 0.8rem;
     font-weight: 600;
     color: var(--dark);
     border-radius: .9rem;
@@ -107,6 +106,7 @@ h4, p{
 
 .active{
     background-color: var(--principal-green);
+    color: #171717;
 }
 .main__content{
     margin-top: 15vh;
@@ -119,6 +119,7 @@ h4, p{
 }
 .main{
     display: inline-flex;
+    margin-top: 7rem;
 }
 .main > section:nth-child(2) > img{
     width: 40vw;
@@ -223,7 +224,7 @@ html{
         position: absolute;
         top: 1rem;
         right: 3.7rem;
-        display: block;
+        display: none;
     }
     .header{
         position: sticky;
@@ -239,12 +240,11 @@ html{
         height: 5rem;
     }
     .nav__container{
-        display: flex;
+        display: none;
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
         width: 100vw;
-
         position: absolute;
         left: 0;
         top: 7rem;
@@ -450,4 +450,18 @@ form{
     color: #06D6A0;
     align-items: center;
     font-size: 1.4rem;
+}
+.alert{
+    position: absolute;
+    top: 0rem;
+    border: 4px solid var(--principal-green);
+    left: 60vw;
+    width: 10rem;
+}
+.alert > i {
+    font-size: 3rem;
+    color: #eee;
+}
+@keyframes alert{
+
 }

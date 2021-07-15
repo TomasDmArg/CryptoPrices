@@ -1,8 +1,8 @@
 import {$} from '../selector.js';
 import {matchColors} from '../theme.js';
 let counter = 0;
-async function createCard (name, symbol, price, change, image){
-    let currency = $('.currency-label').innerText;
+async function createCard (name, symbol, price, change, image, id){
+    let currency = $('.settings__active').innerHTML;
     const template = `
     <section class="card-container">
         <section>
@@ -17,11 +17,11 @@ async function createCard (name, symbol, price, change, image){
                     <img src="${image}" class="card-image-img" alt="">
                 </section>
                 <section class="buttons">
-                    <a class="card-button active" >Ver mas</a>
+                    <a class="card-button active seemorebtn" >Ver mas</a>
                     <a class="card-button  convert text" >Convertir</a>
                 </section>
                 <div class="bg"></div>
-                <h2 class="bg-text title">Convertir ${name} a ${currency}</h2>
+                <h2 class="bg-text title">Convertir ${name} a <div class="currencyLabel">${currency}</div></h2>
                 <input type="number" placeholder="${symbol}..." class="converter-input" />    
                 <p class="bg-text value"><b class="value-converted">0</b><b class="converter-curency">${currency}</b></p>
                 <img src="/assets/close.svg" alt="" class="bg-close">

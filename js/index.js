@@ -7,10 +7,13 @@ import {$, $$} from './selector.js';
 import Router from './router.js';
 import {routes} from './routes.js';
 import {matchColors} from './theme.js'
+import initSettings from './settings.js'
 
-const router = new Router(routes);
-
-const load = ()=>{
+export const router = new Router(routes);
+var currencyValue = "ARS";
+const load = ()=>
+{
+    initSettings();
     initCookie();
     router.loadPage();
     if ($('[data-router]').innerHTML !== "") {
