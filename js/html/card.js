@@ -21,7 +21,7 @@ async function createCard (name, symbol, price, change, image, id){
                     <a class="card-button  convert text" >Convertir</a>
                 </section>
                 <div class="bg"></div>
-                <h2 class="bg-text title">Convertir ${name} a <div class="currencyLabel">${currency}</div></h2>
+                <h2 class="bg-text title">Convertir ${name} a <span class="currencyLabel">${currency}</span></h2>
                 <input type="number" placeholder="${symbol}..." class="converter-input" />    
                 <p class="bg-text value"><b class="value-converted">0</b><b class="converter-curency">${currency}</b></p>
                 <img src="/assets/close.svg" alt="" class="bg-close">
