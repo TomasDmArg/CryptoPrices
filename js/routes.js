@@ -7,7 +7,7 @@ export const routes = [
             <section class="main__content">
                 <h1 class="main__content--title">Los precios de tus criptomonedas favoritas a un click</h1>
                 <p class="main__content--text text">Precios, graficos, conversiones, notificaciones y mas...</p>
-                <section class="main__content--button-cont"><a href="#" class="main__content--button button active" id="seePrices">Ver mas</a></section>
+                <section class="main__content--button-cont"><a href="/#/precios" class="main__content--button button active" id="seePrices">Ver mas</a></section>
             </section>
             <section>
                 <img src="./home-graphic.png" alt="">
@@ -62,6 +62,17 @@ export const routes = [
         </section>
         `,
     },
+    {
+        path: '/#/not-found',
+        template: `
+        <section id="not-found">
+            <img src="./assets/404.webp">
+            <h1>Esta página no se ha encontrado</h1>
+            <p>Error 404 Not Found</p>
+            <span>Ir al inicio</span>
+        </section>
+        `,
+    },
 ];
-export const routesError = `<h1>ERROR404</h1>
-<p>no existe esta pagina</p>`;
+export const routesError = `<h1>Esta página no se ha encontrado</h1>
+<p>Error 404 Not Found</p>`;

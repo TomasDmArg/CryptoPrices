@@ -15,12 +15,12 @@
     grid-template-rows: 1fr 1fr;
     text-align: right;
     width: 90vw;
+    align-items: center;
 }
 .content__info--name{
     display: flex;
-    
     align-items: center;
-    width: 70%;
+    width: 350px;
     justify-content: space-between;
 }
 .text{
@@ -29,6 +29,7 @@
 .mainTitle{
     text-align: left !important;
     padding-left: 2rem;
+    width: auto;
 }
 .content__info--img{
     width: 70px;

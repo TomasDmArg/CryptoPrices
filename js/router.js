@@ -16,6 +16,7 @@ class Router {
         this.el.innerHTML = 'Not found err 404'
     }
     loadRoute(index, url){
+        document.title = "CryptoPrices - Prueba"
         history.pushState({}, 'This works fine', url)
         if (index === 1) {
             if (this.pricesState >= 1) {
@@ -42,7 +43,7 @@ class Router {
         let url = this.getUrl();
         let index = url.indexOf('/#/');
         let index2 = url.indexOf('/#c/');
-        let mod = url.slice(index)
+        let mod = url.slice(index);
         if(index2 === -1){
             switch (mod) {
                 case '/#/precios':
@@ -62,8 +63,12 @@ class Router {
                     this.loadRoute(0, mod);
                     matchColors();
                     break;
+                case '/#':
+                    this.loadRoute(0, mod);
+                    matchColors();
+                    break;
                 default:
-                    this.notFound();
+                    this.loadRoute(3, "/#/not-found");
                     matchColors();
                     break;
             }

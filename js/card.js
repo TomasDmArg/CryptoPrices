@@ -50,128 +50,122 @@ const initCards = ()=>{
     fetch('https://api.coingecko.com/api/v3/coins/markets/?vs_currency=usd')
     .then(response => response.json())
     .then(data => {
-        fetch('https://cors.bridged.cc/https://api.exchange.ripio.com/api/v1/rate/DAI_ARS/')
-            .then(response => response.json())
-            .then(data => {
-                $('#buyDollar').innerHTML = "$" + data.ask;
-                $('#sellDollar').innerHTML = "$" + data.bid;
-            });
                 $('#seemoredollar').addEventListener('click', ()=>{
                     let url = "/#/dolar";
                 });
-        for (let i = 0; i < 100; i++) {
-                let name = data[i].name;
-                let symbol = data[i].symbol.toUpperCase();
-                if (name.split(" ").length > 2) {
-                    name = symbol;
-                }
-                let price = data[i].current_price.toFixed(3);
-                let change = data[i].price_change_percentage_24h;
-                let image = data[i].image;
-                let id = data[i].id;
-                
-                createCard(name, symbol, price, change, image, id);
-                $$('.seemorebtn')[i].addEventListener('click', ()=>{
-                    let url = "/#c/" + data[i].id;
-                    loadCrypto(url);
-                });
-                if (name.length >= 10) {
-                    $$('.card__name-container > h2')[i].style.fontSize = '2rem'
-                }
-                if (name.split(" ").length === 2){
-                    $$('.card__name-container > h2')[i].style.fontSize = '2rem'
-                }
-                ($$('.percent')[i].innerHTML.indexOf("-") >= 0) ? setDown(i) : setUp(i);
-                $$('.convert')[i].addEventListener('click',()=>{
-                    $$('.bg')[i].style.animationName = 'converter';
-                    setTimeout(() => {
-                        $$('.title')[i].style.display = 'block';
-                        $$('.title')[i].style.animationName = 'showup';
-                        $$('.converter-input')[i].style.display = 'block';
-                        $$('.converter-input')[i].style.animationName = 'showup-inp';
-                        $$('.value')[i].style.display = 'block';
-                        $$('.value')[i].style.animationName = 'showup';
-                        $$('.bg-close')[i].style.display = 'block';
-                        $$('.bg-close')[i].style.animationName = 'showup';
-                        $$('.bg-close')[i].addEventListener('click', ()=>{
-                            $$('.title')[i].style.display = 'none';
-                            $$('.title')[i].style.animationName = 'hide';
-                            $$('.converter-input')[i].style.display = 'none';
-                            $$('.converter-input')[i].style.animationName = 'hide';
-                            $$('.value')[i].style.display = 'none';
-                            $$('.value')[i].style.animationName = 'hide';
-                            $$('.bg-close')[i].style.display = 'none';
-                            $$('.bg-close')[i].style.animationName = 'hide';
-                            setTimeout(() => {
-                                $$('.bg')[i].style.animationName = 'converter-hide';
-                            }, 200);
-                        })
-                    }, 800);
-                })
-            $$('.card__name-container')[i].style.animationDuration = '0s';
-            $$('.price')[i].style.animationDuration = '0s';
-            $$('.card-image')[i].style.animationDuration = '0s';
-            $$('.card-image')[i].style.backgroundColor = '#eeeeee50';
-            $$('.card-image-img')[i].style.borderRadius = '50%';
-            }
-            
-
-            for (let i = 0; i < cardsArr.length; i++) {
-                ($$('.percent')[i].innerHTML.indexOf("-") >= 0) ? setDown(i) : setUp(i);
-                $$('.convert')[i].addEventListener('click',()=>{
-                    $$('.bg')[i].style.animationName = 'converter';
-                    setTimeout(() => {
-                        $$('.title')[i].style.display = 'block';
-                        $$('.title')[i].style.animationName = 'showup';
-                        $$('.converter-input')[i].style.display = 'block';
-                        $$('.converter-input')[i].style.animationName = 'showup-inp';
-                        $$('.value')[i].style.display = 'block';
-                        $$('.value')[i].style.animationName = 'showup';
-                        $$('.bg-close')[i].style.display = 'block';
-                        $$('.bg-close')[i].style.animationName = 'showup';
-                        $$('.bg-close')[i].addEventListener('click', ()=>{
-                            $$('.title')[i].style.display = 'none';
-                            $$('.title')[i].style.animationName = 'hide';
-                            $$('.converter-input')[i].style.display = 'none';
-                            $$('.converter-input')[i].style.animationName = 'hide';
-                            $$('.value')[i].style.display = 'none';
-                            $$('.value')[i].style.animationName = 'hide';
-                            $$('.bg-close')[i].style.display = 'none';
-                            $$('.bg-close')[i].style.animationName = 'hide';
-                            setTimeout(() => {
-                                $$('.bg')[i].style.animationName = 'converter-hide';
-                            }, 200);
-                        })
-                    }, 400);
-                })
-            }
-               
-
-
-
-            getValue();
-            const getCurrencyValue = (id)=>{
-                let element = $('.settings__active');
-                let hiddenValue = $$('.hidden-value')[id].innerHTML;
-                if (element.innerHTML == "ARS") {
-                    return hiddenValue*170;
-                }else{
-                    return hiddenValue;
-                }
-            };
-            for (let i = 0; i < $$('input[type=number]').length; i++) {
-                let input = $$('input[type=number')[i];
-                $$('input[type=number]')[i].addEventListener('keydown', ()=>{
-                    setTimeout(() => {
-                        if (input.value > 20000000) {
-                            return false;
+                for (let i = 0; i < 100; i++) {
+                        let name = data[i].name;
+                        let symbol = data[i].symbol.toUpperCase();
+                        if (name.split(" ").length > 2) {
+                            name = symbol;
                         }
-                        let currency = getCurrencyValue(i);
-                        let value = (input.value*currency).toFixed(2)
-                        $$('.value-converted')[i].innerHTML = `$${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
-                    },100)
-                })
-            }
+                        let price = data[i].current_price.toFixed(3);
+                        let change = data[i].price_change_percentage_24h;
+                        let image = data[i].image;
+                        let id = data[i].id;
+                        
+                        createCard(name, symbol, price, change, image, id);
+                        $$('.seemorebtn')[i].addEventListener('click', ()=>{
+                            let url = "/#c/" + data[i].id;
+                            loadCrypto(url);
+                        });
+                        if (name.length >= 10) {
+                            $$('.card__name-container > h2')[i].style.fontSize = '2rem'
+                        }
+                        if (name.split(" ").length === 2){
+                            $$('.card__name-container > h2')[i].style.fontSize = '2rem'
+                        }
+                        ($$('.percent')[i].innerHTML.indexOf("-") >= 0) ? setDown(i) : setUp(i);
+                        $$('.convert')[i].addEventListener('click',()=>{
+                            $$('.bg')[i].style.animationName = 'converter';
+                            setTimeout(() => {
+                                $$('.title')[i].style.display = 'block';
+                                $$('.title')[i].style.animationName = 'showup';
+                                $$('.converter-input')[i].style.display = 'block';
+                                $$('.converter-input')[i].style.animationName = 'showup-inp';
+                                $$('.value')[i].style.display = 'block';
+                                $$('.value')[i].style.animationName = 'showup';
+                                $$('.bg-close')[i].style.display = 'block';
+                                $$('.bg-close')[i].style.animationName = 'showup';
+                                $$('.bg-close')[i].addEventListener('click', ()=>{
+                                    $$('.title')[i].style.display = 'none';
+                                    $$('.title')[i].style.animationName = 'hide';
+                                    $$('.converter-input')[i].style.display = 'none';
+                                    $$('.converter-input')[i].style.animationName = 'hide';
+                                    $$('.value')[i].style.display = 'none';
+                                    $$('.value')[i].style.animationName = 'hide';
+                                    $$('.bg-close')[i].style.display = 'none';
+                                    $$('.bg-close')[i].style.animationName = 'hide';
+                                    setTimeout(() => {
+                                        $$('.bg')[i].style.animationName = 'converter-hide';
+                                    }, 200);
+                                })
+                            }, 800);
+                        })
+                    $$('.card__name-container')[i].style.animationDuration = '0s';
+                    $$('.price')[i].style.animationDuration = '0s';
+                    $$('.card-image')[i].style.animationDuration = '0s';
+                    $$('.card-image')[i].style.backgroundColor = '#eeeeee50';
+                    $$('.card-image-img')[i].style.borderRadius = '50%';
+                    }
+                    for (let i = 0; i < cardsArr.length; i++) {
+                        ($$('.percent')[i].innerHTML.indexOf("-") >= 0) ? setDown(i) : setUp(i);
+                        $$('.convert')[i].addEventListener('click',()=>{
+                            $$('.bg')[i].style.animationName = 'converter';
+                            setTimeout(() => {
+                                $$('.title')[i].style.display = 'block';
+                                $$('.title')[i].style.animationName = 'showup';
+                                $$('.converter-input')[i].style.display = 'block';
+                                $$('.converter-input')[i].style.animationName = 'showup-inp';
+                                $$('.value')[i].style.display = 'block';
+                                $$('.value')[i].style.animationName = 'showup';
+                                $$('.bg-close')[i].style.display = 'block';
+                                $$('.bg-close')[i].style.animationName = 'showup';
+                                $$('.bg-close')[i].addEventListener('click', ()=>{
+                                    $$('.title')[i].style.display = 'none';
+                                    $$('.title')[i].style.animationName = 'hide';
+                                    $$('.converter-input')[i].style.display = 'none';
+                                    $$('.converter-input')[i].style.animationName = 'hide';
+                                    $$('.value')[i].style.display = 'none';
+                                    $$('.value')[i].style.animationName = 'hide';
+                                    $$('.bg-close')[i].style.display = 'none';
+                                    $$('.bg-close')[i].style.animationName = 'hide';
+                                    setTimeout(() => {
+                                        $$('.bg')[i].style.animationName = 'converter-hide';
+                                    }, 200);
+                                })
+                            }, 400);
+                        })
+                    }
+                    });
+                    getValue();
+                    fetch('https://cors.bridged.cc/https://app.ripio.com/api/v3/rates/?country=AR')
+                        .then(response => response.json())
+                        .then(data2 => {
+                            $('#buyDollar').innerHTML = "$" + data2[3].buy_rate;
+                            $('#sellDollar').innerHTML = "$" + data2[3].sell_rate;
+                            const getCurrencyValue = (id)=>{
+                                let element = $('.settings__active');
+                                let hiddenValue = $$('.hidden-value')[id].innerHTML;
+                                if (element.innerHTML == "ARS") {
+                                    return hiddenValue*data2[3].buy_rate;
+                                }else{
+                                    return hiddenValue;
+                                }
+                            };
+                            for (let i = 0; i < $$('input[type=number]').length; i++) {
+                                let input = $$('input[type=number')[i];
+                                $$('input[type=number]')[i].addEventListener('keydown', ()=>{
+                                    setTimeout(() => {
+                                        if (input.value > 20000000) {
+                                            return false;
+                                        }
+                                        let currency = getCurrencyValue(i);
+                                        let value = (input.value*currency).toFixed(2)
+                                        $$('.value-converted')[i].innerHTML = `$${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+                                    },100)
+                                })
+                            }
     })
 }
 export default initCards;
