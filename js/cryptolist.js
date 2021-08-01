@@ -2330,7 +2330,7 @@ const list = [
         "symbol": "xdb"
     },
     {
-        "id": "polkamon",
+        "id": "polychain-monsters",
         "name": "POLKAMON [PMON]",
         "symbol": "pmon"
     },
