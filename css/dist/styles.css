@@ -78,7 +78,7 @@ h4, p {
   width: 45vw;
 }
 
-.nav__container--item, #not-found span {
+.nav__container--item, #not-found a {
   font-size: 1.7rem;
   width: 13rem;
   height: 4rem;
@@ -91,7 +91,7 @@ h4, p {
   border: 4px solid var(--principal-green);
 }
 
-.nav__container--item:hover, #not-found span:hover {
+.nav__container--item:hover, #not-found a:hover {
   background-color: var(--principal-green);
   color: var(--dark) !important;
   transition: ease-in 0.3s;
@@ -118,7 +118,7 @@ h4, p {
   border: 4px solid var(--principal-green);
 }
 
-.active, #not-found span {
+.active, #not-found a {
   background-color: var(--principal-green);
   color: #171717;
 }
@@ -258,8 +258,9 @@ html {
 #not-found p {
   color: var(--light);
 }
-#not-found span {
+#not-found a {
   line-height: 100%;
+  text-decoration: none;
 }
 
 /*--------------Mobile-------------*/
@@ -287,12 +288,10 @@ html {
   .header {
     position: sticky;
     top: 0;
-    padding-bottom: 23rem;
-    /*Configurar que sea al hacer click en el navbar*/
     backdrop-filter: blur(4px);
   }
 
-  .nav__container--item, #not-found span {
+  .nav__container--item, #not-found a {
     width: 90vw;
     margin-top: 1rem;
   }
@@ -335,10 +334,6 @@ html {
 
   .main__content ~ section {
     padding-bottom: 15rem;
-  }
-
-  .header {
-    /*display: none;*/
   }
 
   .cookies-policy > p {
@@ -564,5 +559,3 @@ form {
   font-size: 3rem;
   color: #eee;
 }
-
-@keyframes alert {}

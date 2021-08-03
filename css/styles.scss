@@ -222,10 +222,11 @@ html{
     p{
         color: var(--light);
     }
-    span{
+    a{
         @extend .nav__container--item;
         @extend .active;
         line-height: 100%;
+        text-decoration: none;
     }
 }
 
@@ -242,7 +243,7 @@ html{
         position: absolute;
         top: 1rem;
         right: 3.7rem;
-        display: block
+        display: block;
     }
     .nav__container--close-icon{
         height: 2.5rem;
@@ -254,7 +255,6 @@ html{
     .header{
         position: sticky;
         top: 0;
-        padding-bottom: 23rem; /*Configurar que sea al hacer click en el navbar*/
         backdrop-filter: blur(4px);
     }
     .nav__container--item{
@@ -294,9 +294,6 @@ html{
     }
     .main__content ~ section{
         padding-bottom: 15rem;
-    }
-    .header{
-        /*display: none;*/
     }
     .cookies-policy > p{
         font-size: 1rem;
@@ -486,7 +483,4 @@ form{
 .alert > i {
     font-size: 3rem;
     color: #eee;
-}
-@keyframes alert{
-
 }

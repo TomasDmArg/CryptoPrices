@@ -39,8 +39,8 @@ export const routes = [
                     <div style="display: inline-flex; align-items: baseline"><h2>USD</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">DAI</h4></div>
                     <h3 class="quote">Compra: <span id="buyDollar">$0.00</h3>
                     <h3 class="quote">Venta: <span id="sellDollar">$0.00</h3>
-                    <a class="dollar-button d-active d-seemorebtn" id="seemoredollar" >Ver mas cotizaciones</a>
                 </section>
+                    <a class="dollar-button d-active d-seemorebtn" id="seemoredollar" >Ver mas cotizaciones</a>
             </section>
         </section>
         `
@@ -69,7 +69,7 @@ export const routes = [
             <img src="./assets/404.webp">
             <h1>Esta página no se ha encontrado</h1>
             <p>Error 404 Not Found</p>
-            <span>Ir al inicio</span>
+            <a href="/">Ir al inicio</a>
         </section>
         `,
     },

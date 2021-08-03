@@ -35,7 +35,7 @@
     position: relative;
 }
 .card-container > section, .dollar-name-cont{
-    margin-left: 2rem;
+    margin-left: 3rem;
     margin-top: 2rem;
     position: relative;
 }
@@ -317,7 +317,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 1.8rem;
     margin-top: 1rem;
 }
-.dollar-buttons{
+.dollar-button{
     margin-left: 2rem;
 }
 
@@ -422,7 +422,7 @@ input[type=number]::-webkit-outer-spin-button {
         display: grid;
         grid-template-columns: 1fr;
     }
-    .card-container {
+    .card-container, .dollar-info {
         width: calc(80vw/1);
     }
     .buttons{
@@ -441,7 +441,7 @@ input[type=number]::-webkit-outer-spin-button {
     .search > span{
         display: none;
     }
-    .search-container > div > input {
+    .search-container > div > input, .search-result {
         width: 80vw;
         
     }
