@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRUEBA - CryptoPrices</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
+</head>
+<body class="body light">
+    <header class="header">
+        <nav class="header__nav">
+            <section class="header__nav--logo-container"><img src="./" alt="" id="logoContainer"></section>
+            <ul class="nav__container">
+                <li class="nav__container--item active">Home</li>
+                <li class="nav__container--item text">Precios</li>
+                <li class="nav__container--item text" id="contact">Contacto</li>
+                <section class="droplist-container">
+                    <li class="nav__container--item-languages text language"><b class="language-label text">Español</b> <img class="down-arrow" src="./assets/down-arrow.svg" alt="">
+                        <ul class="item-languages">
+                            <li class="item-languages__options" id="op1">English</li>
+                            <li class="item-languages__options" id="op2">Español</li>
+                            <li class="item-languages__options" id="op3">Portuguese</li>
+                        </ul>
+                    </li>
+                    <li class="nav__container--item-languages text currency"><b class="currency-label text">ARS</b> <img class="down-arrow" src="./assets/down-arrow.svg" alt="">
+                        <ul class="item-currencies">
+                            <li class="item-currencies__options" id="cu1">USD</li>
+                            <li class="item-currencies__options" id="cu2">EUR</li>
+                            <li class="item-currencies__options" id="cu3">ARS</li>
+                            <li class="item-currencies__options" id="cu4">BRL</li>
+                            <li class="item-currencies__options" id="cu5">CHF</li>
+                            <li class="item-currencies__options" id="cu6">CAD</li>
+                        </ul>
+                    
+                    </li>
+                    <span id="nightMode"><img src="./assets/moon.svg" alt=""></span>
+                </section>
+            </ul>
+            <img src="./assets/navbar.svg" class="nav__container--hamb-icon" alt="">
+            <img src="./assets/close.svg" class="nav__container--close-icon" alt="">
+        </nav>
+    </header>
+    <div class="load-container">
+        <img src="/assets/logo.svg" alt="" id="animate-load">
+    </div>
+    <main class="main" id="content">
+        <section class="main__content">
+            <h1 class="main__content--title">Los precios de tus criptomonedas favoritas a un click</h1>
+            <p class="main__content--text text">Precios, graficos, conversiones, notificaciones y mas...</p>
+            <section class="main__content--button-cont"><a href="#" class="main__content--button button active">Ver mas</a></section>
+        </section>
+        <section>
+            <img src="./home-graphic.png" alt="">
+        </section>
+    </main>
+    <section id="contact-cont">
+        <section class="main__form">
+            <h2>Envíame un mensaje:</h2>
+            <p class="text">Suelo responder en un plazo de 72hrs</p>
+            <form action="" data-netlify="true">
+                <img src="/assets/user.svg" alt=""><input name="Nombre" id="username" placeholder="Nombre" type="text">
+                <img src="/assets/email.svg" alt=""><input name="Correo"id="email" placeholder="Correo electrónico" type="text">
+                <img src="/assets/text.svg" alt=""><textarea name="Mensaje" id="text" placeholder="Mensaje" type="text"></textarea>
+                <input id="send" type="submit" class="nav__container--item active" value="Enviar">
+            </form>
+        </section>
+    </section>
+    <div class="cookies-policy">
+        <p>Este sitio web utiliza cookies para guardar información como tema, idioma y moneda, las cookies se eliminan en un plazo máximo de 6 meses <a href="cookies-policy.html" class="cookies-link">Ver politica de cookies</a></p>
+        <a href="#" class="button-sm active" id="auth">Aceptar</a>
+    </div>
+    <script type="module" src="./js/index.js"></script>
+    <!--<script src="./js/part2.js"></script>-->
+</body>
+</html>
