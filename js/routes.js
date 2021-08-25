@@ -39,6 +39,7 @@ export const routes = [
                     <div style="display: inline-flex; align-items: baseline"><h2>USD</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">DAI</h4></div>
                     <h3 class="quote">Compra: <span id="buyDollar">$0.00</h3>
                     <h3 class="quote">Venta: <span id="sellDollar">$0.00</h3>
+                    <span style="display:none;" id="hddollar">0</span>
                     <a class="dollar-button d-active d-seemorebtn" id="seemoredollar" >Ver mas cotizaciones</a>
                 </section>
             </section>

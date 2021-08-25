@@ -55,6 +55,7 @@ const initCards = ()=>{
             .then(data => {
                 $('#buyDollar').innerHTML = "$" + data.ask;
                 $('#sellDollar').innerHTML = "$" + data.bid;
+                $('#hddollar').innerHTML = data.bid;
             });
                 $('#seemoredollar').addEventListener('click', ()=>{
                     let url = "/#/dolar";
@@ -147,14 +148,13 @@ const initCards = ()=>{
             }
                
 
-
-
             getValue();
+            let hddollar = document.getElementById('hddollar');
             const getCurrencyValue = (id)=>{
                 let element = $('.settings__active');
                 let hiddenValue = $$('.hidden-value')[id].innerHTML;
                 if (element.innerHTML == "ARS") {
-                    return hiddenValue*170;
+                    return hiddenValue*(hddollar.innerHTML);
                 }else{
                     return hiddenValue;
                 }
