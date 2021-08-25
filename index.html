@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRUEBA - CryptoPrices</title>
-    <link rel="stylesheet" href="./css/card.css">
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/crypto-main.css">
-    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <link rel="stylesheet" href="./css/dist/card.css">
+    <link rel="stylesheet" href="./css/dist/styles.css">
+    <link rel="stylesheet" href="./css/dist/crypto-main.css">
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script async defer type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 </head>
 <body class="body dark">
     <header class="header">
@@ -40,7 +39,13 @@
     <script type="module" src="./js/index.js" async defer></script>
     <script type="module" src="./js/search.js" async defer></script>
     <script type="module" src="./js/card.js" async defer></script>
-    
     <!--<script src="./js/part2.js"></script>-->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/8.8.1/firebase-app.js" async defer></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/8.8.1/firebase-analytics.js" async defer></script>
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js" async defer></script>
 </body>
 </html>
