@@ -3,21 +3,23 @@ import {applyMode, darkMode, checkDark} from './theme.js'
 import createCard from './html/card.js'
 import loadCrypto from './html/currency.js'
 import getValue from './binanceP2P.js';
+import Router from './router.js';
+import {routes} from './routes.js';
+// const nameArr = $$('.card__name-container > h2');
+// const symbolArr = $$('.card__name-container > h4');
+// const priceArr = $$('.card-container > section > .price');
+// const changeArr = $$('.percent');
+// const imgArr = $$('.card-image-img');
+// const converterTextArr = $$('.bg-text');
 
-const nameArr = $$('.card__name-container > h2');
-const symbolArr = $$('.card__name-container > h4');
-const priceArr = $$('.card-container > section > .price');
-const changeArr = $$('.percent');
-const imgArr = $$('.card-image-img');
-const converterTextArr = $$('.bg-text');
-
-const converterInputArr = $$('.converter-input');
-const converterCurrencyArr = $$('.converter-currency');
+// const converterInputArr = $$('.converter-input');
+// const converterCurrencyArr = $$('.converter-currency');
 let cardsArr = $$('.all-card-container');
+const rt = new Router(routes);
 const initCards = ()=>{
     const setDown = i =>{
         $$('.percent')[i].style.color = '#ff411f';
-        $$('.card-container')[i].style.border = '5px solid #ff411f';
+        // $$('.card-container')[i].style.border = '5px solid #ff411f';
         $$('.card__name-container > h2')[i].style.color = '#ff411f';
         $$('.buttons > .active')[i].style.backgroundColor = '#ff411f';
         $$('.buttons > .active')[i].style.border = '5px solid #ff411f';
@@ -33,7 +35,7 @@ const initCards = ()=>{
     }
     const setUp = i =>{
         $$('.percent')[i].style.color = '#06D6A0';
-        $$('.card-container')[i].style.border = '5px solid #06D6A0';
+        // $$('.card-container')[i].style.border = '5px solid #06D6A0';
         $$('.card__name-container > h2')[i].style.color = '#06D6A0';
         $$('.buttons > .active')[i].style.backgroundColor = '#06D6A0';
         $$('.buttons > .active')[i].style.border = '5px solid #06D6A0';
@@ -52,8 +54,10 @@ const initCards = ()=>{
     .then(data => {
                 $('#seemoredollar').addEventListener('click', ()=>{
                     let url = "/#/dolar";
+                    rt.loadRoute(4, '/#/dolar');
                 });
-                for (let i = 0; i < 100; i++) {
+                if ($$('.card-container').length < 99) {
+                    for (let i = 0; i < 100; i++) {
                         let name = data[i].name;
                         let symbol = data[i].symbol.toUpperCase();
                         if (name.split(" ").length > 2) {
@@ -137,18 +141,19 @@ const initCards = ()=>{
                             }, 400);
                         })
                     }
-                    });
+                    }
+                });
                     getValue();
                     fetch('https://cors.bridged.cc/https://app.ripio.com/api/v3/rates/?country=AR')
                         .then(response => response.json())
                         .then(data2 => {
-                            $('#buyDollar').innerHTML = "$" + data2[3].buy_rate;
-                            $('#sellDollar').innerHTML = "$" + data2[3].sell_rate;
+                            $('#buyDollar').innerHTML = "$" + data2[4].buy_rate;
+                            $('#sellDollar').innerHTML = "$" + data2[4].sell_rate;
                             const getCurrencyValue = (id)=>{
                                 let element = $('.settings__active');
                                 let hiddenValue = $$('.hidden-value')[id].innerHTML;
                                 if (element.innerHTML == "ARS") {
-                                    return hiddenValue*data2[3].buy_rate;
+                                    return hiddenValue*data2[4].buy_rate;
                                 }else{
                                     return hiddenValue;
                                 }

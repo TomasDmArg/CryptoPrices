@@ -34,7 +34,7 @@ const loadCrypto = (id)=>{
                     }else{
                         //data2 Es la api de Ripio, y localvalue hace referencia al 
                         // valor de compra del dolar
-                        let localValue = data2[3].buy_rate;
+                        let localValue = data2[4].buy_rate;
                         //localValue = parseFloat(localValue);
                         let modSymbol = data[0].symbol;
                         modSymbol = modSymbol.toUpperCase();
@@ -114,7 +114,6 @@ const loadCrypto = (id)=>{
                             <section class="main__content--2">
                                 <section class="content__info">
                                     <button class="content__info--btn btn-active">Gráfico</button>
-                                    <button class="content__info--btn">Mercados</button>
                                     <button class="content__info--btn">Convertir</button>
                                 </section>
                                 <section class="graph">
@@ -154,7 +153,7 @@ const loadCrypto = (id)=>{
                                 $('#sendToTab').addEventListener('click', ()=>{
                                     let state = false;
                                     let interval = setInterval(() => {
-                                        if(location.href.indexOf(data[0].id) !== -1){
+                                        if(location.href.indexOf( [0].id) !== -1){
                                             fetch(`https://api.binance.com/api/v3/avgPrice?symbol=${symbol}USDT`)
                                                 .then(response => response.json())
                                                 .then(data => {
@@ -166,6 +165,7 @@ const loadCrypto = (id)=>{
                                                             price = price.toFixed(decimales);
                                                             document.title = `${symbol}: $${price} - (Binance) CryptoPrices`;
                                                             state = true;
+                                                            console.log(data[0].id);
                                                         }else{
                                                             pedirDecimales();
                                                         }

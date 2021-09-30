@@ -34,7 +34,7 @@
   margin-bottom: 3rem;
   height: 20rem;
   width: calc(80vw/3);
-  border: 5px solid var(--principal-green);
+  background-color: #303030;
   border-radius: 1rem;
   position: relative;
 }
@@ -347,7 +347,7 @@ input[type=number]::-webkit-outer-spin-button {
   margin-bottom: 3rem;
   height: 20rem;
   width: calc(80vw/3);
-  border: 5px solid var(--principal-green);
+  background-color: #303030;
   border-radius: 1rem;
   position: relative;
 }
@@ -406,19 +406,19 @@ input[type=number]::-webkit-outer-spin-button {
 @keyframes converter {
   0% {
     position: absolute;
-    bottom: -2.7rem;
-    left: -2.5rem;
+    bottom: -3.5rem;
+    left: -2rem;
     border-radius: 10px;
-    width: 26.5vw;
+    width: 27vw;
     height: 4rem;
   }
   100% {
     position: absolute;
-    bottom: -2.7rem;
-    left: -2.5rem;
+    bottom: -3.5rem;
+    left: -2rem;
     border-radius: 10px;
-    width: 26.5vw;
-    height: 19.2rem;
+    width: 27vw;
+    height: 20rem;
   }
 }
 @keyframes showup {
@@ -449,18 +449,18 @@ input[type=number]::-webkit-outer-spin-button {
 @keyframes converter-hide {
   0% {
     position: absolute;
-    bottom: -2.7rem;
-    left: -2.5rem;
+    bottom: -3.5rem;
+    left: -2rem;
     border-radius: 10px;
-    width: 26.5vw;
-    height: 19.5rem;
+    width: 27vw;
+    height: 20rem;
   }
   100% {
     position: absolute;
-    bottom: -2.7rem;
-    left: -2.5rem;
+    bottom: -3.5rem;
+    left: -2rem;
     border-radius: 10px;
-    width: 26.5vw;
+    width: 27vw;
     height: 0rem;
   }
 }

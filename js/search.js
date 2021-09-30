@@ -64,7 +64,6 @@ const initSearch = ()=>{
             let symbol = list[i].symbol;
             list[i].name = `${name.toUpperCase()}`;
         }
-        console.log(list);
         INP.addEventListener('focus', ()=>{
             console.log(INP.value)
             INP.addEventListener('keyup', (e)=>{

@@ -73,6 +73,63 @@ export const routes = [
         </section>
         `,
     },
+    {
+        path: '/#/dolar',
+        template: `
+        <h1 class="top-title">Cotizaciones dolar hoy</h1>
+        <p class="top-text text">Estas son las diferentes cotizaciones del dolar al dia de hoy. Fuentes: Cryptoya/DolarSi/Ripio</p>
+        <section id="content" class="all-card-container">
+            <section class="dollar-info">
+                <section class="dollar-name-cont">
+                    <div style="display: inline-flex; align-items: baseline"><h2>Oficial</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Banco Nación*</h4></div>
+                    <h3 class="quote">Compra: <span id="buyDollar">$0.00</h3>
+                    <h3 class="quote">Venta: <span id="sellDollar">$0.00</h3>
+                </section>
+                    <a class="dollar-button d-active d-seemorebtn" id="seemoredollar" >Ver mas cotizaciones</a>
+            </section>
+            <section class="dollar-info">
+                <section class="dollar-name-cont">
+                    <div style="display: inline-flex; align-items: baseline"><h2>Blue</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">DolarSi</h4></div>
+                    <h3 class="quote">Compra: <span id="buyDollar">$0.00</h3>
+                    <h3 class="quote">Venta: <span id="sellDollar">$0.00</h3>
+                </section>
+                    <a class="dollar-button d-active d-seemorebtn" id="seemoredollar" >Ver mas cotizaciones</a>
+            </section>
+            <section class="dollar-info">
+                <section class="dollar-name-cont">
+                    <div style="display: inline-flex; align-items: baseline"><h2>DAI</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Ripio</h4></div>
+                    <h3 class="quote">Compra: <span id="buyDollar">$0.00</h3>
+                    <h3 class="quote">Venta: <span id="sellDollar">$0.00</h3>
+                </section>
+                    <a class="dollar-button d-active d-seemorebtn" id="seemoredollar" >Ver mas cotizaciones</a>
+            </section>
+            <section class="dollar-info">
+                <section class="dollar-name-cont">
+                    <div style="display: inline-flex; align-items: baseline"><h2>USDT</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Binance P2P*</h4></div>
+                    <h3 class="quote">Compra: <span id="buyDollar">$0.00</h3>
+                    <h3 class="quote">Venta: <span id="sellDollar">$0.00</h3>
+                </section>
+                    <a class="dollar-button d-active d-seemorebtn" id="seemoredollar" >Ver mas cotizaciones</a>
+            </section>
+            <section class="dollar-info">
+                <section class="dollar-name-cont">
+                    <div style="display: inline-flex; align-items: baseline"><h2>Dolar Bolsa</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Dolarsi</h4></div>
+                    <h3 class="quote">Compra: <span id="buyDollar">$0.00</h3>
+                    <h3 class="quote">Venta: <span id="sellDollar">$0.00</h3>
+                </section>
+                    <a class="dollar-button d-active d-seemorebtn" id="seemoredollar" >Ver mas cotizaciones</a>
+            </section>
+            <section class="dollar-info">
+                <section class="dollar-name-cont">
+                    <div style="display: inline-flex; align-items: baseline"><h2>Dolar CCL</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Dolarsi</h4></div>
+                    <h3 class="quote">Compra: <span id="buyDollar">$0.00</h3>
+                    <h3 class="quote">Venta: <span id="sellDollar">$0.00</h3>
+                </section>
+                    <a class="dollar-button d-active d-seemorebtn" id="seemoredollar" >Ver mas cotizaciones</a>
+            </section>
+        </section>
+        `
+    }
 ];
 export const routesError = `<h1>Esta página no se ha encontrado</h1>
 <p>Error 404 Not Found</p>`;

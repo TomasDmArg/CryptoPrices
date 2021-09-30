@@ -24,8 +24,7 @@ const indCrypto = (data, modSymbol, modifiedPriceUSD, modifiedPriceLocal, percen
                             <section class="main__content--2">
                                 <section class="content__info">
                                     <button class="content__info--btn btn-active">Gráfico</button>
-                                    <button class="content__info--btn">Mercados</button>
-                                    <button class="content__info--btn">Convertir</button>
+                                    <button class="content__info--btn">Convertir3</button>
                                 </section>
                                 <section class="graph">
                                     <div class="tradingview-widget-container">
