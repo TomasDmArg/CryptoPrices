@@ -69,11 +69,17 @@ var loadCrypto = function loadCrypto(id) {
           modifiedPriceUSD = numberWithCommas(data[0].current_price.toFixed(2));
         }
 
+        var intLocalPrice, intPriceUSD;
+        intLocalPrice = data[0].current_price * localValue;
+        intPriceUSD = data[0].current_price.toFixed(2);
         var globalInterval = setInterval(function () {
           if (location.href.indexOf(data[0].id) !== -1) {
             fetch(IND_API + id).then(function (response) {
               return response.json();
             }).then(function (data) {
+              intLocalPrice = data[0].current_price * localValue;
+              intPriceUSD = data[0].current_price.toFixed(2);
+
               if (data[0].current_price < 0.0005) {
                 modifiedPriceLocal = (data[0].current_price * localValue).toFixed(8);
                 modifiedPriceUSD = data[0].current_price.toFixed(8);
@@ -85,9 +91,9 @@ var loadCrypto = function loadCrypto(id) {
                 modifiedPriceUSD = numberWithCommas(data[0].current_price.toFixed(2));
               }
 
-              if ((0, _selector.$)('.priceCont') !== undefined || (0, _selector.$)('.priceCont') !== null) {
-                (0, _selector.$)('.priceCont').innerHTML = "$".concat(modifiedPriceLocal, "ARS");
-                (0, _selector.$)('.usdCont').innerHTML = "$".concat(modifiedPriceUSD, "USD");
+              if ((0, _selector.$)('.price__cont--ars') !== undefined || (0, _selector.$)('.price__cont--ars') !== null) {
+                (0, _selector.$)('.price__cont--ars').innerHTML = "$".concat(modifiedPriceLocal, "ARS");
+                (0, _selector.$)('.price__cont--usd').innerHTML = "$".concat(modifiedPriceUSD, "USD");
               }
 
               if (sendToTabState === false) {
@@ -102,54 +108,70 @@ var loadCrypto = function loadCrypto(id) {
         var percent = data[0].price_change_percentage_24h;
         percent = percent.toFixed(2);
         percent = numberWithCommas(percent);
-        var individualPage = "\n                        <main>\n                            <section class=\"main__content\">\n                            <section class=\"main__content--1\">\n                                <section class=\"content__info\">\n                                    <section class=\"content__info--name\">\n                                        <img class=\"content__info--img\" src=\"".concat(data[0].image, "\" alt=\"\">\n                                        <h2 class=\"mainTitle\">").concat(data[0].name, "</h2>\n                                        <h4 class=\"symbol text\">").concat(modSymbol, "</h4>\n                                    </section>\n                                    <section class=\"content__info--price\">\n                                        <h3 class=\"priceCont\">$").concat(modifiedPriceLocal, "ARS</h3>\n                                        <h4 class=\"usdCont text\">$").concat(modifiedPriceUSD, "USD</h4>\n                                        <h4 class=\"change\">").concat(percent, "%</h4>\n                                    </section>\n                                </section>\n                                <section></section>\n                                \n                                <section></section>\n                                <section class=\"content__buttons--onclick \">\n                                    <!-- <a href=\"#\" class=\"content__buttons--btn seeOnTradingview\">Ver en tradingview</a> -->\n                                    <a href=\"/#c/").concat(data[0].id, "\" class=\"content__buttons--btn-onclick\" id=\"sendToTab\">Enviar precio a la pesta\xF1a (binance)</a>\n                                    <a href=\"/#c/").concat(data[0].id, "\" class=\"content__buttons--btn convertir\" id=\"convert\">Convertir</a>\n                                </section>\n                            </section>\n                            <section class=\"main__content--2\">\n                                <section class=\"content__info\">\n                                    <button class=\"content__info--btn btn-active\">Gr\xE1fico</button>\n                                    <button class=\"content__info--btn\">Convertir</button>\n                                </section>\n                                <section class=\"graph\">\n                                    <div class=\"tradingview-widget-container\">\n                                        <div id=\"tradingview_87f40\"></div>\n                                        <div class=\"tradingview-widget-copyright\"><a href=\"https://es.tradingview.com/symbols/BTCUSDT/\" rel=\"noopener\" target=\"_blank\"><span class=\"blue-text\">BTCUSDT Gr\xE1fico</span></a> por TradingView</div>\n                                        <script type=\"text/javascript\">\n                                            new TradingView.widget({\n                                                \"width\": 980,\n                                                \"height\": 610,\n                                                \"symbol\": \"").concat(modSymbolTradingview, "\",\n                                                \"interval\": \"D\",\n                                                \"timezone\": \"Etc/UTC\",\n                                                \"theme\": \"dark\",\n                                                \"style\": \"2\",\n                                                \"locale\": \"es\",\n                                                \"toolbar_bg\": \"#f1f3f6\",\n                                                \"enable_publishing\": false,\n                                                \"allow_symbol_change\": true,\n                                                \"container_id\": \"tradingview_87f40\"\n                                            });\n                                        </script>\n                                    </div>\n                                </section>\n                            </section>\n                            </section>\n                            </main>\n                            ");
-        var element = document.querySelectorAll("[data-router]")[0];
-        setHTML(element, individualPage);
+        var val1 = data[0].high_24h - data[0].low_24h;
+        var val2 = data[0].current_price - data[0].low_24h;
+        var pricePercent = val2 / val1 * 100;
 
-        var sendToTab = function sendToTab() {
-          var symbol = data[0].symbol;
-          symbol = symbol.toUpperCase();
-
-          if (_supportedArr["default"].indexOf(symbol) == -1 || symbol == "USDT") {
-            (0, _selector.$)('#sendToTab').style.opacity = '0.5';
-          } else {
-            (0, _selector.$)('#sendToTab').addEventListener('click', function () {
-              var state = false;
-              var interval = setInterval(function () {
-                if (location.href.indexOf([0].id) !== -1) {
-                  fetch("https://api.binance.com/api/v3/avgPrice?symbol=".concat(symbol, "USDT")).then(function (response) {
-                    return response.json();
-                  }).then(function (data) {
-                    var price = data.price;
-                    price = parseFloat(price);
-
-                    var pedirDecimales = function pedirDecimales() {
-                      var decimales = prompt("Escribe la cantidad de decimales que quieres ver: Máx 12");
-
-                      if (decimales < 12) {
-                        price = price.toFixed(decimales);
-                        document.title = "".concat(symbol, ": $").concat(price, " - (Binance) CryptoPrices");
-                        state = true;
-                        console.log(data[0].id);
-                      } else {
-                        pedirDecimales();
-                      }
-                    };
-
-                    if (state == false) pedirDecimales();
-                    (0, _selector.$)('#sendToTab').innerText = "Enviado!";
-                  });
-                  sendToTabState = true;
-                } else {
-                  sendToTabState = false;
-                  clearInterval(interval);
-                }
-              }, 2000);
-            });
+        var shortNumber = function shortNumber(num) {
+          if (num == null) {
+            num = "Sin definir";
           }
+
+          if (num >= 1000000000000) {
+            num = num / 1000000000000;
+            num = num.toFixed(2);
+            num = num + "T";
+          } else if (num >= 1000000000) {
+            num = num / 1000000000;
+            num = num.toFixed(2);
+            num = num + "B";
+          } else if (num >= 1000000) {
+            num = num / 1000000;
+            num = num.toFixed(2);
+            num = num + "M";
+          } else if (num > 1000) {
+            num = num / 1000;
+            num = num.toFixed(2);
+            num = num + "k";
+          }
+
+          return num;
         };
 
-        sendToTab();
+        var individualPage = "\n                        <main>\n                            <section class=\"currencyContainer\">\n                                <section class=\"currencyContainer__name\">\n                                    <section class=\"name__cont\">\n                                        <img class=\"name__cont--img\" src=\"".concat(data[0].image, "\" alt=\"\">\n                                        <h2 class=\"name__cont--title\">").concat(data[0].name, "</h2>\n                                        <h4 class=\"name__cont--symbol text\">").concat(modSymbol, "</h4>\n                                    </section>\n                                    <section class=\"price__cont\">\n                                        <h3 class=\"price__cont--ars\">$").concat(modifiedPriceLocal, "ARS</h3>\n                                        <h4 class=\"price__cont--usd text\">$").concat(modifiedPriceUSD, "USD</h4>\n                                    </section>\n                                </section>\n                                <section class=\"currencyContainer__converter\">\n                                    <div class=\"currencyContainer__converter--input-cont\">\n                                        <input class=\"currencyContainer__converter--input\" type=\"number\" value=\"1\">\n                                        <h3 class=\"currencyContainer__converter--currency\">").concat(modSymbol, "</h3>\n                                    </div> <br>\n                                    <div class=\"currencyContainer__converter--input-cont\">\n                                        <input class=\"currencyContainer__converter--input inp2\" type=\"number\" value=\"").concat(intLocalPrice, "\">\n                                        <h3 class=\"currencyContainer__converter--currency-options\">$</h3>\n                                        <h3 class=\"currencyContainer__converter--currency-options\">U$</h3>\n                                    </div>\n                                </section>\n                                <section class=\"currencyContainer__graph\">\n                                    <div class=\"tradingview-widget-container\">\n                                        <div id=\"tradingview_6001e\"></div>\n                                        <div class=\"tradingview-widget-copyright\"><a href=\"https://es.tradingview.com/symbols/").concat(modSymbol, "USDT\" rel=\"noopener\" target=\"_blank\"><span class=\"blue-text\">").concat(modSymbol, "USDT Gr\xE1fico</span></a> por TradingView</div>\n                                        <script type=\"text/javascript\">\n                                            new TradingView.widget(\n                                                {\n                                                    \"autosize\": true,\n                                                    \"symbol\": \"").concat(modSymbol, "USDT\",\n                                                    \"interval\": \"60\",\n                                                    \"timezone\": \"America/Argentina/Buenos_Aires\",\n                                                    \"theme\": \"dark\",\n                                                    \"style\": \"1\",\n                                                    \"locale\": \"es\",\n                                                    \"toolbar_bg\": \"#f1f3f6\",\n                                                    \"enable_publishing\": false,\n                                                    \"allow_symbol_change\": true,\n                                                    \"container_id\": \"tradingview_6001e\"\n                                                }\n                                            );\n                                        </script>\n                                    </div>\n                                </section>\n                                <section class=\"currencyContainer__24hrschange\">\n                                    <section class=\"change__container\">\n                                        <div class=\"change__container--title-container\">\n                                            <h3 class=\"change__container--lowest\">$").concat(data[0].low_24h, "</h3>\n                                            <h3 class=\"change__container--highest\">$").concat(data[0].high_24h, "</h3>\n                                        </div>\n                                        <div class=\"change__container--bar-bg\">\n                                            <div class=\"change__container--bar\" style=\"min-width: ").concat(pricePercent, "%\"></div>\n                                        </div>\n                                    </section>\n                                </section>\n                                <section class=\"currencyContainer__statistics\">\n                                    <h2 class=\"currencyContainer__statistics--title\">\n                                        Estad\xEDsticas: \n                                    </h2>\n                                    <h4 class=\"currencyContainer__statistics--item\"> <b> Cambio 24hrs: </b> ").concat(percent, "%</h4>\n                                    <h4 class=\"currencyContainer__statistics--item\"> <b> Capitalizaci\xF3n: </b> ").concat(shortNumber(data[0].market_cap), "</h4>\n                                    <h4 class=\"currencyContainer__statistics--item\"> <b> Monedas en circ.: </b> ").concat(shortNumber(data[0].circulating_supply), "</h4>\n                                    <h4 class=\"currencyContainer__statistics--item\"> <b> Total de monedas: </b> ").concat(shortNumber(data[0].total_supply), "</h4>\n                                    <h4 class=\"currencyContainer__statistics--item\"> <b> ATH </b> ").concat(shortNumber(data[0].ath), "</h4>\n                                </section>\n                            </section>\n                        </main>\n                            ");
+        var element = document.querySelectorAll("[data-router]")[0];
+        setHTML(element, individualPage);
+        window.scroll(0, 0);
+        var currency = (0, _selector.$$)('.currencyContainer__converter--currency-options');
+        var activeCurrency = currency[0];
+        activeCurrency.style.backgroundColor = "#06D6A090";
+        var inputs = (0, _selector.$$)('.currencyContainer__converter--input');
+        inputs[0].addEventListener('keyup', function () {
+          if (activeCurrency == currency[0]) {
+            inputs[1].value = (inputs[0].value * intLocalPrice).toFixed(2);
+          } else {
+            inputs[1].value = (inputs[0].value * intPriceUSD).toFixed(2);
+          }
+        });
+        inputs[1].addEventListener('keyup', function () {
+          if (activeCurrency == currency[0]) {
+            inputs[0].value = (inputs[1].value / intLocalPrice).toFixed(2);
+          } else {
+            inputs[0].value = (inputs[1].value / intPriceUSD).toFixed(2);
+          }
+        });
+        currency[1].addEventListener('click', function () {
+          activeCurrency = currency[1];
+          inputs[1].value = (inputs[0].value * intPriceUSD).toFixed(2);
+          activeCurrency.style.backgroundColor = "#06D6A090";
+          currency[0].style.backgroundColor = "#505050";
+        });
+        currency[0].addEventListener('click', function () {
+          activeCurrency = currency[0];
+          inputs[1].value = (inputs[0].value * intLocalPrice).toFixed(2);
+          activeCurrency.style.backgroundColor = "#06D6A090";
+          currency[1].style.backgroundColor = "#505050";
+        });
       }
     });
   });

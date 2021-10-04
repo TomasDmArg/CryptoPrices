@@ -24,12 +24,22 @@ class Router {
                 initCards();
                 initSearch();
                 matchColors();
+                if($$('#seemoredollar').length == 1){
+                    $('#seemoredollar').addEventListener('click', ()=>{
+                        router.loadRoute(4, '/#/dolar');
+                    });
+                }
             }
             this.pricesState++;
             this.el.innerHTML = this.routes[index].template;
             initCards();
             initSearch();
             matchColors();
+            if($$('#seemoredollar').length == 1){
+                $('#seemoredollar').addEventListener('click', ()=>{
+                    router.loadRoute(4, '/#/dolar');
+                });
+            }
         }
         this.el.innerHTML = this.routes[index].template;
         matchColors();
@@ -48,6 +58,10 @@ class Router {
             switch (mod) {
                 case '/#/precios':
                     this.loadRoute(1, mod);
+                    $('#seemoredollar').addEventListener('click', ()=>{
+                        this.loadRoute(4, '/#/dolar');
+                        console.log("Hola");
+                    });
                     // initCards();
                     initSearch();
                     break;

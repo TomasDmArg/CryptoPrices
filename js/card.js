@@ -15,7 +15,6 @@ import {routes} from './routes.js';
 // const converterInputArr = $$('.converter-input');
 // const converterCurrencyArr = $$('.converter-currency');
 let cardsArr = $$('.all-card-container');
-const rt = new Router(routes);
 const initCards = ()=>{
     const setDown = i =>{
         $$('.percent')[i].style.color = '#ff411f';
@@ -52,10 +51,6 @@ const initCards = ()=>{
     fetch('https://api.coingecko.com/api/v3/coins/markets/?vs_currency=usd')
     .then(response => response.json())
     .then(data => {
-                $('#seemoredollar').addEventListener('click', ()=>{
-                    let url = "/#/dolar";
-                    rt.loadRoute(4, '/#/dolar');
-                });
                 if ($$('.card-container').length < 99) {
                     for (let i = 0; i < 100; i++) {
                         let name = data[i].name;

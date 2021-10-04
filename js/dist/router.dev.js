@@ -56,6 +56,12 @@ function () {
           (0, _card["default"])();
           (0, _search["default"])();
           (0, _theme.matchColors)();
+
+          if ((0, _selector.$$)('#seemoredollar').length == 1) {
+            (0, _selector.$)('#seemoredollar').addEventListener('click', function () {
+              router.loadRoute(4, '/#/dolar');
+            });
+          }
         }
 
         this.pricesState++;
@@ -63,6 +69,12 @@ function () {
         (0, _card["default"])();
         (0, _search["default"])();
         (0, _theme.matchColors)();
+
+        if ((0, _selector.$$)('#seemoredollar').length == 1) {
+          (0, _selector.$)('#seemoredollar').addEventListener('click', function () {
+            router.loadRoute(4, '/#/dolar');
+          });
+        }
       }
 
       this.el.innerHTML = this.routes[index].template;
@@ -78,6 +90,8 @@ function () {
   }, {
     key: "loadPage",
     value: function loadPage() {
+      var _this = this;
+
       var url = this.getUrl();
       var index = url.indexOf('/#/');
       var index2 = url.indexOf('/#c/');
@@ -86,7 +100,12 @@ function () {
       if (index2 === -1) {
         switch (mod) {
           case '/#/precios':
-            this.loadRoute(1, mod); // initCards();
+            this.loadRoute(1, mod);
+            (0, _selector.$)('#seemoredollar').addEventListener('click', function () {
+              _this.loadRoute(4, '/#/dolar');
+
+              console.log("Hola");
+            }); // initCards();
 
             (0, _search["default"])();
             break;

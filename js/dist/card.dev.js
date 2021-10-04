@@ -30,7 +30,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 // const converterInputArr = $$('.converter-input');
 // const converterCurrencyArr = $$('.converter-currency');
 var cardsArr = (0, _selector.$$)('.all-card-container');
-var rt = new _router["default"](_routes.routes);
 
 var initCards = function initCards() {
   var setDown = function setDown(i) {
@@ -70,11 +69,6 @@ var initCards = function initCards() {
   fetch('https://api.coingecko.com/api/v3/coins/markets/?vs_currency=usd').then(function (response) {
     return response.json();
   }).then(function (data) {
-    (0, _selector.$)('#seemoredollar').addEventListener('click', function () {
-      var url = "/#/dolar";
-      rt.loadRoute(4, '/#/dolar');
-    });
-
     if ((0, _selector.$$)('.card-container').length < 99) {
       var _loop = function _loop(i) {
         var name = data[i].name;
