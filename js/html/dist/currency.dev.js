@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports["default"] = exports.loadCrypto = exports.setHTML = exports.numberWithCommas = void 0;
 
 var _selector = require("../selector.js");
 
@@ -13,9 +13,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 var sendToTabState = false; //Cargar pagina indivudual de la criptomoneda
 
-function numberWithCommas(x) {
+var numberWithCommas = function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+};
+
+exports.numberWithCommas = numberWithCommas;
 
 var setHTML = function setHTML(elm, html) {
   elm.innerHTML = html;
@@ -28,6 +30,8 @@ var setHTML = function setHTML(elm, html) {
     oldScript.parentNode.replaceChild(newScript, oldScript);
   });
 };
+
+exports.setHTML = setHTML;
 
 var loadCrypto = function loadCrypto(id) {
   var IND_API = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids='; //Elimina el "/#c/" para obtener el id de la moneda, necesario para la solicitud
@@ -177,5 +181,6 @@ var loadCrypto = function loadCrypto(id) {
   });
 };
 
+exports.loadCrypto = loadCrypto;
 var _default = loadCrypto;
 exports["default"] = _default;

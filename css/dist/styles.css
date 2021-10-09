@@ -1,5 +1,184 @@
 @import url(https://fonts.googleapis.com/css?family=Spartan:200,300,regular,700,800,900);
 @import url(https://fonts.googleapis.com/css?family=Inter:regular,500,600,700,800);
+.container, .sale__main, .bs-dashboard__new-invoice, .bs-dashboard__sales, .bs-dashboard__main, .bs-dashboard__aside, .sale__aside {
+  background-color: #303030;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.business, .sale, .bs-dashboard, .bs-create {
+  margin: 55px 70px 0 50px;
+}
+.business__landing--title, .bs-create__sign-up--login {
+  font-size: 40px;
+}
+.business__landing--text, .bs-create__sign-up--login-text, .business__landing--text2 {
+  margin: 20px 0 30px 0;
+  font-size: 20px;
+  max-width: 70vw;
+}
+.business__landing--text2 {
+  font-size: 15px;
+  margin-top: 30px;
+}
+.business__landing--button, .bs-dashboard__new-invoice--create, .bs-create__sign-up--form button[type=number] {
+  margin: 20px 0 0 0;
+  padding: 8px 2rem 8px 2rem;
+  line-height: 20px;
+  font-size: 18px;
+  text-align: center;
+  padding-top: 0.8rem;
+  background-color: #06D6A0;
+  font-weight: bold;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #171717;
+}
+
+.bs-create__sign-up {
+  color: #eeeeee;
+}
+.bs-create__sign-up--first-cont, .bs-create__sign-up--form {
+  background-color: #303030;
+  border-radius: 10px;
+  padding: 30px 70px 25px 30px;
+}
+.bs-create__sign-up--form {
+  margin: 20px 0 0 0;
+}
+.bs-create__sign-up--form input[type=text] {
+  border: none;
+  margin: 10px 0 20px 0;
+  background-color: #505050;
+  color: #eeeeee;
+}
+.bs-create__sign-up--form input[type=text]::placeholder {
+  color: #eeeeee;
+}
+.bs-create__sign-up--form button[type=number] {
+  border: none;
+  width: 150px;
+}
+.bs-create__sign-up--form b.required {
+  color: #ff411f;
+}
+
+.bs-dashboard {
+  color: #eeeeee;
+  display: grid;
+  grid-template-columns: 10% 35% 55%;
+  grid-template-rows: 170px 400px;
+}
+.bs-dashboard__aside, .sale__aside {
+  margin: 0 20px 0 0px;
+  grid-area: 1/1/3/2;
+  padding: 0px;
+  position: relative;
+}
+.bs-dashboard__aside--profile {
+  background-color: #505050;
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  margin-top: 30px;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+.bs-dashboard__aside .aside__buttons--cart, .sale__aside .aside__buttons--cart, .bs-dashboard__aside .aside__buttons--invoices, .sale__aside .aside__buttons--invoices {
+  margin-top: 50px;
+}
+.bs-dashboard__aside .aside__buttons--delete, .sale__aside .aside__buttons--delete {
+  position: absolute;
+  bottom: 30px;
+  left: 3px;
+}
+.bs-dashboard__main {
+  margin: 0 0px 20px 20px;
+  grid-area: 1/2/2/4;
+}
+.bs-dashboard__sales {
+  margin: 20px 20px 0 20px;
+  grid-area: 2/2/3/3;
+}
+.bs-dashboard__sales--ars {
+  margin-top: 40px;
+  text-align: left;
+  font-size: 30px;
+  font-weight: 700;
+}
+.bs-dashboard__sales--usd {
+  text-align: left;
+  font-size: 25px;
+  font-weight: 400;
+}
+.bs-dashboard__sales--hide {
+  text-align: left;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 30px;
+  font-weight: 400;
+  text-decoration: underline;
+}
+.bs-dashboard__new-invoice {
+  margin: 20px 0 0 20px;
+  grid-area: 2/3/3/4;
+}
+.bs-dashboard__new-invoice input[type=text] {
+  font-size: 30px;
+  font-weight: 700;
+  padding: 20px 20px 10px 20px;
+  background-color: #06D6A090;
+  color: #eeeeee;
+  width: 300px;
+  border: none;
+  border-bottom: 7px solid #06D6A0;
+  transition: 0.5s;
+  margin: 30px 0 25px 0;
+}
+.bs-dashboard__new-invoice input[type=text]:focus {
+  outline: none;
+  border-bottom: none;
+  border-left: 7px solid #06D6A0;
+  transition: 0.5s;
+}
+.bs-dashboard__new-invoice input[type=text]::placeholder {
+  font-size: 30px;
+  font-weight: 700;
+}
+.sale {
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 75vh;
+}
+.sale__aside--profile {
+  background-color: #505050;
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  margin-top: 30px;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+.sale__aside .aside__buttons--cart, .sale__aside .aside__buttons--invoices {
+  margin-top: 50px;
+}
+.sale__aside .aside__buttons--delete {
+  position: absolute;
+  bottom: 30px;
+  left: 3px;
+}
+.sale__main {
+  color: #eeeeee;
+}
+.sale__main--title {
+  margin-bottom: 30px;
+}
+.sale__main--input {
+  font-size: 20px;
+  padding: 10px 20px;
+  background-color: #505050;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

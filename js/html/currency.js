@@ -3,10 +3,10 @@ import supportedArr from './supportedArr.js';
 let sendToTabState = false;
 
 //Cargar pagina indivudual de la criptomoneda
-function numberWithCommas(x) {
+export const numberWithCommas = (x)=>{
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-let setHTML = function(elm, html) {
+export let setHTML = function(elm, html) {
     elm.innerHTML = html;
     Array.from(elm.querySelectorAll("script")).forEach( oldScript => {
         const newScript = document.createElement("script");
@@ -16,7 +16,7 @@ let setHTML = function(elm, html) {
         oldScript.parentNode.replaceChild(newScript, oldScript);
     });
 }
-const loadCrypto = (id)=>{
+export const loadCrypto = (id)=>{
     let IND_API = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=';
     //Elimina el "/#c/" para obtener el id de la moneda, necesario para la solicitud
     history.pushState({}, 'This works fine', id);

@@ -9,6 +9,8 @@ var _card = _interopRequireDefault(require("./card.js"));
 
 var _currency = _interopRequireDefault(require("./html/currency.js"));
 
+var _askForDolars = require("./askForDolars.js");
+
 var _search = _interopRequireDefault(require("./search.js"));
 
 var _theme = require("./theme.js");
@@ -47,6 +49,8 @@ function () {
   }, {
     key: "loadRoute",
     value: function loadRoute(index, url) {
+      var _this = this;
+
       document.title = "CryptoPrices";
       history.pushState({}, 'This works fine', url);
 
@@ -59,7 +63,9 @@ function () {
 
           if ((0, _selector.$$)('#seemoredollar').length == 1) {
             (0, _selector.$)('#seemoredollar').addEventListener('click', function () {
-              router.loadRoute(4, '/#/dolar');
+              _this.loadRoute(4, '/#/dolar');
+
+              (0, _askForDolars.askForDollars)();
             });
           }
         }
@@ -72,7 +78,9 @@ function () {
 
         if ((0, _selector.$$)('#seemoredollar').length == 1) {
           (0, _selector.$)('#seemoredollar').addEventListener('click', function () {
-            router.loadRoute(4, '/#/dolar');
+            _this.loadRoute(4, '/#/dolar');
+
+            (0, _askForDolars.askForDollars)();
           });
         }
       }
@@ -90,7 +98,7 @@ function () {
   }, {
     key: "loadPage",
     value: function loadPage() {
-      var _this = this;
+      var _this2 = this;
 
       var url = this.getUrl();
       var index = url.indexOf('/#/');
@@ -102,9 +110,9 @@ function () {
           case '/#/precios':
             this.loadRoute(1, mod);
             (0, _selector.$)('#seemoredollar').addEventListener('click', function () {
-              _this.loadRoute(4, '/#/dolar');
+              _this2.loadRoute(4, '/#/dolar');
 
-              console.log("Hola");
+              (0, _askForDolars.askForDollars)();
             }); // initCards();
 
             (0, _search["default"])();
@@ -115,9 +123,30 @@ function () {
             (0, _theme.matchColors)();
             break;
 
+          case '/#/negocios':
+            this.loadRoute(5, mod);
+            (0, _theme.matchColors)();
+            break;
+
+          case '/#/negocios/create':
+            this.loadRoute(6, mod);
+            (0, _theme.matchColors)();
+            break;
+
+          case '/#/negocios/dashboard':
+            this.loadRoute(7, mod);
+            (0, _theme.matchColors)();
+            break;
+
+          case '/#/negocios/dashboard/venta':
+            this.loadRoute(8, mod);
+            (0, _theme.matchColors)();
+            break;
+
           case '/#/dolar':
             this.loadRoute(4, mod);
             (0, _theme.matchColors)();
+            (0, _askForDolars.askForDollars)();
             break;
 
           case '/':

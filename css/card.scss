@@ -303,16 +303,21 @@ input[type=number]::-webkit-outer-spin-button {
     border-radius: 1rem;
     position: relative;
 }
-#buyDollar{
+.buyDollar{
     color: var(--principal-green);
     font-weight: 800;
     font-size: 2rem;
 }
-#sellDollar{
+.sellDollar{
     color: var(--down);
     font-weight: 800;
     font-size: 2rem;
-    
+}
+.sd{
+    @extend .active;
+    background-color: var(--principal-green);
+    position: relative;
+    top: 20px;
 }
 .quote{
     color: var(--light);

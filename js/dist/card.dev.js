@@ -11,11 +11,13 @@ var _theme = require("./theme.js");
 
 var _card = _interopRequireDefault(require("./html/card.js"));
 
-var _currency = _interopRequireDefault(require("./html/currency.js"));
+var _currency = require("./html/currency.js");
 
 var _binanceP2P = _interopRequireDefault(require("./binanceP2P.js"));
 
 var _router = _interopRequireDefault(require("./router.js"));
+
+var _askForDolars = require("./askForDolars.js");
 
 var _routes = require("./routes.js");
 
@@ -69,6 +71,13 @@ var initCards = function initCards() {
   fetch('https://api.coingecko.com/api/v3/coins/markets/?vs_currency=usd').then(function (response) {
     return response.json();
   }).then(function (data) {
+    (0, _selector.$)('#seemoredollar').addEventListener('click', function () {
+      document.title = "Dolar - CryptoPrices";
+      history.pushState({}, 'This works fine', '/#/dolar');
+      (0, _currency.setHTML)(document.querySelectorAll("[data-router]")[0], _routes.routes[4].template);
+      (0, _askForDolars.askForDollars)();
+    });
+
     if ((0, _selector.$$)('.card-container').length < 99) {
       var _loop = function _loop(i) {
         var name = data[i].name;
@@ -85,7 +94,7 @@ var initCards = function initCards() {
         (0, _card["default"])(name, symbol, price, change, image, id);
         (0, _selector.$$)('.seemorebtn')[i].addEventListener('click', function () {
           var url = "/#c/" + data[i].id;
-          (0, _currency["default"])(url);
+          (0, _currency.loadCrypto)(url);
         });
 
         if (name.length >= 10) {
@@ -175,8 +184,8 @@ var initCards = function initCards() {
   fetch('https://cors.bridged.cc/https://app.ripio.com/api/v3/rates/?country=AR').then(function (response) {
     return response.json();
   }).then(function (data2) {
-    (0, _selector.$)('#buyDollar').innerHTML = "$" + data2[4].buy_rate;
-    (0, _selector.$)('#sellDollar').innerHTML = "$" + data2[4].sell_rate;
+    (0, _selector.$)('.buyDollar').innerHTML = "$" + data2[4].buy_rate;
+    (0, _selector.$)('.sellDollar').innerHTML = "$" + data2[4].sell_rate;
 
     var getCurrencyValue = function getCurrencyValue(id) {
       var element = (0, _selector.$)('.settings__active');

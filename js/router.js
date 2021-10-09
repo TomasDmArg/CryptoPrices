@@ -1,5 +1,6 @@
 import initCards from './card.js';
 import loadCrypto from './html/currency.js';
+import {askForDollars} from './askForDolars.js';
 import initSearch from './search.js';
 import {matchColors} from './theme.js';
 import {$, $$} from './selector.js';
@@ -26,7 +27,8 @@ class Router {
                 matchColors();
                 if($$('#seemoredollar').length == 1){
                     $('#seemoredollar').addEventListener('click', ()=>{
-                        router.loadRoute(4, '/#/dolar');
+                        this.loadRoute(4, '/#/dolar');
+                        askForDollars();
                     });
                 }
             }
@@ -37,7 +39,8 @@ class Router {
             matchColors();
             if($$('#seemoredollar').length == 1){
                 $('#seemoredollar').addEventListener('click', ()=>{
-                    router.loadRoute(4, '/#/dolar');
+                    this.loadRoute(4, '/#/dolar');
+                    askForDollars();
                 });
             }
         }
@@ -59,8 +62,8 @@ class Router {
                 case '/#/precios':
                     this.loadRoute(1, mod);
                     $('#seemoredollar').addEventListener('click', ()=>{
-                        this.loadRoute(4, '/#/dolar');
-                        console.log("Hola");
+                        this.loadRoute(4, '/#/dolar');                    
+                        askForDollars();
                     });
                     // initCards();
                     initSearch();
@@ -69,9 +72,26 @@ class Router {
                     this.loadRoute(2, mod);
                     matchColors();
                     break;
+                case '/#/negocios':
+                    this.loadRoute(5, mod);
+                    matchColors();
+                    break;
+                case '/#/negocios/create':
+                    this.loadRoute(6, mod);
+                    matchColors();
+                    break;
+                case '/#/negocios/dashboard':
+                    this.loadRoute(7, mod);
+                    matchColors();
+                    break;
+                case '/#/negocios/dashboard/venta':
+                    this.loadRoute(8, mod);
+                    matchColors();
+                    break;
                 case '/#/dolar':
                     this.loadRoute(4, mod);
                     matchColors();
+                    askForDollars();
                     break;
                 case '/':
                     this.loadRoute(0, mod);
