@@ -17,6 +17,8 @@ var _theme = require("./theme.js");
 
 var _selector = require("./selector.js");
 
+var _businessMain = _interopRequireDefault(require("./businessMain.js"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -126,11 +128,18 @@ function () {
           case '/#/negocios':
             this.loadRoute(5, mod);
             (0, _theme.matchColors)();
+            (0, _selector.$)('.business__landing--button').addEventListener('click', function () {
+              _this2.loadRoute(6, '/#/negocios/crear');
+            });
             break;
 
-          case '/#/negocios/create':
+          case '/#/negocios/crear':
             this.loadRoute(6, mod);
             (0, _theme.matchColors)();
+            (0, _businessMain["default"])(1);
+            (0, _selector.$)('.sign-up__form--button').addEventListener('click', function () {
+              _this2.loadRoute(7, '/#/negocios/dashboard');
+            });
             break;
 
           case '/#/negocios/dashboard':

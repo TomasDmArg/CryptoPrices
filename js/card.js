@@ -1,10 +1,9 @@
 import {$, $$, allText} from './selector.js'
 import {applyMode, darkMode, checkDark} from './theme.js'
 import createCard from './html/card.js'
-import {loadCrypto, setHTML} from './html/currency.js'
+import loadCrypto from './html/currency.js'
 import getValue from './binanceP2P.js';
 import Router from './router.js';
-import {askForDollars} from './askForDolars.js';
 import {routes} from './routes.js';
 // const nameArr = $$('.card__name-container > h2');
 // const symbolArr = $$('.card__name-container > h4');
@@ -52,12 +51,6 @@ const initCards = ()=>{
     fetch('https://api.coingecko.com/api/v3/coins/markets/?vs_currency=usd')
     .then(response => response.json())
     .then(data => {
-                $('#seemoredollar').addEventListener('click', ()=>{
-                    document.title = "Dolar - CryptoPrices";
-                    history.pushState({}, 'This works fine', '/#/dolar');
-                    setHTML(document.querySelectorAll("[data-router]")[0], routes[4].template);
-                    askForDollars();
-                });
                 if ($$('.card-container').length < 99) {
                     for (let i = 0; i < 100; i++) {
                         let name = data[i].name;
@@ -71,10 +64,12 @@ const initCards = ()=>{
                         let id = data[i].id;
                         
                         createCard(name, symbol, price, change, image, id);
-                        $$('.seemorebtn')[i].addEventListener('click', ()=>{
-                            let url = "/#c/" + data[i].id;
-                            loadCrypto(url);
-                        });
+                        if($$('.seemorebtn').length > 0) {
+                            $$('.seemorebtn')[i].addEventListener('click', ()=>{
+                                let url = "/#c/" + data[i].id;
+                                loadCrypto(url);
+                            });
+                        }
                         if (name.length >= 10) {
                             $$('.card__name-container > h2')[i].style.fontSize = '2rem'
                         }
@@ -146,16 +141,16 @@ const initCards = ()=>{
                     }
                 });
                     getValue();
-                    fetch('https://cors.bridged.cc/https://app.ripio.com/api/v3/rates/?country=AR')
+                    fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars')
                         .then(response => response.json())
                         .then(data2 => {
-                            $('.buyDollar').innerHTML = "$" + data2[4].buy_rate;
-                            $('.sellDollar').innerHTML = "$" + data2[4].sell_rate;
+                            $('.buyDollar').innerHTML = "$" + data2.payload.ask;
+                            $('.sellDollar').innerHTML = "$" + data2.payload.bid;
                             const getCurrencyValue = (id)=>{
                                 let element = $('.settings__active');
                                 let hiddenValue = $$('.hidden-value')[id].innerHTML;
                                 if (element.innerHTML == "ARS") {
-                                    return hiddenValue*data2[4].buy_rate;
+                                    return hiddenValue*data2.payload.ask;
                                 }else{
                                     return hiddenValue;
                                 }

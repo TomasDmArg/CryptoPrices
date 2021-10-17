@@ -4,6 +4,7 @@ import {askForDollars} from './askForDolars.js';
 import initSearch from './search.js';
 import {matchColors} from './theme.js';
 import {$, $$} from './selector.js';
+import initBs from './businessMain.js';
 class Router {
     constructor(routes){
         this.routes = routes;
@@ -75,10 +76,17 @@ class Router {
                 case '/#/negocios':
                     this.loadRoute(5, mod);
                     matchColors();
+                    $('.business__landing--button').addEventListener('click', ()=>{
+                        this.loadRoute(6, '/#/negocios/crear');                    
+                    });
                     break;
-                case '/#/negocios/create':
+                case '/#/negocios/crear':
                     this.loadRoute(6, mod);
                     matchColors();
+                    initBs(1);
+                    $('.sign-up__form--button').addEventListener('click', ()=>{
+                        this.loadRoute(7, '/#/negocios/dashboard');
+                    })
                     break;
                 case '/#/negocios/dashboard':
                     this.loadRoute(7, mod);

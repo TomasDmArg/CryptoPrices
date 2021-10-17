@@ -31,7 +31,6 @@ exports.router = router;
 var currencyValue = "ARS";
 
 var load = function load() {
-  (0, _settings["default"])();
   (0, _cookie.initCookie)();
   router.loadPage();
 

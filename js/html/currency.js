@@ -24,7 +24,7 @@ export const loadCrypto = (id)=>{
     fetch(IND_API + id)
         .then(response => response.json())
         .then(data => {
-            fetch('https://cors.bridged.cc/https://app.ripio.com/api/v3/rates/?country=AR')
+            fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars')
                 .then(response => response.json())
                 .then(data2 => {
                     //Comprueba si el id existe
@@ -34,7 +34,7 @@ export const loadCrypto = (id)=>{
                     }else{
                         //data2 Es la api de Ripio, y localvalue hace referencia al 
                         // valor de compra del dolar
-                        let localValue = data2[4].buy_rate;
+                        let localValue = data2.payload.ask;
                         //localValue = parseFloat(localValue);
                         let modSymbol = data[0].symbol;
                         modSymbol = modSymbol.toUpperCase();

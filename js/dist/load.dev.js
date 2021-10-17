@@ -113,6 +113,7 @@ var initLoad = function initLoad() {
   var contactPage = new Page((0, _selector.$)('#contact'), '/#/contacto', 2);
   var home = new Page((0, _selector.$)('#home'), '/#/', 0);
   var pricesPage = new Page((0, _selector.$)('#prices'), '/#/precios', 1);
+  var businessPage = new Page((0, _selector.$)('#business'), '/#/negocios', 5);
 
   if ((0, _selector.$$)('.main__content--button').length === 1) {
     var seePrices = new Page((0, _selector.$)('.main__content--button'), '/#/precios', 1);
@@ -121,7 +122,8 @@ var initLoad = function initLoad() {
 
   contactPage.enableToggle();
   pricesPage.enableToggle();
-  home.enableToggle(); // seePrices.enableToggle();
+  home.enableToggle();
+  businessPage.enableToggle(); // seePrices.enableToggle();
 };
 
 var _default = initLoad;

@@ -36,7 +36,7 @@ export const routes = [
         <section id="content" class="all-card-container">
             <section class="dollar-info">
                 <section class="dollar-name-cont">
-                    <div style="display: inline-flex; align-items: baseline"><h2>USD</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">DAI</h4></div>
+                    <div style="display: inline-flex; align-items: baseline"><h2>USD</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Bitso</h4></div>
                     <h3 class="quote">Compra: <span class="buyDollar">$0.00</h3>
                     <h3 class="quote">Venta: <span class="sellDollar">$0.00</h3>
                 </section>
@@ -138,7 +138,7 @@ export const routes = [
                     <section class="business__landing">
                         <h1 class="business__landing--title">Negocios</h1>
                         <p class="business__landing--text text">En esta seccion vas a poder administrar tus ventas en crypto, y generar los montos a pagar del cliente en una determinada criptomoneda</p>
-                        <a href="" class="business__landing--button">Empezar</a>
+                        <a class="business__landing--button">Empezar</a>
                         <p class="business__landing--text2 text ">Los datos se guardan en local, y si se pierden los datos, no son recuperables</p>
                     </section>
                 </section>
@@ -156,14 +156,14 @@ export const routes = [
                     </section>
                     <form action="" class="bs-create__sign-up--form">
                         <h4 class="sign-up__form--field">Nombre de la empresa/negocio <b class="required">*</b></h4>
-                        <input type="text" placeholder="Nombre">
+                        <input type="text" id="name"  placeholder="Nombre">
                         <h4 class="sign-up__form--field">Correo: <b class="required">*</b></h4>
-                        <input type="text" placeholder="ejemplo@dominio.com">
+                        <input type="text" id="email" placeholder="ejemplo@dominio.com">
                         <h4 class="sign-up__form--field">CUIT: (Opcional)</h4>
-                        <input type="text" placeholder="11-11111111-11">
+                        <input type="text" id="cuit" placeholder="11-11111111-11">
                         <h4 class="sign-up__form--field">Foto de perfil: (Opcional)</h4>
-                        <input type="text" placeholder="https://www.url.com/u/logo.png">
-                        <button type="submit">Crear</button>
+                        <input type="text" id="profile" placeholder="https://www.url.com/u/logo.png">
+                        <a class="sign-up__form--button">Crear</a>
                     </form>
                 </section>
             </section>

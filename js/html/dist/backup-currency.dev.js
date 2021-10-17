@@ -37,7 +37,10 @@ var loadCrypto = function loadCrypto(id) {
   fetch(IND_API + id).then(function (response) {
     return response.json();
   }).then(function (data) {
-    fetch('https://cors.bridged.cc/https://app.ripio.com/api/v3/rates/?country=AR').then(function (response) {
+    fetch('https://cors.bridged.cc/https://app.ripio.com/api/v3/rates/?country=AR', {
+      method: 'GET',
+      'x-cors-grida-api-key': '3c235d81-ceb2-4234-b162-a6b76c886268'
+    }).then(function (response) {
       return response.json();
     }).then(function (data2) {
       //Comprueba si el id existe

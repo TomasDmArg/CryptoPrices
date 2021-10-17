@@ -13,7 +13,6 @@ export const router = new Router(routes);
 var currencyValue = "ARS";
 const load = ()=>
 {
-    initSettings();
     initCookie();
     router.loadPage();
     if ($('[data-router]').innerHTML !== "") {

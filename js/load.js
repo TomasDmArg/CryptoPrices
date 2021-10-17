@@ -64,6 +64,7 @@ const initLoad = ()=>{
     const contactPage = new Page($('#contact'), '/#/contacto', 2);
     const home = new Page($('#home'), '/#/', 0);
     const pricesPage = new Page($('#prices'), '/#/precios', 1);
+    const businessPage = new Page($('#business'), '/#/negocios', 5);
     if($$('.main__content--button').length === 1){
         const seePrices = new Page($('.main__content--button'), '/#/precios', 1);
         seePrices.enableToggle();
@@ -71,6 +72,7 @@ const initLoad = ()=>{
     contactPage.enableToggle();
     pricesPage.enableToggle();
     home.enableToggle();
+    businessPage.enableToggle();
     // seePrices.enableToggle();
 }
 export default initLoad;

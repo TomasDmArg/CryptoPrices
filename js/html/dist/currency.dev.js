@@ -41,7 +41,7 @@ var loadCrypto = function loadCrypto(id) {
   fetch(IND_API + id).then(function (response) {
     return response.json();
   }).then(function (data) {
-    fetch('https://cors.bridged.cc/https://app.ripio.com/api/v3/rates/?country=AR').then(function (response) {
+    fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars').then(function (response) {
       return response.json();
     }).then(function (data2) {
       //Comprueba si el id existe
@@ -51,7 +51,7 @@ var loadCrypto = function loadCrypto(id) {
       } else {
         //data2 Es la api de Ripio, y localvalue hace referencia al 
         // valor de compra del dolar
-        var localValue = data2[4].buy_rate; //localValue = parseFloat(localValue);
+        var localValue = data2.payload.ask; //localValue = parseFloat(localValue);
 
         var modSymbol = data[0].symbol;
         modSymbol = modSymbol.toUpperCase();

@@ -24,7 +24,10 @@ const loadCrypto = (id)=>{
     fetch(IND_API + id)
         .then(response => response.json())
         .then(data => {
-            fetch('https://cors.bridged.cc/https://app.ripio.com/api/v3/rates/?country=AR')
+            fetch('https://cors.bridged.cc/https://app.ripio.com/api/v3/rates/?country=AR', {
+                method: 'GET',
+                'x-cors-grida-api-key': '3c235d81-ceb2-4234-b162-a6b76c886268',
+            })
                 .then(response => response.json())
                 .then(data2 => {
                     //Comprueba si el id existe

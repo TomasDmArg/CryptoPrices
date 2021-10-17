@@ -26,17 +26,13 @@ var askForDollars = function askForDollars() {
     setDolar(1, 1);
     setDolar(4, 3);
     setDolar(5, 4);
-    fetch('https://cors.bridged.cc/https://app.ripio.com/api/v3/rates/?country=AR').then(function (response) {
+    fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars').then(function (response) {
       return response.json();
     }).then(function (data2) {
-      data2.forEach(function (indData) {
-        if (indData.ticker == "DAI_ARS") {
-          createValue = indData.buy_rate;
-          elements[2].querySelector(".buyDollar").innerHTML = createValue;
-          createValue = indData.sell_rate;
-          elements[2].querySelector(".sellDollar").innerHTML = createValue;
-        }
-      });
+      createValue = data2.payload.ask;
+      elements[2].querySelector(".buyDollar").innerHTML = createValue;
+      createValue = data2.payload.bid;
+      elements[2].querySelector(".sellDollar").innerHTML = createValue;
     });
     fetch("https://criptoya.com/api/binancep2p/buy/usdt/ars/1").then(function (response) {
       return response.json();

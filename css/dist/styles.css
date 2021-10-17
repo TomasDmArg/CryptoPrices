@@ -21,7 +21,7 @@
   font-size: 15px;
   margin-top: 30px;
 }
-.business__landing--button, .bs-dashboard__new-invoice--create, .bs-create__sign-up--form button[type=number] {
+.business__landing--button, .bs-dashboard__new-invoice--create, .sign-up__form--button, .bs-create__sign-up--form button[type=number] {
   margin: 20px 0 0 0;
   padding: 8px 2rem 8px 2rem;
   line-height: 20px;
@@ -35,8 +35,12 @@
   color: #171717;
 }
 
+.bs-create {
+  margin-bottom: 30px;
+}
 .bs-create__sign-up {
   color: #eeeeee;
+  margin-bottom: 30px;
 }
 .bs-create__sign-up--first-cont, .bs-create__sign-up--form {
   background-color: #303030;
@@ -61,6 +65,11 @@
 }
 .bs-create__sign-up--form b.required {
   color: #ff411f;
+}
+
+.sign-up__form--button {
+  width: 50rem;
+  margin-top: 30px;
 }
 
 .bs-dashboard {

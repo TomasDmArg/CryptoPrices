@@ -72,11 +72,19 @@ $dark3: #505050;
                 border: none;
                 width: 150px;
             }
+            
             b.required{
                 color: $red;
             }
         }
+        margin-bottom: 30px;
     }
+    margin-bottom: 30px;
+}
+.sign-up__form--button{
+    @extend .business__landing--button;
+    width: 50rem;
+    margin-top: 30px;
 }
 .bs-dashboard{
     @extend .business;

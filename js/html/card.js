@@ -2,7 +2,7 @@ import {$} from '../selector.js';
 import {matchColors} from '../theme.js';
 let counter = 0;
 async function createCard (name, symbol, price, change, image, id){
-    let currency = $('.settings__active').innerHTML;
+    let currency = "ARS";
     const template = `
     <section class="card-container">
         <section>
