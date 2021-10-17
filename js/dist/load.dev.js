@@ -9,6 +9,8 @@ var _selector = require("./selector.js");
 
 var _search = _interopRequireDefault(require("./search.js"));
 
+var _businessMain = _interopRequireDefault(require("./businessMain.js"));
+
 var _index = _interopRequireDefault(require("./index.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -60,16 +62,22 @@ var initLoad = function initLoad() {
       value: function disableButton() {
         this.toggle.setAttribute('class', 'nav__container--item');
         this.state = 0;
-      }
+      } //SetTo des-selecciona el resto de botones de la barra de navegacion
+
     }, {
       key: "setTo",
-      value: function setTo(ione, itwo) {
-        (0, _selector.$$)('.nav__container--item')[ione].setAttribute('class', 'nav__container--item');
-        (0, _selector.$$)('.nav__container--item')[ione].style.color = "var(--light)";
-        (0, _selector.$$)('.nav__container--item')[ione].style.backgroundColor = "var(--dark)";
-        (0, _selector.$$)('.nav__container--item')[itwo].style.backgroundColor = "var(--dark)";
-        (0, _selector.$$)('.nav__container--item')[itwo].setAttribute('class', 'nav__container--item');
-        (0, _selector.$$)('.nav__container--item')[itwo].style.color = "var(--light)";
+      value: function setTo(selected) {
+        for (var i = 0; i < (0, _selector.$$)('nav__container--item').length; i++) {
+          if (i != selected) {
+            var el = (0, _selector.$$)('.nav__container--item')[i];
+            el.style.backgroundColor = "var(--dark)";
+            el.setAttribute('class', 'nav__container--item');
+            el.style.color = "var(--light)";
+          } else {
+            (0, _selector.$$)('.nav__container--item')[i].style.backgroundColor = "var(--principal-green)";
+            (0, _selector.$$)('.nav__container--item')[i].style.color = "var(--dark)";
+          }
+        }
       }
     }, {
       key: "enableToggle",
@@ -81,26 +89,45 @@ var initLoad = function initLoad() {
 
           _this.activeButton();
 
-          (0, _selector.$$)('.nav__container--item')[_this.index].style.backgroundColor = "var(--principal-green)";
-          (0, _selector.$$)('.nav__container--item')[_this.index].style.color = "var(--dark)";
-
           switch (_this.index) {
+            //Id: Nro de elemento del array de botones
+            //Botón Home Id:0
             case 0:
-              _this.setTo(1, 2);
+              _this.setTo(0); //Botón de ver mas en el home/landing
+
 
               var seePrices = new Page((0, _selector.$)('.main__content--button'), '/#/precios', 1);
               seePrices.enableToggle();
               break;
+            //Botón Precios Id:1
 
             case 1:
-              _this.setTo(0, 2);
+              _this.setTo(1);
 
               (0, _search["default"])();
               break;
+            //Botón Contacto Id:3
 
             case 2:
-              _this.setTo(0, 1);
+              _this.setTo(3);
 
+              break;
+            //Botón Negocios (Main) Id:2
+
+            case 5:
+              _this.setTo(2);
+
+              var createAcc = new Page((0, _selector.$)('.business__landing--button'), '/#/negocios/crear', 6);
+              createAcc.enableToggle();
+              break;
+            //Botón Negocios (Crear) Id:2
+
+            case 6:
+              _this.setTo(2);
+
+              (0, _businessMain["default"])(1);
+              var dashboard = new Page((0, _selector.$)('.sign-up__form--button'), '/#/negocios/dashboard', 7);
+              dashboard.enableToggle();
               break;
           }
         });
