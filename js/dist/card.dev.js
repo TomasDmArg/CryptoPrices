@@ -182,14 +182,8 @@ var initCards = function initCards() {
     (0, _selector.$)('.sellDollar').innerHTML = "$" + data2.payload.bid;
 
     var getCurrencyValue = function getCurrencyValue(id) {
-      var element = (0, _selector.$)('.settings__active');
       var hiddenValue = (0, _selector.$$)('.hidden-value')[id].innerHTML;
-
-      if (element.innerHTML == "ARS") {
-        return hiddenValue * data2.payload.ask;
-      } else {
-        return hiddenValue;
-      }
+      return hiddenValue * data2.payload.ask;
     };
 
     var _loop3 = function _loop3(i) {

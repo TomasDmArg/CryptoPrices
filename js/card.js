@@ -147,13 +147,8 @@ const initCards = ()=>{
                             $('.buyDollar').innerHTML = "$" + data2.payload.ask;
                             $('.sellDollar').innerHTML = "$" + data2.payload.bid;
                             const getCurrencyValue = (id)=>{
-                                let element = $('.settings__active');
                                 let hiddenValue = $$('.hidden-value')[id].innerHTML;
-                                if (element.innerHTML == "ARS") {
-                                    return hiddenValue*data2.payload.ask;
-                                }else{
-                                    return hiddenValue;
-                                }
+                                return hiddenValue*data2.payload.ask;
                             };
                             for (let i = 0; i < $$('input[type=number]').length; i++) {
                                 let input = $$('input[type=number')[i];
