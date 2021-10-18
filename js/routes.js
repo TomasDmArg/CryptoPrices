@@ -190,14 +190,14 @@ export const routes = [
                     <h2 class="bs-dashboard__sales--title">Ventas durante la sesion: </h2>
                     <p class="bs-dashboard__sales--ars">$127,535.00ARS</p>
                     <p class="bs-dashboard__sales--usd">$930.00USD</p>
-                    <p href="" class="bs-dashboard__sales--hide">
+                    <p class="bs-dashboard__sales--hide">
                         Ocultar
                     </p>
                 </section>
                 <section class="bs-dashboard__new-invoice">
                     <h2  class="bs-dashboard__new-invoice--title">Nueva venta</h2>
                     <input type="text" placeholder="$0,00ARS"><br>
-                    <a href="" class="bs-dashboard__new-invoice--create">Crear</a>
+                    <a class="bs-dashboard__new-invoice--create">Crear</a>
                 </section>
             </section>
         </main>

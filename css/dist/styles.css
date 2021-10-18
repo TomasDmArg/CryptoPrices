@@ -280,7 +280,7 @@ h4, p {
 }
 
 .nav__container--item:hover, #not-found a:hover {
-  background-color: var(--principal-green);
+  background-color: var(--principal-green) !important;
   color: var(--dark) !important;
   transition: ease-in 0.3s;
 }

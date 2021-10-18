@@ -19,6 +19,8 @@ var _selector = require("./selector.js");
 
 var _businessMain = _interopRequireDefault(require("./businessMain.js"));
 
+var _cookie = require("./cookie.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -128,6 +130,12 @@ function () {
           case '/#/negocios':
             this.loadRoute(5, mod);
             (0, _theme.matchColors)();
+
+            if ((0, _cookie.getCookie)("name") != undefined) {
+              this.loadRoute(7, '/#/negocios/dashboard');
+              (0, _businessMain["default"])(2);
+            }
+
             (0, _selector.$)('.business__landing--button').addEventListener('click', function () {
               _this2.loadRoute(6, '/#/negocios/crear');
             });
@@ -137,14 +145,29 @@ function () {
             this.loadRoute(6, mod);
             (0, _theme.matchColors)();
             (0, _businessMain["default"])(1);
+
+            if ((0, _cookie.getCookie)("name") != undefined) {
+              this.loadRoute(7, '/#/negocios/dashboard');
+              (0, _businessMain["default"])(2);
+            }
+
             (0, _selector.$)('.sign-up__form--button').addEventListener('click', function () {
               _this2.loadRoute(7, '/#/negocios/dashboard');
+
+              (0, _businessMain["default"])(2);
             });
             break;
 
           case '/#/negocios/dashboard':
             this.loadRoute(7, mod);
             (0, _theme.matchColors)();
+            (0, _businessMain["default"])(2);
+
+            if ((0, _cookie.getCookie)("name") == undefined) {
+              this.loadRoute(5, '/#/negocios');
+              (0, _businessMain["default"])(1);
+            }
+
             break;
 
           case '/#/negocios/dashboard/venta':

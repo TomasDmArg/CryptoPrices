@@ -10,15 +10,15 @@ export const setLanguage = (lang, text) => {
     document.cookie = `Language=${text}; expires=Mon, 25 May 2021 11:12:13 UTC; path=/`;
     $('.item-languages').style.display = "none";
 }
+export function getCookie(name) {
+    let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
 export const initCookie = ()=>{
     let aCookies = document.cookie.split(";");
 
-    function getCookie(name) {
-        let matches = document.cookie.match(new RegExp(
-        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-        ));
-        return matches ? decodeURIComponent(matches[1]) : undefined;
-    }
 
     if (aCookies === [""]) {
         if(aCookies[0].indexOf("Theme") === -1){

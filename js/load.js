@@ -3,6 +3,7 @@ import initSearch from './search.js';
 const contactHTML = $('#contact-cont');
 import initBs from './businessMain.js';
 import router from './index.js';
+import {getCookie} from './cookie.js';
 const initLoad = ()=>{
     class Page{
         constructor(toggle, url, index){
@@ -33,7 +34,7 @@ const initLoad = ()=>{
         }
         //SetTo des-selecciona el resto de botones de la barra de navegacion
         setTo(selected){
-            for(let i = 0; i < $$('nav__container--item').length; i++){
+            for(let i = 0; i < $$('.nav__container--item').length; i++){
                 if(i != selected){
                     let el = $$('.nav__container--item')[i];
                     el.style.backgroundColor = "var(--dark)";
@@ -69,16 +70,36 @@ const initLoad = ()=>{
                         break;
                     //Botón Negocios (Main) Id:2
                     case 5:
-                        this.setTo(2);
-                        const createAcc = new Page($('.business__landing--button'), '/#/negocios/crear', 6);
-                        createAcc.enableToggle();
+                        if(getCookie("name") != undefined){
+                            router.loadRoute(7, '/#/negocios/dashboard');
+                            initBs(2);
+                        }else{
+                            this.setTo(2);
+                            const createAcc = new Page($('.business__landing--button'), '/#/negocios/crear', 6);
+                            createAcc.enableToggle();
+                        }
                         break;
                     //Botón Negocios (Crear) Id:2
                     case 6:
-                        this.setTo(2);
-                        initBs(1);
-                        const dashboard = new Page($('.sign-up__form--button'), '/#/negocios/dashboard', 7);
-                        dashboard.enableToggle();
+                        if(getCookie("name") != undefined){
+                            router.loadRoute(7, '/#/negocios/dashboard');
+                            initBs(2);
+                        }else{
+                            this.setTo(2);
+                            initBs(1);
+                            const dashboard = new Page($('.sign-up__form--button'), '/#/negocios/dashboard', 7);
+                            dashboard.enableToggle();
+                        }
+                        break;
+                    case 7:
+                        if(getCookie("name") == undefined){
+                            router.loadRoute(5, '/#/negocios');
+                        }else{
+                            this.setTo(2);
+                            initBs(2);
+                            const nwInvoice = new Page($('.bs-dashboard__new-invoice--create'), '/#/negocios/dashboard/venta', 8);
+                            nwInvoice.enableToggle();
+                        }
                         break;
                 }
             })

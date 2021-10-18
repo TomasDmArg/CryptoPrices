@@ -80,7 +80,7 @@ h4, p{
     border: 4px solid var(--principal-green);
 }
 .nav__container--item:hover{
-    background-color: var(--principal-green);
+    background-color: var(--principal-green) !important;
     color: var(--dark) !important;
     transition: ease-in .3s
 }

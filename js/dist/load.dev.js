@@ -13,6 +13,8 @@ var _businessMain = _interopRequireDefault(require("./businessMain.js"));
 
 var _index = _interopRequireDefault(require("./index.js"));
 
+var _cookie = require("./cookie.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -67,7 +69,7 @@ var initLoad = function initLoad() {
     }, {
       key: "setTo",
       value: function setTo(selected) {
-        for (var i = 0; i < (0, _selector.$$)('nav__container--item').length; i++) {
+        for (var i = 0; i < (0, _selector.$$)('.nav__container--item').length; i++) {
           if (i != selected) {
             var el = (0, _selector.$$)('.nav__container--item')[i];
             el.style.backgroundColor = "var(--dark)";
@@ -115,19 +117,46 @@ var initLoad = function initLoad() {
             //Botón Negocios (Main) Id:2
 
             case 5:
-              _this.setTo(2);
+              if ((0, _cookie.getCookie)("name") != undefined) {
+                _index["default"].loadRoute(7, '/#/negocios/dashboard');
 
-              var createAcc = new Page((0, _selector.$)('.business__landing--button'), '/#/negocios/crear', 6);
-              createAcc.enableToggle();
+                (0, _businessMain["default"])(2);
+              } else {
+                _this.setTo(2);
+
+                var createAcc = new Page((0, _selector.$)('.business__landing--button'), '/#/negocios/crear', 6);
+                createAcc.enableToggle();
+              }
+
               break;
             //Botón Negocios (Crear) Id:2
 
             case 6:
-              _this.setTo(2);
+              if ((0, _cookie.getCookie)("name") != undefined) {
+                _index["default"].loadRoute(7, '/#/negocios/dashboard');
 
-              (0, _businessMain["default"])(1);
-              var dashboard = new Page((0, _selector.$)('.sign-up__form--button'), '/#/negocios/dashboard', 7);
-              dashboard.enableToggle();
+                (0, _businessMain["default"])(2);
+              } else {
+                _this.setTo(2);
+
+                (0, _businessMain["default"])(1);
+                var dashboard = new Page((0, _selector.$)('.sign-up__form--button'), '/#/negocios/dashboard', 7);
+                dashboard.enableToggle();
+              }
+
+              break;
+
+            case 7:
+              if ((0, _cookie.getCookie)("name") == undefined) {
+                _index["default"].loadRoute(5, '/#/negocios');
+              } else {
+                _this.setTo(2);
+
+                (0, _businessMain["default"])(2);
+                var nwInvoice = new Page((0, _selector.$)('.bs-dashboard__new-invoice--create'), '/#/negocios/dashboard/venta', 8);
+                nwInvoice.enableToggle();
+              }
+
               break;
           }
         });
