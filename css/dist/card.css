@@ -4,7 +4,7 @@
   --principal-green: #06D6A0;
   --up: #06D6A0;
   --down: #ff411f;
-  --dark: #171717;
+  --dark: #171A1F;
   --light: #eeeeee;
   --title: "Inter", sans-serif;
   --title-w: 800;
@@ -34,7 +34,7 @@
   margin-bottom: 3rem;
   height: 20rem;
   width: calc(80vw/3);
-  background-color: #303030;
+  background-color: #1F2124;
   border-radius: 1rem;
   position: relative;
 }
@@ -121,6 +121,32 @@
   color: var(--dark);
   border-radius: 0.9rem;
   border: 4px solid var(--principal-green);
+}
+
+.card-button-2 {
+  font-size: 1.8rem;
+  min-width: 0rem;
+  padding: 1vh 1.3vw;
+  text-decoration: none;
+  text-align: center;
+  margin-top: 20rem;
+  font-weight: 600;
+  color: var(--dark);
+  border: none;
+  margin-left: 10px;
+  transition: 0.1s ease-in-out;
+}
+
+.rot {
+  height: 3rem;
+  width: 3rem;
+}
+
+.card-button-2:hover {
+  background-color: none;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
 }
 
 .up {
@@ -215,6 +241,7 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: var(--principal-green);
   color: var(--dark) !important;
   transition: ease-in 0.3s;
+  cursor: pointer;
 }
 
 .hidden-value {
@@ -257,7 +284,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .search-container > div > input:focus {
   outline: none;
-  background-color: rgba(250, 250, 250, 0.3);
+  background-color: #303030;
 }
 
 .results-container {
@@ -347,7 +374,7 @@ input[type=number]::-webkit-outer-spin-button {
   margin-bottom: 3rem;
   height: 20rem;
   width: calc(80vw/3);
-  background-color: #303030;
+  background-color: #1F2124;
   border-radius: 1rem;
   position: relative;
 }

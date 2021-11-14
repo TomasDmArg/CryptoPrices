@@ -18,7 +18,7 @@ async function createCard (name, symbol, price, change, image, id){
                 </section>
                 <section class="buttons">
                     <a class="card-button active seemorebtn" >Ver mas</a>
-                    <a class="card-button  convert text" >Convertir</a>
+                    <a class="card-button-2  convert text" >Convertir</a>
                 </section>
                 <div class="bg"></div>
                 <h2 class="bg-text title">Convertir ${name} a <span class="currencyLabel">${currency}</span></h2>

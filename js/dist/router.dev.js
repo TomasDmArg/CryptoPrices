@@ -59,38 +59,22 @@ function () {
       history.pushState({}, 'This works fine', url);
 
       if (index === 1) {
-        if (this.pricesState >= 1) {
-          this.el.innerHTML = this.routes[index].template;
-          (0, _card["default"])();
-          (0, _search["default"])();
-          (0, _theme.matchColors)();
+        this.pricesState++; // this.el.innerHTML = this.routes[index].template;
 
-          if ((0, _selector.$$)('#seemoredollar').length == 1) {
-            (0, _selector.$)('#seemoredollar').addEventListener('click', function () {
-              _this.loadRoute(4, '/#/dolar');
-
-              (0, _askForDolars.askForDollars)();
-            });
-          }
-        }
-
-        this.pricesState++;
-        this.el.innerHTML = this.routes[index].template;
         (0, _card["default"])();
-        (0, _search["default"])();
-        (0, _theme.matchColors)();
-
-        if ((0, _selector.$$)('#seemoredollar').length == 1) {
-          (0, _selector.$)('#seemoredollar').addEventListener('click', function () {
-            _this.loadRoute(4, '/#/dolar');
-
-            (0, _askForDolars.askForDollars)();
-          });
-        }
+        (0, _search["default"])(); // matchColors();
       }
 
       this.el.innerHTML = this.routes[index].template;
       (0, _theme.matchColors)();
+
+      if ((0, _selector.$$)('#seemoredollar').length == 1) {
+        (0, _selector.$)('#seemoredollar').addEventListener('click', function () {
+          _this.loadRoute(4, '/#/dolar');
+
+          (0, _askForDolars.askForDollars)();
+        });
+      }
     }
   }, {
     key: "loadCryptoIndividual",

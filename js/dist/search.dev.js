@@ -16,21 +16,19 @@ var state = 0;
 var getResult;
 
 var initSearch = function initSearch() {
-  fetch('https://api.coingecko.com/api/v3/coins/list').then(function (response) {
+  fetch('https://api.coingecko.com/api/v3/coins/list', {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(function (response) {
     return response.json();
   }).then(function (list) {
     var INP = (0, _selector.$)('.search-container > div > input');
     INP.addEventListener('focus', function () {
       (0, _selector.$)('.search-result').style.display = 'block';
-    }); // INP.addEventListener('blur', ()=>{
-    //     $$('.search-result')[0].style.display = 'none';
-    //     $$('.search-result')[1].style.display = 'none';
-    //     $$('.search-result')[2].style.display = 'none';
-    //     $$('.search-result')[3].style.display = 'none';
-    //     $$('.search-result')[4].style.display = 'none';
-    //     $$('.search-result')[5].style.display = 'none';
-    //     $$('.search-result')[6].style.display = 'none';
-    // })
+    });
 
     var show = function show() {
       INP.focus();
@@ -123,8 +121,11 @@ var initSearch = function initSearch() {
             filterResult.sort(function st(a, b) {
               return a.name.length - b.name.length;
             });
-            console.log(getResult);
             showResults(filterResult);
+
+            if (e.keyCode === 13) {
+              (0, _currency["default"])("/#c/" + getResult[0].id);
+            }
           }
         }
 

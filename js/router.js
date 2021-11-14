@@ -22,32 +22,20 @@ class Router {
         document.title = "CryptoPrices";
         history.pushState({}, 'This works fine', url)
         if (index === 1) {
-            if (this.pricesState >= 1) {
-                this.el.innerHTML = this.routes[index].template;
-                initCards();
-                initSearch();
-                matchColors();
-                if($$('#seemoredollar').length == 1){
-                    $('#seemoredollar').addEventListener('click', ()=>{
-                        this.loadRoute(4, '/#/dolar');
-                        askForDollars();
-                    });
-                }
-            }
             this.pricesState++;
-            this.el.innerHTML = this.routes[index].template;
+            // this.el.innerHTML = this.routes[index].template;
             initCards();
             initSearch();
-            matchColors();
-            if($$('#seemoredollar').length == 1){
-                $('#seemoredollar').addEventListener('click', ()=>{
-                    this.loadRoute(4, '/#/dolar');
-                    askForDollars();
-                });
-            }
+            // matchColors();
         }
         this.el.innerHTML = this.routes[index].template;
         matchColors();
+        if($$('#seemoredollar').length == 1){
+            $('#seemoredollar').addEventListener('click', ()=>{
+                this.loadRoute(4, '/#/dolar');
+                askForDollars();
+            });
+        }
     }
     loadCryptoIndividual(url){
         history.pushState({}, 'This works fine', url)

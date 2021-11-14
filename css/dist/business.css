@@ -1,5 +1,5 @@
 .container, .sale__main, .bs-dashboard__new-invoice, .bs-dashboard__sales, .bs-dashboard__main, .bs-dashboard__aside, .sale__aside {
-  background-color: #303030;
+  background-color: #1F2124;
   border-radius: 10px;
   padding: 30px;
 }
@@ -30,7 +30,7 @@
   font-weight: bold;
   border-radius: 10px;
   text-decoration: none;
-  color: #171717;
+  color: #171A1F;
 }
 
 .bs-create {
@@ -41,7 +41,7 @@
   margin-bottom: 30px;
 }
 .bs-create__sign-up--first-cont, .bs-create__sign-up--form {
-  background-color: #303030;
+  background-color: #1F2124;
   border-radius: 10px;
   padding: 30px 70px 25px 30px;
 }
@@ -51,7 +51,7 @@
 .bs-create__sign-up--form input[type=text] {
   border: none;
   margin: 10px 0 20px 0;
-  background-color: #505050;
+  background-color: #303030;
   color: #eeeeee;
 }
 .bs-create__sign-up--form input[type=text]::placeholder {
@@ -83,7 +83,7 @@
   position: relative;
 }
 .bs-dashboard__aside--profile {
-  background-color: #505050;
+  background-color: #303030;
   width: 60px;
   height: 60px;
   border-radius: 999px;
@@ -158,7 +158,7 @@
   grid-template-rows: 75vh;
 }
 .sale__aside--profile {
-  background-color: #505050;
+  background-color: #303030;
   width: 60px;
   height: 60px;
   border-radius: 999px;
@@ -183,5 +183,5 @@
 .sale__main--input {
   font-size: 20px;
   padding: 10px 20px;
-  background-color: #505050;
+  background-color: #303030;
 }

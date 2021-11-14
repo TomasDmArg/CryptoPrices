@@ -22,13 +22,6 @@ const initCards = ()=>{
         $$('.card__name-container > h2')[i].style.color = '#ff411f';
         $$('.buttons > .active')[i].style.backgroundColor = '#ff411f';
         $$('.buttons > .active')[i].style.border = '5px solid #ff411f';
-        $$('.buttons > .convert')[i].style.border = '5px solid #ff411f';
-        $$('.buttons > .convert')[i].addEventListener('mouseover', ()=>{
-            $$('.buttons > .convert')[i].style.backgroundColor = '#ff411f';
-        })
-        $$('.buttons > .convert')[i].addEventListener('mouseleave', ()=>{
-            $$('.buttons > .convert')[i].style.backgroundColor = '#ff411f00';
-        })
         $$('.bg')[i].style.backgroundColor = '#ff411f';
         $$('.card-image-img')[i].style.border = '4px solid #ff411f';
     }
@@ -38,15 +31,9 @@ const initCards = ()=>{
         $$('.card__name-container > h2')[i].style.color = '#06D6A0';
         $$('.buttons > .active')[i].style.backgroundColor = '#06D6A0';
         $$('.buttons > .active')[i].style.border = '5px solid #06D6A0';
-        $$('.buttons > .convert')[i].style.border = '5px solid #06D6A0';
-        $$('.buttons > .convert')[i].addEventListener('mouseover', ()=>{
-            $$('.buttons > .convert')[i].style.backgroundColor = '#06D6A0';
-        })
-        $$('.buttons > .convert')[i].addEventListener('mouseleave', ()=>{
-            $$('.buttons > .convert')[i].style.backgroundColor = '#06D6A000';
-        })
         $$('.bg')[i].style.backgroundColor = '#06D6A0';
         $$('.card-image-img')[i].style.border = '4px solid #06D6A0';
+        $$('.buttons > .active')[i].style.border = '5px solid #06D6A0';
     }
     fetch('https://api.coingecko.com/api/v3/coins/markets/?vs_currency=usd')
     .then(response => response.json())

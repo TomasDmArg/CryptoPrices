@@ -4,30 +4,27 @@ import loadCrypto from './html/currency.js';
 let state = 0;
 let getResult;
 const initSearch = ()=>{
-    fetch('https://api.coingecko.com/api/v3/coins/list')
+    fetch('https://api.coingecko.com/api/v3/coins/list', {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
         .then(response => response.json())
         .then(list => {
             let INP = $('.search-container > div > input');
             INP.addEventListener('focus', ()=>{
                 $('.search-result').style.display = 'block';
-            })
-            // INP.addEventListener('blur', ()=>{
-            //     $$('.search-result')[0].style.display = 'none';
-            //     $$('.search-result')[1].style.display = 'none';
-            //     $$('.search-result')[2].style.display = 'none';
-            //     $$('.search-result')[3].style.display = 'none';
-            //     $$('.search-result')[4].style.display = 'none';
-            //     $$('.search-result')[5].style.display = 'none';
-            //     $$('.search-result')[6].style.display = 'none';
-            // })
-                const show = ()=>{
-                    INP.focus();
-                    state++;
-                }
-                hotkeys("ctrl+b, command+b", ()=>{
-                        show();
-                    }
-                )
+            });
+            const show = ()=>{
+                INP.focus();
+                state++;
+            }
+            hotkeys("ctrl+b, command+b", ()=>{
+                show();
+            });
+            
             const showResults = (arr)=>{
                 if (arr.length > 6) {
                     for (let i = 0; i < 6; i++){
@@ -93,8 +90,10 @@ const initSearch = ()=>{
                             filterResult.sort(function st (a, b){
                                 return a.name.length - b.name.length;
                             });
-                            console.log(getResult);
                             showResults(filterResult);
+                            if (e.keyCode === 13) {
+                                loadCrypto("/#c/" + getResult[0].id);
+                            }
                         }
                     }
                     if(e.key === 'Escape'){
