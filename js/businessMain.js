@@ -1,8 +1,14 @@
 import {$, $$} from './selector.js';
 import {getCookie} from './cookie.js';
 import router from './index.js';
-const isAImage = (data)=>{
-    const has = (type)=> data.indexOf(type) != -1;
+const EXP_DATE = "expires=Fri, 31 Dec 9999 23:59:59 GMT;";
+const PATH = "path=/";
+const C = ".bs-dashboard";
+const setToC = (c, html) => $(`${C}__${c}`).innerHTML = html;
+
+const isAnImage = (data)=>{
+    const has = type => data.substr(data.length - type.length) == type;
+    // Check if the last 4 characters are png, jpg, jpeg, gif
     if(has(".png") || has(".jpg") || has(".svg") || has(".gif") || has(".jpeg")) return true;
     return false;
 }
@@ -10,16 +16,15 @@ const setCookies = (data)=>{
     if(data.cuit == undefined){
         data.cuit = "-";
     }
-    if(data.profile == undefined || isAImage(data.profile) == false){
+    if(data.profile == undefined || isAnImage(data.profile) == false){
         data.profile = "https://tmdm.com.ar/u/business-profile.svg"; //Img por defecto
     }
-    document.cookie = `name=${data.name};     expires=Mon, 25 May 2022 11:12:13 UTC; path=/`;
-    document.cookie = `email=${data.email};   expires=Mon, 25 May 2022 11:12:13 UTC; path=/`;
-    document.cookie = `cuit=${data.cuit};    expires=Mon, 25 May 2022 11:12:13 UTC; path=/`;
-    document.cookie = `profile=${data.profile}; expires=Mon, 25 May 2022 11:12:13 UTC; path=/`;
+    document.cookie = `name=${data.name}; ${EXP_DATE} ${PATH}`;
+    document.cookie = `email=${data.email}; ${EXP_DATE} ${PATH}`;
+    document.cookie = `cuit=${data.cuit};  ${EXP_DATE} ${PATH}`;
+    document.cookie = `profile=${data.profile}; ${EXP_DATE} ${PATH}`;
 }
 const initBs = (type) =>{
-    
     switch(type){
         //Data = {name, email, cuit, profile}
         case 1:
@@ -31,8 +36,6 @@ const initBs = (type) =>{
                     profile: $('#profile').value
                 };
                 setCookies(data);
-                //console.log("Hola");
-                //initBs(2);
             })
             break;
         case 2:
@@ -47,33 +50,48 @@ const initBs = (type) =>{
             if(all.totalSold == undefined || all.totalSold === 0){
                 all.totalSold = 0;
             }
-            $('.bs-dashboard__main--title').innerHTML = `Hola, ${all.name}!`;
-            $('.bs-dashboard__sales--ars').innerHTML = `$${all.totalSold.toFixed(2)}ARS`;
+
+            //Carga el nombre y lo que vendió el usuario en pesos
+            $(`${C}__main--title`).innerHTML = `Hola, ${all.name}!`;
+            $(`${C}__sales--ars`).innerHTML = `$${all.totalSold.toFixed(2)}ARS`;
+
+            //Carga el total de ventas en Dolares tomando como referencia el precio del usd
             fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars')
                 .then(response => response.json())
                 .then(data2 => {
-                        $('.bs-dashboard__sales--usd').innerHTML = `$${(all.totalSold/data2.payload.bid).toFixed(3)}USD`;
+                        setToC("sales--usd", `$${(all.totalSold/data2.payload.bid).toFixed(3)}USD`);
                 });
-                $('.bs-dashboard__aside--profile').setAttribute('src', getCookie("profile"));
-            $('.bs-dashboard__sales--hide').addEventListener('click', ()=>{
-                if($('.bs-dashboard__sales--ars').innerHTML.indexOf("*") === -1) {
-                    $('.bs-dashboard__sales--ars').innerHTML = "$*****,**ARS";
-                    $('.bs-dashboard__sales--usd').innerHTML = "$***,**USD";
-                    $('.bs-dashboard__sales--hide').innerText = "Mostrar";
+
+            //Carga la imagen de perfil
+            $(`${C}__aside--profile`).setAttribute('src', getCookie("profile"));
+            
+            // Boton para ocultar o mostrar el saldo
+            $(`${C}__sales--hide`).addEventListener('click', ()=>{
+                if($(`${C}__sales--ars`).innerHTML.indexOf("*") === -1) {
+                    setToC("sales--ars", "*****,**ARS");
+                    setToC("sales--usd", "***,**USD");
+                    $(`${C}__sales--hide`).innerText = "Mostrar";
                 }else{
-                    $('.bs-dashboard__sales--ars').innerHTML = `$${all.totalSold.toFixed(2)}ARS`;
+                    $(`${C}__sales--ars`).innerHTML = `$${all.totalSold.toFixed(2)}ARS`;
                     fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars')
                         .then(response => response.json())
                         .then(data2 => {
-                                $('.bs-dashboard__sales--usd').innerHTML = `$${(all.totalSold/data2.payload.bid).toFixed(3)}USD`;
+                                $(`${C}__sales--usd`).innerHTML = `$${(all.totalSold/data2.payload.bid).toFixed(3)}USD`;
                         });
-                    $('.bs-dashboard__sales--hide').innerText = "Ocultar";
+                    $(`${C}__sales--hide`).innerText = "Ocultar";
                 }
-            })
+            });
             $('.aside__buttons--delete').addEventListener('click', ()=>{
-                if(confirm("Estas seguro de que quieres borrar tu cuenta?, Los datos quedan irrecuperables")){
-                    document.cookie = "";
-                    router.loadRoute(5, '/#/negocios')
+                if(confirm("Estas seguro de que quieres borrar tu cuenta?, Los datos serán irrecuperables")){
+                    //Borrar cookies
+                    let cookies = document.cookie.split(";");
+                    for (let i = 0; i < cookies.length; i++) {
+                        let cookie = cookies[i];
+                        let eqPos = cookie.indexOf("=");
+                        let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+                    }
+                    router.loadRoute(0, '/#/home')
                 }
             })
         default:

@@ -21,14 +21,6 @@ var _routes = require("./routes.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-// const nameArr = $$('.card__name-container > h2');
-// const symbolArr = $$('.card__name-container > h4');
-// const priceArr = $$('.card-container > section > .price');
-// const changeArr = $$('.percent');
-// const imgArr = $$('.card-image-img');
-// const converterTextArr = $$('.bg-text');
-// const converterInputArr = $$('.converter-input');
-// const converterCurrencyArr = $$('.converter-currency');
 var cardsArr = (0, _selector.$$)('.all-card-container');
 
 var initCards = function initCards() {

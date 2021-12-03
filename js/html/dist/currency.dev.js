@@ -7,6 +7,8 @@ exports["default"] = exports.loadCrypto = exports.setHTML = exports.numberWithCo
 
 var _selector = require("../selector.js");
 
+var _individualPage = require("./individualPage.js");
+
 var _supportedArr = _interopRequireDefault(require("./supportedArr.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -20,14 +22,25 @@ var numberWithCommas = function numberWithCommas(x) {
 exports.numberWithCommas = numberWithCommas;
 
 var setHTML = function setHTML(elm, html) {
-  elm.innerHTML = html;
-  Array.from(elm.querySelectorAll("script")).forEach(function (oldScript) {
-    var newScript = document.createElement("script");
-    Array.from(oldScript.attributes).forEach(function (attr) {
-      return newScript.setAttribute(attr.name, attr.value);
-    });
-    newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-    oldScript.parentNode.replaceChild(newScript, oldScript);
+  return regeneratorRuntime.async(function setHTML$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          elm.innerHTML = html;
+          Array.from(elm.querySelectorAll("script")).forEach(function (oldScript) {
+            var newScript = document.createElement("script");
+            Array.from(oldScript.attributes).forEach(function (attr) {
+              return newScript.setAttribute(attr.name, attr.value);
+            });
+            newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+          });
+
+        case 2:
+        case "end":
+          return _context.stop();
+      }
+    }
   });
 };
 
@@ -142,7 +155,7 @@ var loadCrypto = function loadCrypto(id) {
           return num;
         };
 
-        var individualPage = "\n                        <main>\n                            <section class=\"currencyContainer\">\n                                <section class=\"currencyContainer__name\">\n                                    <section class=\"name__cont\">\n                                        <img class=\"name__cont--img\" src=\"".concat(data[0].image, "\" alt=\"\">\n                                        <h2 class=\"name__cont--title\">").concat(data[0].name, "</h2>\n                                        <h4 class=\"name__cont--symbol text\">").concat(modSymbol, "</h4>\n                                    </section>\n                                    <section class=\"price__cont\">\n                                        <h3 class=\"price__cont--ars\">$").concat(modifiedPriceLocal, "ARS</h3>\n                                        <h4 class=\"price__cont--usd text\">$").concat(modifiedPriceUSD, "USD</h4>\n                                    </section>\n                                </section>\n                                <section class=\"currencyContainer__converter\">\n                                    <div class=\"currencyContainer__converter--input-cont\">\n                                        <input class=\"currencyContainer__converter--input\" type=\"number\" value=\"1\">\n                                        <h3 class=\"currencyContainer__converter--currency\">").concat(modSymbol, "</h3>\n                                    </div> <br>\n                                    <div class=\"currencyContainer__converter--input-cont\">\n                                        <input class=\"currencyContainer__converter--input inp2\" type=\"number\" value=\"").concat(intLocalPrice, "\">\n                                        <h3 class=\"currencyContainer__converter--currency-options\">$</h3>\n                                        <h3 class=\"currencyContainer__converter--currency-options\">U$</h3>\n                                    </div>\n                                </section>\n                                <section class=\"currencyContainer__graph\">\n                                    <div class=\"tradingview-widget-container\">\n                                        <div id=\"tradingview_6001e\"></div>\n                                        <div class=\"tradingview-widget-copyright\"><a href=\"https://es.tradingview.com/symbols/").concat(modSymbol, "USDT\" rel=\"noopener\" target=\"_blank\"><span class=\"blue-text\">").concat(modSymbol, "USDT Gr\xE1fico</span></a> por TradingView</div>\n                                        <script type=\"text/javascript\">\n                                            new TradingView.widget(\n                                                {\n                                                    \"autosize\": true,\n                                                    \"symbol\": \"").concat(modSymbol, "USDT\",\n                                                    \"interval\": \"60\",\n                                                    \"timezone\": \"America/Argentina/Buenos_Aires\",\n                                                    \"theme\": \"dark\",\n                                                    \"style\": \"1\",\n                                                    \"locale\": \"es\",\n                                                    \"toolbar_bg\": \"#f1f3f6\",\n                                                    \"enable_publishing\": false,\n                                                    \"allow_symbol_change\": true,\n                                                    \"container_id\": \"tradingview_6001e\"\n                                                }\n                                            );\n                                        </script>\n                                    </div>\n                                </section>\n                                <section class=\"currencyContainer__24hrschange\">\n                                    <section class=\"change__container\">\n                                        <div class=\"change__container--title-container\">\n                                            <h3 class=\"change__container--lowest\">$").concat(data[0].low_24h, "</h3>\n                                            <h3 class=\"change__container--highest\">$").concat(data[0].high_24h, "</h3>\n                                        </div>\n                                        <div class=\"change__container--bar-bg\">\n                                            <div class=\"change__container--bar\" style=\"min-width: ").concat(pricePercent, "%\"></div>\n                                        </div>\n                                    </section>\n                                </section>\n                                <section class=\"currencyContainer__statistics\">\n                                    <h2 class=\"currencyContainer__statistics--title\">\n                                        Estad\xEDsticas: \n                                    </h2>\n                                    <h4 class=\"currencyContainer__statistics--item\"> <b> Cambio 24hrs: </b> ").concat(percent, "%</h4>\n                                    <h4 class=\"currencyContainer__statistics--item\"> <b> Capitalizaci\xF3n: </b> ").concat(shortNumber(data[0].market_cap), "</h4>\n                                    <h4 class=\"currencyContainer__statistics--item\"> <b> Monedas en circ.: </b> ").concat(shortNumber(data[0].circulating_supply), "</h4>\n                                    <h4 class=\"currencyContainer__statistics--item\"> <b> Total de monedas: </b> ").concat(shortNumber(data[0].total_supply), "</h4>\n                                    <h4 class=\"currencyContainer__statistics--item\"> <b> ATH </b> ").concat(shortNumber(data[0].ath), "</h4>\n                                </section>\n                            </section>\n                        </main>\n                            ");
+        var individualPage = (0, _individualPage.getPage)(data[0].image, data[0].name, modSymbol, modifiedPriceLocal, modifiedPriceUSD, intLocalPrice, data[0].low_24h, data[0].high_24h, pricePercent, percent, shortNumber(data[0].market_cap), shortNumber(data[0].circulating_supply), shortNumber(data[0].total_supply), shortNumber(data[0].ath));
         var element = document.querySelectorAll("[data-router]")[0];
         setHTML(element, individualPage);
         window.scroll(0, 0);
@@ -175,6 +188,10 @@ var loadCrypto = function loadCrypto(id) {
           inputs[1].value = (inputs[0].value * intLocalPrice).toFixed(2);
           activeCurrency.style.backgroundColor = "#06D6A090";
           currency[1].style.backgroundColor = "#505050";
+        });
+        hotkeys('ctrl+alt+a', function () {
+          (0, _selector.$)('.main__calculator').innerHTML = "\n                                <section class=\"calculator\"> \n                                    <input type=\"text\" class=\"calculator-input\" placeholder=\"Ingrese valores a calcular, ars/usd para precio\">\n                                </section>\n                            ";
+          (0, _selector.$)('.calculator-input').focus();
         });
       }
     });

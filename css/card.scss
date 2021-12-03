@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Spartan:200,300,regular,700,800,900);
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;700&display=swap');
 @import url(https://fonts.googleapis.com/css?family=Inter:regular,500,600,700,800);
 :root{
     --principal-green: #06D6A0;
@@ -8,7 +8,7 @@
     --light: #eeeeee;
     --title: 'Inter', sans-serif;
     --title-w: 800;
-    --text: 'Spartan', sans-serif;
+    --text: 'Outfit', sans-serif;
     --text-w: '300';
 }
 .all-card-container{
@@ -68,7 +68,8 @@
 .price{
     animation-name: loading-price;
     animation-duration: .8s;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: .5rem;
     height: 3rem;
     animation-iteration-count: infinite;
 }
@@ -96,25 +97,25 @@
     margin-left: -0.5rem;
 }
 .card-button, .dollar-button{
-    font-size: 1.8rem;
+    font-size: 2rem;
     min-width: 0rem;
-    padding: 1vh 1.3vw;
+    padding: 0.5rem 1.3vw;
     text-decoration: none;
     text-align: center;
     margin-top: 20rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--dark);
     border-radius: .9rem;
     border: 4px solid var(--principal-green);
 }
 .card-button-2{
-    font-size: 1.8rem;
+    font-size: 2rem;
     min-width: 0rem;
     padding: 1vh 1.3vw;
     text-decoration: none;
     text-align: center;
     margin-top: 20rem;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--dark);
     border: none;
     margin-left: 10px;
@@ -133,7 +134,7 @@
 .up{
     font-weight: 400;
     color: var(--principal-green);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
 }
 .converter-input{
     width: 20vw;
@@ -144,7 +145,7 @@
     left: 0;
     top: 8rem;
     color: var(--principal-green);
-    font-size: 1.8rem;
+    font-size: 2rem;
     display: none;
     transition: ease-in .2s;
     animation-duration: .5s;
@@ -167,7 +168,7 @@
     background-color: #eeeeee70;
     outline: none;
 }
-.converter-input::placeholder{color:var(--dark); font-weight: 500; font-size: 2.3rem; font-family: 'Inter', sans-serif;}
+.converter-input::placeholder{color:var(--dark); font-weight: 500; font-size: 2.3rem; font-family: 'Outfit', sans-serif;}
 .bg{
     animation-duration: .8s;
     animation-fill-mode: forwards;
@@ -344,16 +345,51 @@ input[type=number]::-webkit-outer-spin-button {
 .quote{
     color: var(--light);
     font-weight: 400;
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-top: 1rem;
 }
 .dollar-button{
     margin-left: 2rem;
 }
 
+.main__calculator{
+    margin-top: 150px;
+    position: sticky;
+    bottom: 10px;
+    left: 30px;
+    background-color: #1F2124;
+    border-radius: 20px;
+    color: var(--light);
+    width: fit-content;
+    padding: 10px 20px;
+    p{
+        margin: auto 0px;
+    }
+    .calculator{
+        input{
+            width: 500px;
+            height: 30px;
+            font-size: 18px;
+            background-color: #303030;
+            border: none;
+            padding: 5px 10px;
+            color: #eee;
+            border-radius: 5px;
+            font-family: 'Inter', sans-serif;
+        }
+    }
+}
 
-
-
+@keyframes goToInd{
+    0%{
+        width: 50vw;
+        background-color: #fff;
+    }
+    100%{
+        background-color: #fff;
+        width: 100vw;
+    }
+}
 @keyframes loading-text{
     0%{
         background-color: rgba(250, 250, 250, 0.8);
@@ -386,7 +422,7 @@ input[type=number]::-webkit-outer-spin-button {
 @keyframes converter{
     0%{
         position: absolute;
-        bottom: -3.5rem;
+        bottom: -2.5rem;
         left: -2rem;
         border-radius: 10px;
         width: 27vw;
@@ -394,7 +430,7 @@ input[type=number]::-webkit-outer-spin-button {
     }
     100%{
         position: absolute;
-        bottom: -3.5rem;
+        bottom: -2.5rem;
         left: -2rem;
         border-radius: 10px;
         width: 27vw;
@@ -421,7 +457,7 @@ input[type=number]::-webkit-outer-spin-button {
 @keyframes converter-hide{
     0%{
         position: absolute;
-        bottom: -3.5rem;
+        bottom: -2.5rem;
         left: -2rem;
         border-radius: 10px;
         width: 27vw;
@@ -429,7 +465,7 @@ input[type=number]::-webkit-outer-spin-button {
     }
     100%{
         position: absolute;
-        bottom: -3.5rem;
+        bottom: -2.5rem;
         left: -2rem;
         border-radius: 10px;
         width: 27vw;

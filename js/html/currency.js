@@ -1,4 +1,5 @@
 import {$,$$} from '../selector.js'
+import { getPage } from './individualPage.js';
 import supportedArr from './supportedArr.js';
 let sendToTabState = false;
 
@@ -6,7 +7,7 @@ let sendToTabState = false;
 export const numberWithCommas = (x)=>{
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-export let setHTML = function(elm, html) {
+export let setHTML = async function(elm, html) {
     elm.innerHTML = html;
     Array.from(elm.querySelectorAll("script")).forEach( oldScript => {
         const newScript = document.createElement("script");
@@ -116,78 +117,16 @@ export const loadCrypto = (id)=>{
                             }
                             return num;
                         }
-                        const individualPage = `
-                        <main>
-                            <section class="currencyContainer">
-                                <section class="currencyContainer__name">
-                                    <section class="name__cont">
-                                        <img class="name__cont--img" src="${data[0].image}" alt="">
-                                        <h2 class="name__cont--title">${data[0].name}</h2>
-                                        <h4 class="name__cont--symbol text">${modSymbol}</h4>
-                                    </section>
-                                    <section class="price__cont">
-                                        <h3 class="price__cont--ars">$${modifiedPriceLocal}ARS</h3>
-                                        <h4 class="price__cont--usd text">$${modifiedPriceUSD}USD</h4>
-                                    </section>
-                                </section>
-                                <section class="currencyContainer__converter">
-                                    <div class="currencyContainer__converter--input-cont">
-                                        <input class="currencyContainer__converter--input" type="number" value="1">
-                                        <h3 class="currencyContainer__converter--currency">${modSymbol}</h3>
-                                    </div> <br>
-                                    <div class="currencyContainer__converter--input-cont">
-                                        <input class="currencyContainer__converter--input inp2" type="number" value="${intLocalPrice}">
-                                        <h3 class="currencyContainer__converter--currency-options">$</h3>
-                                        <h3 class="currencyContainer__converter--currency-options">U$</h3>
-                                    </div>
-                                </section>
-                                <section class="currencyContainer__graph">
-                                    <div class="tradingview-widget-container">
-                                        <div id="tradingview_6001e"></div>
-                                        <div class="tradingview-widget-copyright"><a href="https://es.tradingview.com/symbols/${modSymbol}USDT" rel="noopener" target="_blank"><span class="blue-text">${modSymbol}USDT Gráfico</span></a> por TradingView</div>
-                                        <script type="text/javascript">
-                                            new TradingView.widget(
-                                                {
-                                                    "autosize": true,
-                                                    "symbol": "${modSymbol}USDT",
-                                                    "interval": "60",
-                                                    "timezone": "America/Argentina/Buenos_Aires",
-                                                    "theme": "dark",
-                                                    "style": "1",
-                                                    "locale": "es",
-                                                    "toolbar_bg": "#f1f3f6",
-                                                    "enable_publishing": false,
-                                                    "allow_symbol_change": true,
-                                                    "container_id": "tradingview_6001e"
-                                                }
-                                            );
-                                        </script>
-                                    </div>
-                                </section>
-                                <section class="currencyContainer__24hrschange">
-                                    <section class="change__container">
-                                        <div class="change__container--title-container">
-                                            <h3 class="change__container--lowest">$${data[0].low_24h}</h3>
-                                            <h3 class="change__container--highest">$${data[0].high_24h}</h3>
-                                        </div>
-                                        <div class="change__container--bar-bg">
-                                            <div class="change__container--bar" style="min-width: ${pricePercent}%"></div>
-                                        </div>
-                                    </section>
-                                </section>
-                                <section class="currencyContainer__statistics">
-                                    <h2 class="currencyContainer__statistics--title">
-                                        Estadísticas: 
-                                    </h2>
-                                    <h4 class="currencyContainer__statistics--item"> <b> Cambio 24hrs: </b> ${percent}%</h4>
-                                    <h4 class="currencyContainer__statistics--item"> <b> Capitalización: </b> ${shortNumber(data[0].market_cap)}</h4>
-                                    <h4 class="currencyContainer__statistics--item"> <b> Monedas en circ.: </b> ${shortNumber(data[0].circulating_supply)}</h4>
-                                    <h4 class="currencyContainer__statistics--item"> <b> Total de monedas: </b> ${shortNumber(data[0].total_supply)}</h4>
-                                    <h4 class="currencyContainer__statistics--item"> <b> ATH </b> ${shortNumber(data[0].ath)}</h4>
-                                </section>
-                            </section>
-                        </main>
-                            `;
+                        const individualPage = getPage(
+                            data[0].image, data[0].name, 
+                            modSymbol, modifiedPriceLocal, 
+                            modifiedPriceUSD, intLocalPrice, data[0].low_24h, 
+                            data[0].high_24h, pricePercent, percent, 
+                            shortNumber(data[0].market_cap), 
+                            shortNumber(data[0].circulating_supply),
+                            shortNumber(data[0].total_supply),
+                            shortNumber(data[0].ath)
+                        );
                         let element = document.querySelectorAll("[data-router]")[0];
                         setHTML(element, individualPage);
                         window.scroll(0,0);
@@ -220,6 +159,14 @@ export const loadCrypto = (id)=>{
                             inputs[1].value = (inputs[0].value*intLocalPrice).toFixed(2);
                             activeCurrency.style.backgroundColor = "#06D6A090";
                             currency[1].style.backgroundColor = "#505050";
+                        });
+                        hotkeys('ctrl+alt+a', () => {
+                            $('.main__calculator').innerHTML = `
+                                <section class="calculator"> 
+                                    <input type="text" class="calculator-input" placeholder="Ingrese valores a calcular, ars/usd para precio">
+                                </section>
+                            `;
+                            $('.calculator-input').focus();
                         });
                     }
                 });

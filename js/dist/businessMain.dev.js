@@ -13,10 +13,19 @@ var _index = _interopRequireDefault(require("./index.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var isAImage = function isAImage(data) {
+var EXP_DATE = "expires=Fri, 31 Dec 9999 23:59:59 GMT;";
+var PATH = "path=/";
+var C = ".bs-dashboard";
+
+var setToC = function setToC(c, html) {
+  return (0, _selector.$)("".concat(C, "__").concat(c)).innerHTML = html;
+};
+
+var isAnImage = function isAnImage(data) {
   var has = function has(type) {
-    return data.indexOf(type) != -1;
-  };
+    return data.substr(data.length - type.length) == type;
+  }; // Check if the last 4 characters are png, jpg, jpeg, gif
+
 
   if (has(".png") || has(".jpg") || has(".svg") || has(".gif") || has(".jpeg")) return true;
   return false;
@@ -27,14 +36,14 @@ var setCookies = function setCookies(data) {
     data.cuit = "-";
   }
 
-  if (data.profile == undefined || isAImage(data.profile) == false) {
+  if (data.profile == undefined || isAnImage(data.profile) == false) {
     data.profile = "https://tmdm.com.ar/u/business-profile.svg"; //Img por defecto
   }
 
-  document.cookie = "name=".concat(data.name, ";     expires=Mon, 25 May 2022 11:12:13 UTC; path=/");
-  document.cookie = "email=".concat(data.email, ";   expires=Mon, 25 May 2022 11:12:13 UTC; path=/");
-  document.cookie = "cuit=".concat(data.cuit, ";    expires=Mon, 25 May 2022 11:12:13 UTC; path=/");
-  document.cookie = "profile=".concat(data.profile, "; expires=Mon, 25 May 2022 11:12:13 UTC; path=/");
+  document.cookie = "name=".concat(data.name, "; ").concat(EXP_DATE, " ").concat(PATH);
+  document.cookie = "email=".concat(data.email, "; ").concat(EXP_DATE, " ").concat(PATH);
+  document.cookie = "cuit=".concat(data.cuit, ";  ").concat(EXP_DATE, " ").concat(PATH);
+  document.cookie = "profile=".concat(data.profile, "; ").concat(EXP_DATE, " ").concat(PATH);
 };
 
 var initBs = function initBs(type) {
@@ -48,8 +57,7 @@ var initBs = function initBs(type) {
           cuit: (0, _selector.$)('#cuit').value,
           profile: (0, _selector.$)('#profile').value
         };
-        setCookies(data); //console.log("Hola");
-        //initBs(2);
+        setCookies(data);
       });
       break;
 
@@ -65,36 +73,48 @@ var initBs = function initBs(type) {
 
       if (all.totalSold == undefined || all.totalSold === 0) {
         all.totalSold = 0;
-      }
+      } //Carga el nombre y lo que vendió el usuario en pesos
 
-      (0, _selector.$)('.bs-dashboard__main--title').innerHTML = "Hola, ".concat(all.name, "!");
-      (0, _selector.$)('.bs-dashboard__sales--ars').innerHTML = "$".concat(all.totalSold.toFixed(2), "ARS");
+
+      (0, _selector.$)("".concat(C, "__main--title")).innerHTML = "Hola, ".concat(all.name, "!");
+      (0, _selector.$)("".concat(C, "__sales--ars")).innerHTML = "$".concat(all.totalSold.toFixed(2), "ARS"); //Carga el total de ventas en Dolares tomando como referencia el precio del usd
+
       fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars').then(function (response) {
         return response.json();
       }).then(function (data2) {
-        (0, _selector.$)('.bs-dashboard__sales--usd').innerHTML = "$".concat((all.totalSold / data2.payload.bid).toFixed(3), "USD");
-      });
-      (0, _selector.$)('.bs-dashboard__aside--profile').setAttribute('src', (0, _cookie.getCookie)("profile"));
-      (0, _selector.$)('.bs-dashboard__sales--hide').addEventListener('click', function () {
-        if ((0, _selector.$)('.bs-dashboard__sales--ars').innerHTML.indexOf("*") === -1) {
-          (0, _selector.$)('.bs-dashboard__sales--ars').innerHTML = "$*****,**ARS";
-          (0, _selector.$)('.bs-dashboard__sales--usd').innerHTML = "$***,**USD";
-          (0, _selector.$)('.bs-dashboard__sales--hide').innerText = "Mostrar";
+        setToC("sales--usd", "$".concat((all.totalSold / data2.payload.bid).toFixed(3), "USD"));
+      }); //Carga la imagen de perfil
+
+      (0, _selector.$)("".concat(C, "__aside--profile")).setAttribute('src', (0, _cookie.getCookie)("profile")); // Boton para ocultar o mostrar el saldo
+
+      (0, _selector.$)("".concat(C, "__sales--hide")).addEventListener('click', function () {
+        if ((0, _selector.$)("".concat(C, "__sales--ars")).innerHTML.indexOf("*") === -1) {
+          setToC("sales--ars", "*****,**ARS");
+          setToC("sales--usd", "***,**USD");
+          (0, _selector.$)("".concat(C, "__sales--hide")).innerText = "Mostrar";
         } else {
-          (0, _selector.$)('.bs-dashboard__sales--ars').innerHTML = "$".concat(all.totalSold.toFixed(2), "ARS");
+          (0, _selector.$)("".concat(C, "__sales--ars")).innerHTML = "$".concat(all.totalSold.toFixed(2), "ARS");
           fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars').then(function (response) {
             return response.json();
           }).then(function (data2) {
-            (0, _selector.$)('.bs-dashboard__sales--usd').innerHTML = "$".concat((all.totalSold / data2.payload.bid).toFixed(3), "USD");
+            (0, _selector.$)("".concat(C, "__sales--usd")).innerHTML = "$".concat((all.totalSold / data2.payload.bid).toFixed(3), "USD");
           });
-          (0, _selector.$)('.bs-dashboard__sales--hide').innerText = "Ocultar";
+          (0, _selector.$)("".concat(C, "__sales--hide")).innerText = "Ocultar";
         }
       });
       (0, _selector.$)('.aside__buttons--delete').addEventListener('click', function () {
-        if (confirm("Estas seguro de que quieres borrar tu cuenta?, Los datos quedan irrecuperables")) {
-          document.cookie = "";
+        if (confirm("Estas seguro de que quieres borrar tu cuenta?, Los datos serán irrecuperables")) {
+          //Borrar cookies
+          var cookies = document.cookie.split(";");
 
-          _index["default"].loadRoute(5, '/#/negocios');
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i];
+            var eqPos = cookie.indexOf("=");
+            var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+          }
+
+          _index["default"].loadRoute(0, '/#/home');
         }
       });
 

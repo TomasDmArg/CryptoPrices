@@ -191,7 +191,7 @@
   margin: 0;
   padding: 0;
   font-size: 62.5%;
-  font-family: "Spartan", sans-serif;
+  font-family: "Outfit", sans-serif;
   font-display: swap;
 }
 
@@ -226,11 +226,11 @@ h2 {
 }
 
 h3 {
-  font-size: 2.5rem;
+  font-size: 3rem;
 }
 
 h4, p {
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   transition: ease-in 0.3s;
 }
 
@@ -257,11 +257,11 @@ a:hover {
 }
 
 .nav__container--item, #not-found a {
-  font-size: 1.7rem;
+  font-size: 2rem;
   width: 13rem;
   height: 4rem;
   text-align: center;
-  padding-top: 0.8rem;
+  padding-top: 0.3rem;
   font-weight: 600;
   color: var(--dark);
   border-radius: 0.9rem;

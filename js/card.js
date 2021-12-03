@@ -5,15 +5,6 @@ import loadCrypto from './html/currency.js'
 import getValue from './binanceP2P.js';
 import Router from './router.js';
 import {routes} from './routes.js';
-// const nameArr = $$('.card__name-container > h2');
-// const symbolArr = $$('.card__name-container > h4');
-// const priceArr = $$('.card-container > section > .price');
-// const changeArr = $$('.percent');
-// const imgArr = $$('.card-image-img');
-// const converterTextArr = $$('.bg-text');
-
-// const converterInputArr = $$('.converter-input');
-// const converterCurrencyArr = $$('.converter-currency');
 let cardsArr = $$('.all-card-container');
 const initCards = ()=>{
     const setDown = i =>{
