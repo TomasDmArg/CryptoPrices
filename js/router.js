@@ -97,6 +97,7 @@ class Router {
                     break;
                 case '/#/negocios/dashboard/venta':
                     this.loadRoute(8, mod);
+                    initBs(3);
                     matchColors();
                     break;
                 case '/#/dolar':

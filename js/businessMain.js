@@ -1,10 +1,14 @@
 import {$, $$} from './selector.js';
 import {getCookie} from './cookie.js';
 import router from './index.js';
+import {numberWithCommas} from './html/currency.js';
+import initSearch from './search.js';
+
 const EXP_DATE = "expires=Fri, 31 Dec 9999 23:59:59 GMT;";
 const PATH = "path=/";
 const C = ".bs-dashboard";
 const setToC = (c, html) => $(`${C}__${c}`).innerHTML = html;
+let monto = 0;
 
 const isAnImage = (data)=>{
     const has = type => data.substr(data.length - type.length) == type;
@@ -13,9 +17,7 @@ const isAnImage = (data)=>{
     return false;
 }
 const setCookies = (data)=>{
-    if(data.cuit == undefined){
-        data.cuit = "-";
-    }
+    if(data.cuit == undefined) data.cuit = "-";
     if(data.profile == undefined || isAnImage(data.profile) == false){
         data.profile = "https://tmdm.com.ar/u/business-profile.svg"; //Img por defecto
     }
@@ -23,6 +25,19 @@ const setCookies = (data)=>{
     document.cookie = `email=${data.email}; ${EXP_DATE} ${PATH}`;
     document.cookie = `cuit=${data.cuit};  ${EXP_DATE} ${PATH}`;
     document.cookie = `profile=${data.profile}; ${EXP_DATE} ${PATH}`;
+}
+const DNIValidations = (val, inp)=>{
+    // Extra validations
+    if(val.length > 8 || (val.length < 7)){
+        console.log(val.length)
+        //Give the input a red border
+        inp.style.border = "3px solid #ff411f90";
+        return true;
+    }else{
+        console.log(val.length)
+        inp.style.border = "none";
+        return false;
+    }
 }
 const initBs = (type) =>{
     switch(type){
@@ -47,25 +62,23 @@ const initBs = (type) =>{
                 totalSold: getCookie("total"),
                 history: getCookie("history")
             }
-            if(all.totalSold == undefined || all.totalSold === 0){
-                all.totalSold = 0;
-            }
+            if(all.totalSold == undefined) all.totalSold = 0;
 
-            //Carga el nombre y lo que vendió el usuario en pesos
+            //Load the name and the total sales value in ars
             $(`${C}__main--title`).innerHTML = `Hola, ${all.name}!`;
             $(`${C}__sales--ars`).innerHTML = `$${all.totalSold.toFixed(2)}ARS`;
 
-            //Carga el total de ventas en Dolares tomando como referencia el precio del usd
+            //Load the total sales value in usd
             fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars')
                 .then(response => response.json())
                 .then(data2 => {
                         setToC("sales--usd", `$${(all.totalSold/data2.payload.bid).toFixed(3)}USD`);
                 });
 
-            //Carga la imagen de perfil
+            //Load the profile image
             $(`${C}__aside--profile`).setAttribute('src', getCookie("profile"));
             
-            // Boton para ocultar o mostrar el saldo
+            // Button to show or hide the sales value
             $(`${C}__sales--hide`).addEventListener('click', ()=>{
                 if($(`${C}__sales--ars`).innerHTML.indexOf("*") === -1) {
                     setToC("sales--ars", "*****,**ARS");
@@ -83,7 +96,7 @@ const initBs = (type) =>{
             });
             $('.aside__buttons--delete').addEventListener('click', ()=>{
                 if(confirm("Estas seguro de que quieres borrar tu cuenta?, Los datos serán irrecuperables")){
-                    //Borrar cookies
+                    //Delete cookies
                     let cookies = document.cookie.split(";");
                     for (let i = 0; i < cookies.length; i++) {
                         let cookie = cookies[i];
@@ -94,6 +107,82 @@ const initBs = (type) =>{
                     router.loadRoute(0, '/#/home')
                 }
             })
+            const generateInvoice = () => {
+                if($('.bs-dashboard__new-invoice > input').value > 0){
+                    monto = $('.bs-dashboard__new-invoice > input').value;
+                    router.loadRoute(8, '/#/negocios/dashboard/venta');
+                    initBs(3);
+                }else{
+                    // if there isn't a paragraph error insert one
+                    if($$('.bs-dashboard__new-invoice > p').length == 0){
+                        $('.bs-dashboard__new-invoice').insertAdjacentHTML('beforeend', 
+                            `<p class="bs-dashboard__new-invoice--error">El monto debe ser mayor a 0</p>`);
+                    }
+                }
+            }
+            // Click event to generate a new invoice
+            $('.bs-dashboard__new-invoice--create').addEventListener('click', ()=>{
+                generateInvoice();
+            });
+            // Generate a new invoice if the user press Enter
+            $('.bs-dashboard__new-invoice > input').addEventListener('keyup', (e)=>{
+                if(e.keyCode == 13) generateInvoice();
+            });
+            hotkeys("enter", ()=>{
+                //if the input has a positive value, generate a new invoice
+                generateInvoice();
+            });
+            break;
+
+        // Invoice creation page
+        case 3:
+            let all2 = {
+                name: getCookie("name"),
+                email: getCookie("email"),
+                cuit: getCookie("cuit"),
+                profile: getCookie("profile"),
+                totalSold: getCookie("total"),
+                history: getCookie("history")
+            }
+            if(all2.totalSold == undefined) all2.totalSold = 0;
+            //Carga la imagen de perfil
+            $(`${C}__aside--profile`).setAttribute('src', getCookie("profile"));
+            $('#sale-main-inp-1').value = numberWithCommas(monto) + 'ARS';
+            let val;
+            let errors = [];
+            let inputs = [$('#sale-main-inp-1'), $('#sale-main-inp-3'), $('#sale-main-inp-2')];
+            //The currency button doesn't need this ($('#sale-main-inp-2'))
+            for(let i = 0; i < inputs.length-1; i++){
+                inputs[i].addEventListener('focus', ()=>{
+                    // Remove commas
+                    val = inputs[i].value.replace(/,/g, '');
+                    inputs[i].value = parseFloat(val);
+                    // Select all text
+                    inputs[i].select();
+                })
+                let extraText = (i == 0) ? "ARS" : "";
+                inputs[i].addEventListener('blur', ()=>{
+                    val = inputs[i].value;
+                    // DNI extra validations
+                    (i == 1 && DNIValidations(val, inputs[i])) ? errors[i] = true : errors[i] = false;
+                    val = parseFloat(val);
+                    (i == 0) ? val.toFixed(2) : val.toFixed(1);
+                    // Check if the values are positive
+                    if(val >= 0){
+                        inputs[i].value = numberWithCommas(val) + extraText;
+                        // If there isn't any error, remove the border
+                        if(errors[i] == false) inputs[i].style.border = "none";
+                        errors[0] = false;
+                    }else{
+                        //Give the input a red border
+                        inputs[i].style.border = "3px solid #ff411f90";
+                        errors[0] = true;
+                    }
+                })
+            }
+            // Display the search form
+            initSearch(2);
+            break;
         default:
             break;
     }

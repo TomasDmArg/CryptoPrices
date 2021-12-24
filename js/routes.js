@@ -207,8 +207,8 @@ export const routes = [
         path: "/#/negocios/dashboard/venta",
         template: `
         <section class="sale">
-            <section class="sale__aside">
-                <img src="https://tmdm.com.ar/assets/favicon.png" alt="" class="sale__aside--profile">
+            <section class="bs-dashboard__aside">
+                <img src="https://tmdm.com.ar/assets/favicon.png" alt="" class="bs-dashboard__aside--profile">
                 <section class="aside__buttons">
                     <img src="../assets/cart.svg" alt="" class="aside__buttons--cart">
                     <img src="../assets/history.svg" alt="" class="aside__buttons--invoices">
@@ -218,14 +218,37 @@ export const routes = [
             <section class="sale__main">
                 <h2 class="sale__main--title">Nueva venta</h2>
                 <h4 class="sale__main--field-title">Monto</h4>
-                <input type="number">
+                <input id="sale-main-inp-1" type="text" class="sale__main--input">
+                <img src="./assets/pricetags-outline.svg" alt="Monto: " class="sale__main--input-img"/>
+                <img src="" alt="" />
                 <h4 class="sale__main--field-title">Moneda</h4>
-                <input type="text">
+                <input id="sale-main-inp-2" type="text" class="sale__main--input">
+                <img src="./assets/logo-bitcoin.svg" alt="Moneda: " class="sale__main--input-img"/>
+                <section class="results-container">
+                    <div class="search-result">Escribe 2 letras <span><b>CTRL</b><b>Enter</b></span></div>
+                    <div class="search-result"></div>
+                    <div class="search-result"></div>
+                    <div class="search-result"></div>
+                </section>
                 <h4 class="sale__main--field-title">DNI</h4>
-                <input type="number">
+                <input id="sale-main-inp-3" type="text" class="sale__main--input">
+                <img src="./assets/person-circle-outline.svg" alt="DNI: " class="sale__main--input-img"/>
+                <h4 class="sale__main--field-title">Recargo(+%) / Descuento (-%)</h4>
+                <input id="sale-main-inp-4" type="number" class="sale__main--input">
+                <img src="./assets/calculator-outline.svg" alt="DNI: " class="sale__main--input-img"/>
                 <h4 class="sale__main--field-title">Correo del cliente</h4>
-                <input type="number">
-                <button type="submit">Generar</button>
+                <input type="text" class="sale__main--input" value="proximamente..." disabled>
+                <br>
+                <button type="button" class="sale__main--button">Generar</button>
+            </section>
+            <section class="sale__results">
+                <h2 class="sale__results--title">Tu cliente te tiene que enviar: </h2>
+                <p class="sale__results--amount">$0.0005BTC</p>
+                <p class="sale__results--equivalent">~1000ARS</p>
+                <button class="sale__results--button">Descargar PDF</button>
+            </section>
+            <section class="sale__results-pdf">            
+                <iframe id="iframe" frameborder="0"></iframe>
             </section>
         </section>
         ` 

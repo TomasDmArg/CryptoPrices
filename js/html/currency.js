@@ -95,25 +95,15 @@ export const loadCrypto = (id)=>{
                         let val2 = data[0].current_price - data[0].low_24h;
                         let pricePercent = (val2/val1)*100;
                         const shortNumber = num =>{
-                            if(num == null){
-                                num = "Sin definir"
-                            }
+                            if(num == null || num == undefined || num == 0) num = "No disponible";
                             if(num >= 1000000000000){
-                                num = num/1000000000000;
-                                num = num.toFixed(2);
-                                num = num + "T";
+                                num = (num/1000000000000).toFixed(2) + "T";
                             }else if(num >= 1000000000){
-                                num = num/1000000000;
-                                num = num.toFixed(2);
-                                num = num + "B";
+                                num = (num/1000000000).toFixed(2) + "B";
                             }else if(num >= 1000000){
-                                num = num/1000000;
-                                num = num.toFixed(2);
-                                num = num + "M";
+                                num = (num/1000000).toFixed(2) + "M";
                             }else if(num > 1000){
-                                num = num/1000;
-                                num = num.toFixed(2);
-                                num = num + "k";
+                                num = (num/1000).toFixed(2) + "K";
                             }
                             return num;
                         }

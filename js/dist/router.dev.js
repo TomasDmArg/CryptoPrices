@@ -156,6 +156,7 @@ function () {
 
           case '/#/negocios/dashboard/venta':
             this.loadRoute(8, mod);
+            (0, _businessMain["default"])(3);
             (0, _theme.matchColors)();
             break;
 

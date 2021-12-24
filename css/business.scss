@@ -176,15 +176,22 @@ $dark3: #303030;
         &--create{
             @extend .business__landing--button;
         }
+        &--error{
+            color: $red;
+            font-size: 20px;
+            margin-top: 30px;
+        }
     }
 }
 .sale{
     @extend .business;
     display: grid;
     grid-template-columns: 10% 90%;
-    grid-template-rows: 75vh;
+    grid-template-rows: 100%;
+    margin-bottom: 50px;
     &__aside{
         @extend .bs-dashboard__aside;
+        grid-area: 1 / 1 / 3 / 2;
         &--profile{
             background-color: $dark3;
             width: 60px;
@@ -207,14 +214,67 @@ $dark3: #303030;
     }
     &__main{
         @extend .container;
+        grid-area: 1 / 2 / 3 / 3;
         color: $text;
         &--title{
             margin-bottom: 30px;
         }
         &--input{
             font-size: 20px;
-            padding: 10px 20px;
+            padding: 10px 20px 10px 50px;
             background-color: $dark3;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Outfit', sans-serif;
+            color: #eee;
+            margin-bottom: 20px;
+            &[disabled]{
+                background-color: #30303040;
+                color: #eeeeee50;
+            }
+            &-img{
+                width: 25px;
+                position: relative;
+                height: auto;
+                left: -340px;
+                top: 5px;
+            }
+        }
+        &--button{
+            @extend .business__landing--button;
+            width: 304px;
+            margin-top: 30px;
+            border: none;
+        }
+    }
+    &__results{
+        @extend .container;
+        display: none;
+        position: absolute;
+        top: 30%;
+        right: 200px;
+        // Glass background effect
+        box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, .15);
+        backdrop-filter: blur(5px);
+        padding: 50px;
+        &--amount{
+            color: #eee;
+            font-size: 30px;
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+        &--equivalent{
+            color: #eee;
+            font-size: 18px;
+            font-weight: 200;
+            margin-bottom: 30px;
+        }
+        &--button{
+            @extend .business__landing--button;
+            margin-top: 30px;
+            border: none;
         }
     }
 }
