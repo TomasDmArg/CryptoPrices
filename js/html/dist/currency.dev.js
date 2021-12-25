@@ -179,10 +179,6 @@ var loadCrypto = function loadCrypto(id) {
           activeCurrency.style.backgroundColor = "#06D6A090";
           currency[1].style.backgroundColor = "#505050";
         });
-        hotkeys('ctrl+alt+a', function () {
-          (0, _selector.$)('.main__calculator').innerHTML = "\n                                <section class=\"calculator\"> \n                                    <input type=\"text\" class=\"calculator-input\" placeholder=\"Ingrese valores a calcular, ars/usd para precio\">\n                                </section>\n                            ";
-          (0, _selector.$)('.calculator-input').focus();
-        });
       }
     });
   });

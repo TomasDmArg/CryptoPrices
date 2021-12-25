@@ -4,6 +4,7 @@ const contactHTML = $('#contact-cont');
 import initBs from './businessMain.js';
 import router from './index.js';
 import {getCookie} from './cookie.js';
+import { program } from './landing.js';
 const initLoad = ()=>{
     class Page{
         constructor(toggle, url, index){
@@ -110,6 +111,7 @@ const initLoad = ()=>{
     const pricesPage = new Page($('#prices'), '/#/precios', 1);
     const businessPage = new Page($('#business'), '/#/negocios', 5);
     if($$('.main__content--button').length === 1){
+        program();
         const seePrices = new Page($('.main__content--button'), '/#/precios', 1);
         seePrices.enableToggle();
     }

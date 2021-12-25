@@ -150,14 +150,6 @@ export const loadCrypto = (id)=>{
                             activeCurrency.style.backgroundColor = "#06D6A090";
                             currency[1].style.backgroundColor = "#505050";
                         });
-                        hotkeys('ctrl+alt+a', () => {
-                            $('.main__calculator').innerHTML = `
-                                <section class="calculator"> 
-                                    <input type="text" class="calculator-input" placeholder="Ingrese valores a calcular, ars/usd para precio">
-                                </section>
-                            `;
-                            $('.calculator-input').focus();
-                        });
                     }
                 });
         });

@@ -71,9 +71,6 @@ export const getPage = (img, name, symbol, ars, usd,
                 <h4 class="currencyContainer__statistics--item"> <b> ATH </b> ${ath}</h4>
             </section>
         </section>
-        <section class="main__calculator">
-            <p>Presione CTRL + ALT + A para abrir la calculadora</p>
-        </section>
     </main>
     `;
 }

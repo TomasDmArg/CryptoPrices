@@ -272,6 +272,63 @@
   transition: ease-in-out 1s;
 }
 
+#contact-cont {
+  margin: 40px;
+}
+
+.contact-title {
+  text-shadow: 0 0 80px rgba(192, 219, 255, 0.48), 0 0 32px rgba(6, 214, 160, 0.24);
+  font-size: 4rem;
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.contact-info p {
+  margin: 0;
+  color: var(--light);
+}
+
+.contact-info-image {
+  margin-right: 20px;
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  background-color: var(--up);
+  transition: all 0.5s ease-in-out;
+}
+
+.contact-info:hover > .contact-info-image {
+  box-shadow: 0 0 80px rgba(192, 219, 255, 0.48), 0 0 32px rgba(6, 214, 160, 0.24);
+  transition: all 0.5s ease-in-out;
+}
+
+.contact-info-image-img {
+  position: relative;
+  left: -10px;
+  top: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+.contact-link {
+  font-size: 2rem;
+  color: var(--light);
+  text-decoration: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.contact-link:visited {
+  color: var(--light);
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+  transition: all 0.5s ease-in-out;
+}
+
 .main__content--title {
   text-shadow: 0 0 80px rgba(192, 219, 255, 0.48), 0 0 32px rgba(6, 214, 160, 0.24);
   font-size: 70px;
@@ -281,6 +338,10 @@
   width: 40%;
   height: 100%;
   perspective: 1000px;
+}
+
+.animate3dImg {
+  animation: imgscroll 1s ease-in-out 1 forwards;
 }
 
 .main__image > img {
@@ -295,6 +356,14 @@
   transform: rotateY(-10deg);
 }
 
+@keyframes imgscroll {
+  0% {
+    transform: rotateY(-30deg);
+  }
+  100% {
+    transform: rotateY(-10deg);
+  }
+}
 h1 {
   font-size: 4rem;
   font-family: var(--title);

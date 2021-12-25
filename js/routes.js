@@ -3,16 +3,18 @@ export const routes = [
         path: '/#/',
         // template: ``,
         template: `
-        <main class="main">
-            <section class="main__content">
-                <h1 class="main__content--title">Dólar y cripto, <br> unificados</h1>
-                <p class="main__content--text text">Precios, graficos, conversiones, notificaciones y mas...</p>
-                <section class="main__content--button-cont">
-                    <a href="/#/precios" class="main__content--button button active" id="seePrices">Ver mas</a>
+        <main>
+            <section class="main">
+                <section class="main__content">
+                    <h1 class="main__content--title">Dólar y cripto, <br> unificados</h1>
+                    <p class="main__content--text text">Precios, graficos, conversiones, notificaciones y mas...</p>
+                    <section class="main__content--button-cont">
+                        <a href="/#/precios" class="main__content--button button active" id="seePrices">Ver mas</a>
+                    </section>
                 </section>
-            </section>
-            <section class="main__image">
-                <img src="./home-graphic.png" alt="">
+                <section class="main__image">
+                    <img src="./home-graphic.png" alt="">
+                </section>
             </section>
         </main>
         `,
@@ -51,15 +53,19 @@ export const routes = [
         path: '/#/contacto',
         template: `
         <section id="contact-cont">
-            <section class="main__form">
-                <h2>Envíame un mensaje:</h2>
-                <p class="text">Suelo responder en un plazo de 72hrs</p>
-                <form action="" data-netlify="true">
-                    <img src="/assets/user.svg" alt=""><input name="Nombre" id="username" placeholder="Nombre" type="text">
-                    <img src="/assets/email.svg" alt=""><input name="Correo"id="email" placeholder="Correo electrónico" type="text">
-                    <img src="/assets/text.svg" alt=""><textarea name="Mensaje" id="text" placeholder="Mensaje" type="text"></textarea>
-                    <input id="send" type="submit" class="nav__container--item active" value="Enviar">
-                </form>
+            <h2 class="contact-title">Medios de contacto:</h2>
+            <p class="text ">Suelo responder en un plazo de menos de 48hrs</p>
+            <section class="contact-info">
+                <div class="contact-info-image">
+                    <img class="contact-info-image-img" src="./assets/at-outline.svg" alt="">
+                </div>
+                <p class="contact-info-text">Correo: <a class="contact-link" href="mailto:info@tmdm.com.ar" target="_blank">info@tmdm.com.ar</a></p>
+            </section>
+            <section class="contact-info">
+                <div class="contact-info-image">
+                    <img class="contact-info-image-img" src="./assets/telegram.svg" alt="">
+                </div>
+                <p class="contact-info-text">Telegram: <a class="contact-link" href="https://t.me/tomasdmarg" target="_blank">@tomasdmarg</a></p>
             </section>
         </section>
         `,
@@ -286,7 +292,7 @@ export const routes = [
             </section>
         </section>
         ` 
-    }
+    } 
 ];
 export const routesError = `<h1>Esta página no se ha encontrado</h1>
 <p>Error 404 Not Found</p>`;
