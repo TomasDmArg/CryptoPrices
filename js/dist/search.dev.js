@@ -67,12 +67,18 @@ var getPrice = function getPrice(currencyId, symbol) {
 
         result = reduceDecimals(result);
         (0, _selector.$)('.sale__results--amount').innerHTML = "$".concat(result).concat(symbol);
-        (0, _selector.$)('.sale__results--equivalent').innerHTML = "~$".concat(arsPlusFees, "ARS"); // Generar PDF
+        (0, _selector.$)('.sale__results--equivalent').innerHTML = "~$".concat(arsPlusFees, "ARS"); // Add the ars amount to the cookie
+
+        var sold = (0, _cookie.getCookie)('totalSold');
+        sold = parseFloat(sold);
+        sold += ars;
+        sold = sold.toFixed(2);
+        document.cookie = "totalSold=".concat(sold, "; expires=Fri, 31 Dec 9999 23:59:59 GMT;\""); // Generar PDF
 
         (0, _selector.$)('.sale__results--button').addEventListener('click', function () {
           var data = {
             businessName: (0, _cookie.getCookie)('name'),
-            direction: (0, _cookie.getCookie)('direction') || '-',
+            direction: (0, _cookie.getCookie)('address') || '-',
             CUIT: (0, _cookie.getCookie)('cuit'),
             currency: symbol,
             currencyQt: result,

@@ -18,6 +18,7 @@ const isAnImage = (data)=>{
 }
 const setCookies = (data)=>{
     if(data.cuit == undefined) data.cuit = "-";
+    if(data.address == undefined) data.address = "-";
     if(data.profile == undefined || isAnImage(data.profile) == false){
         data.profile = "https://tmdm.com.ar/u/business-profile.svg"; //Img por defecto
     }
@@ -25,6 +26,8 @@ const setCookies = (data)=>{
     document.cookie = `email=${data.email}; ${EXP_DATE} ${PATH}`;
     document.cookie = `cuit=${data.cuit};  ${EXP_DATE} ${PATH}`;
     document.cookie = `profile=${data.profile}; ${EXP_DATE} ${PATH}`;
+    document.cookie = `totalSold=0; ${EXP_DATE} ${PATH}`;
+    document.cookie = `address=${data.address}; ${EXP_DATE} ${PATH}`;
 }
 const DNIValidations = (val, inp)=>{
     // Extra validations
@@ -48,7 +51,8 @@ const initBs = (type) =>{
                     name: $('#name').value,
                     email: $('#email').value, 
                     cuit: $('#cuit').value, 
-                    profile: $('#profile').value
+                    profile: $('#profile').value,
+                    address: $('#address').value,
                 };
                 setCookies(data);
             })
@@ -59,11 +63,12 @@ const initBs = (type) =>{
                 email: getCookie("email"),
                 cuit: getCookie("cuit"),
                 profile: getCookie("profile"),
-                totalSold: getCookie("total"),
-                history: getCookie("history")
+                totalSold: 0,
+                history: getCookie("history"),
+                address: getCookie("address"),
             }
+            all.totalSold = parseFloat(getCookie("totalSold"));
             if(all.totalSold == undefined) all.totalSold = 0;
-
             //Load the name and the total sales value in ars
             $(`${C}__main--title`).innerHTML = `Hola, ${all.name}!`;
             $(`${C}__sales--ars`).innerHTML = `$${all.totalSold.toFixed(2)}ARS`;

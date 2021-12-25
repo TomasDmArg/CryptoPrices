@@ -5,11 +5,13 @@ export const routes = [
         template: `
         <main class="main">
             <section class="main__content">
-                <h1 class="main__content--title">Los precios de tus criptomonedas favoritas a un click</h1>
+                <h1 class="main__content--title">Dólar y cripto, <br> unificados</h1>
                 <p class="main__content--text text">Precios, graficos, conversiones, notificaciones y mas...</p>
-                <section class="main__content--button-cont"><a href="/#/precios" class="main__content--button button active" id="seePrices">Ver mas</a></section>
+                <section class="main__content--button-cont">
+                    <a href="/#/precios" class="main__content--button button active" id="seePrices">Ver mas</a>
+                </section>
             </section>
-            <section>
+            <section class="main__image">
                 <img src="./home-graphic.png" alt="">
             </section>
         </main>
@@ -18,8 +20,8 @@ export const routes = [
     {
         path: '/#/precios',
         template: `
-        <h1 class="top-title">Top 100 cryptomonedas por marketcap</h1>
-        <p class="top-text text">Estas son las 100 cryptomonedas mas grandes en términos de capitalizacion de mercado</p>
+        <h1 class="top-title">Top 100 criptomonedas por marketcap</h1>
+        <p class="top-text text">Estas son las 100 criptomonedas mas grandes en términos de capitalizacion de mercado</p>
         <section class="search-container">
             <div class="search"><input type="text" placeholder="Buscar" class="search-input"><span><b>CTRL</b><b>B</b></span></div>
             <section class="results-container">
@@ -34,8 +36,8 @@ export const routes = [
             
         </section>
         <section id="content" class="all-card-container">
-            <section class="dollar-info">
-                <section class="dollar-name-cont">
+            <section class="dollar-info-main">
+                <section class="dollar-name-cont-main">
                     <div style="display: inline-flex; align-items: baseline"><h2>USD</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Bitso</h4></div>
                     <h3 class="quote">Compra: <span class="buyDollar">$0.00</h3>
                     <h3 class="quote">Venta: <span class="sellDollar">$0.00</h3>
@@ -79,13 +81,12 @@ export const routes = [
         <h1 class="top-title">Cotizaciones dolar hoy</h1>
         <p class="top-text text">Estas son las diferentes cotizaciones del dolar al dia de hoy. Fuentes: Cryptoya/DolarSi/Ripio</p>
         <section id="content" class="all-card-container">
-            <section class="dollar-info">
-                <section class="dollar-name-cont">
-                    <div style="display: inline-flex; align-items: baseline"><h2>Oficial</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Banco Nación*</h4></div>
+        <section class="dollar-info">
+        <section class="dollar-name-cont">
+        <div style="display: inline-flex; align-items: baseline"><h2>Oficial</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Banco Nación*</h4></div>
                     <h3 class="quote">Compra: <span class="buyDollar">$0.00</h3>
                     <h3 class="quote">Venta: <span class="sellDollar">$0.00</h3>
                 </section>
-                    <a class="dollar-button sd d-active d-seemorebtn">Convertir</a>
             </section>
             <section class="dollar-info">
                 <section class="dollar-name-cont">
@@ -93,23 +94,20 @@ export const routes = [
                     <h3 class="quote">Compra: <span class="buyDollar">$0.00</h3>
                     <h3 class="quote">Venta: <span class="sellDollar">$0.00</h3>
                 </section>
-                    <a class="dollar-button sd d-active d-seemorebtn">Convertir</a>
-            </section>
+                </section>
             <section class="dollar-info">
                 <section class="dollar-name-cont">
                     <div style="display: inline-flex; align-items: baseline"><h2>DAI</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Ripio</h4></div>
                     <h3 class="quote">Compra: <span class="buyDollar">$0.00</h3>
                     <h3 class="quote">Venta: <span class="sellDollar">$0.00</h3>
                 </section>
-                    <a class="dollar-button sd d-active d-seemorebtn">Convertir</a>
             </section>
             <section class="dollar-info">
-                <section class="dollar-name-cont">
-                    <div style="display: inline-flex; align-items: baseline"><h2>USDT</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Binance P2P*</h4></div>
-                    <h3 class="quote">Compra: <span class="buyDollar">$0.00</h3>
-                    <h3 class="quote">Venta: <span class="sellDollar">$0.00</h3>
-                </section>
-                    <a class="dollar-button sd d-active d-seemorebtn">Convertir</a>
+            <section class="dollar-name-cont">
+            <div style="display: inline-flex; align-items: baseline"><h2>USDT</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Binance P2P*</h4></div>
+            <h3 class="quote">Compra: <span class="buyDollar">$0.00</h3>
+            <h3 class="quote">Venta: <span class="sellDollar">$0.00</h3>
+            </section>
             </section>
             <section class="dollar-info">
                 <section class="dollar-name-cont">
@@ -117,7 +115,6 @@ export const routes = [
                     <h3 class="quote">Compra: <span class="buyDollar">$0.00</h3>
                     <h3 class="quote">Venta: <span class="sellDollar">$0.00</h3>
                 </section>
-                    <a class="dollar-button sd d-active d-seemorebtn">Convertir</a>
             </section>
             <section class="dollar-info">
                 <section class="dollar-name-cont">
@@ -125,11 +122,46 @@ export const routes = [
                     <h3 class="quote">Compra: <span class="buyDollar">$0.00</h3>
                     <h3 class="quote">Venta: <span class="sellDollar">$0.00</h3>
                 </section>
-                    <a class="dollar-button sd d-active d-seemorebtn">Convertir</a>
             </section>
         </section>
-        `
-    },
+        <section class="dollar-converter">
+            <div class="dollar-name-cont"><img src="assets/calculator-outline.svg" alt="" class="emoji-img" /><h2>Calculadora</h2></div>
+            <section class="converter__config">
+                <div class="converter__type">
+                        <p class="text">Tipo de dolar:</p>
+                        <button type="button">Oficial</button> 
+                        <button type="button"  title="Oficial + imp. pais + percepcion ganancias">Tarjeta</button> 
+                        <button type="button" >Blue</button> 
+                        <button type="button" >USDT Bitso</button> 
+                        <button type="button" >USDT Binance P2P</button> 
+                        <button type="button" >Bolsa</button> 
+                        <button type="button" >CCL</button> 
+                </div>
+                <section class="converter__options">
+                    <div class="converter__options--first">
+                        <p class="text">Quiero:</p>
+                        <button type="button">Comprar</button> 
+                        <button type="button">Vender</button> 
+                    </div>
+                    <div class="converter__options--second">
+                        <p class="text">En:*</p>
+                        <button type="button">ARS</button> 
+                        <button type="button">USD</button> 
+                    </div>
+                </section>
+                <p class="fee-text text">Comisión: (si existe)</p>
+                <input type="text" value="0" class="converter__fee" /><span class="percent-text">%</span>
+            </section>
+            <section class="converter__result">
+                <p class="text" id="qt-t">Ingrese la cantidad de la moneda seleccionada</p>
+                <input type="number" id="qt" placeholder="ej: 1000">
+                <p class="text qt-unit">ARS</p>
+                <p class="text" id="result">Te darán: </p>
+                <p class="text" id="result-disclaimer"></p>
+            </section>
+        </section>
+                    `
+                },
     {
         path: "/#/negocios",
         template: `
@@ -161,6 +193,8 @@ export const routes = [
                         <input type="text" id="email" placeholder="ejemplo@dominio.com">
                         <h4 class="sign-up__form--field">CUIT: (Opcional)</h4>
                         <input type="text" id="cuit" placeholder="11-11111111-11">
+                        <h4 class="sign-up__form--field">Dirección: (Opcional)</h4>
+                        <input type="text" id="address" placeholder="(De la empresa/negocio) Ej: Av. Tal 1535, Ciudad, Prov.">
                         <h4 class="sign-up__form--field">Foto de perfil: (Opcional)</h4>
                         <input type="text" id="profile" placeholder="https://www.url.com/u/logo.png">
                         <a class="sign-up__form--button">Crear</a>
@@ -177,8 +211,8 @@ export const routes = [
                 <section class="bs-dashboard__aside">
                     <img src="https://tmdm.com.ar/assets/favicon.png" alt="" class="bs-dashboard__aside--profile">
                     <section class="aside__buttons">
-                        <img src="../assets/cart.svg" alt="" class="aside__buttons--cart">
-                        <img src="../assets/history.svg" alt="" class="aside__buttons--invoices">
+                        <img title="no disponible todavía" src="../assets/cart.svg" alt="" class="aside__buttons--cart">
+                        <img title="no disponible todavía" src="../assets/history.svg" alt="" class="aside__buttons--invoices">
                         <img src="../assets/delete.svg" alt="" class="aside__buttons--delete">
                     </section>
                 </section>
@@ -210,8 +244,8 @@ export const routes = [
             <section class="bs-dashboard__aside">
                 <img src="https://tmdm.com.ar/assets/favicon.png" alt="" class="bs-dashboard__aside--profile">
                 <section class="aside__buttons">
-                    <img src="../assets/cart.svg" alt="" class="aside__buttons--cart">
-                    <img src="../assets/history.svg" alt="" class="aside__buttons--invoices">
+                    <img title="no disponible todavía" src="../assets/cart.svg" alt="" class="aside__buttons--cart">
+                    <img title="no disponible todavía" src="../assets/history.svg" alt="" class="aside__buttons--invoices">
                     <img src="../assets/delete.svg" alt="" class="aside__buttons--delete">
                 </section>
             </section>

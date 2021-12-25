@@ -1,21 +1,204 @@
-import {numberWithCommas} from './html/currency.js';    
+import {numberWithCommas} from './html/currency.js';   
+import {$, $$} from './selector.js';
+
+let states = {
+    dollarType: 0,
+    dollarPrices: { 
+        buy: 0,
+        sell: 0,
+    },
+    orderType: 0,
+    baseCurrency: 0,
+    quantity: 0,
+    firstTimeUpdate: false,
+    fee: 0,
+};
+const calculateRes = ()=>{
+    let res;
+    let target = $('#result');
+    let price = (states.orderType === 0) ? states.dollarPrices.buy : states.dollarPrices.sell
+    if(states.baseCurrency === 0) {
+        // How many dollars you can buy with these pesos? or
+        // How many dollars you need to sell to get these pesos?
+        if(states.dollarType == 1) res = states.quantity * 1.65;
+        else res = states.quantity / price;
+    } else if(states.baseCurrency === 1) {
+        // How many pesos you can buy with these dollars? or
+        // How many pesos you need to sell to get these dollars?
+        res = states.quantity * price;
+        if(states.dollarType == 1) res = res * 1.65;
+    }
+
+    // FV = PV * (1 + i);
+    res = res * (1 + (states.fee / 100));
+    res.toFixed(3);
+    const texts = ["Te darán: ", "Tendras que dar: ", "Tendrás que vender: ", " Te cobrarán: "];
+    const texts2 = [" por ", " para recibir ", " para recibir "];
+    let st = states.orderType;
+    let st2 = states.baseCurrency;
+    let st3 = 2;
+    if(st == st2) st3 = 0;
+    else if(st == 0 && st2 == 1) st3 = 1;
+    if(states.dollarType != 1){
+        target.innerText = texts[st3] + numberWithCommas(res.toFixed(3)) + 
+            (st2 ? 'ARS' : 'USD') + 
+            texts2[st3] + states.quantity + " " + 
+            ((!st2) ? 'ARS' : 'USD');
+    }else{
+        target.innerText = texts[3] + numberWithCommas(res.toFixed(3)) + "ARS";
+    }
+};
+let isThereAnyError = false;
+let errorArr = [];
+const sendError = error => {
+    isThereAnyError = true;
+    errorArr.push(error);
+}
+const errorCheck = () => {
+    // Scalable error detection
+    if(states.dollarType == 0 && states.firstTimeUpdate === false) {
+        // This fixes the bug where the first time the calculator is loaded,
+        // the price is zero due to the time that the fetch takes to load.
+        // Replace commas for dots if there's any
+        let buy =  $(`${container} > .buyDollar`).innerText.replace(/,/g, '.');
+        let sell = $(`${container} > .sellDollar`).innerText.replace(/,/g, '.');
+        states.dollarPrices.buy = parseFloat(buy);
+        states.dollarPrices.sell = parseFloat(sell);
+        if(states.dollarPrices.sell != 0){
+            states.firstTimeUpdate = true;
+        } 
+    }
+    // Zero Price
+    if(states.dollarPrices.sell == 0 && states.dollarPrices.buy == 0) sendError('Precio no disponible');
+    // "Dolar tarjeta" can't be sold, it's only for payments
+    if(states.dollarType == 1 && states.orderType == 1){
+        sendError('El dolar tarjeta no se puede vender, es solo para pagos con tarjeta');
+    }
+    // Negative or zero quantity
+    if(states.quantity < 0) sendError('La cantidad no puede ser negativa');
+    if(states.quantity == 0) sendError('La cantidad no puede ser 0 (cero)');
+
+    // Show erors or calculate res
+    if(isThereAnyError){
+        let text = "";
+        for(let i = 0; i < errorArr.length; i++){
+            text += "Error " + (i+1) + ": " + errorArr[i] + '\n';
+        }
+        $('#result').innerText = text;
+        isThereAnyError = false;
+        errorArr = [];
+    } else {
+        calculateRes();
+    }
+}
+const disclaimers = ()=>{
+    let res;
+    if(states.dollarType == 1){
+        res = "*Valores de referencia, puede variar, ya que el precio puede ser distinto dependiendo el banco, pueden aplicar otros impuestos";
+    }else if(states.dollarType == 2){
+        res = "*Puede cambiar cotización dependiendo de la cueva, valores de refencia";
+    }else if(states.dollarType == 4){
+        res = "*Valores de referencia, ya que pueden haber sido tomadas órdenes, los vendedores pueden no ser la mejor opción, o no tienen la liquidez necesaria, o uno no llegar al mínimo"
+    }else{
+        res = "*La cotización puede variar, valores de refencia";
+    }
+    $('#result-disclaimer').innerText = res;
+}
+const container = ".dollar-info > .dollar-name-cont > .quote";
+const updateState = (state, value) => {
+    states[state] = value;
+    if(state === 'baseCurrency') $('.qt-unit').innerText = (states.baseCurrency === 0) ? 'ARS' : 'USD';
+    errorCheck();
+    disclaimers();
+}
+const initCalculator = ()=>{
+    const dollarTypeOptions = $$('.converter__type > button');
+    const orderType = $$('.converter__options--first > button');
+    const baseCurrency = $$('.converter__options--second > button');
+    dollarTypeOptions[states.dollarType].id = 'd-ac';
+    orderType[states.orderType].id = 'o-ac';
+    baseCurrency[states.baseCurrency].id = 'c-ac';
+    disclaimers();
+    dollarTypeOptions.forEach(option => {
+        option.addEventListener('click', ()=>{
+            dollarTypeOptions.forEach(option => {
+                option.id = '';
+            });
+            option.id = 'd-ac';
+            let elArray = Array.from(dollarTypeOptions);
+            updateState('dollarType', elArray.indexOf(option));
+            // Get buy and sell values 
+            let getPrices = {
+                buy: undefined,
+                sell: undefined,
+            };
+            const allBuyPrices = $$('.dollar-info > .dollar-name-cont > .quote >  .buyDollar');
+            const allSellPrices = $$('.dollar-info > .dollar-name-cont > .quote >  .sellDollar');
+            let x = states.dollarType;
+            if(x === 0 || x === 1){
+                // Replace commas for dots if there's any
+                let buy = allBuyPrices[0].innerText.replace(/,/g, '.');
+                let sell = allSellPrices[0].innerText.replace(/,/g, '.');
+                getPrices.buy = parseFloat(buy);
+                getPrices.sell = parseFloat(sell);
+            }else{
+                let buy = allBuyPrices[x-1].innerText.replace(/,/g, '.');
+                let sell = allSellPrices[x-1].innerText.replace(/,/g, '.');
+                getPrices.buy = parseFloat(buy);
+                getPrices.sell = parseFloat(sell);
+            }
+            updateState('dollarPrices', getPrices);
+        });
+    });
+    orderType.forEach(option => {
+        option.addEventListener('click', ()=>{
+            orderType.forEach(option => {
+                option.id = '';
+            });
+            option.id = 'o-ac';
+            let elArray = Array.from(orderType);
+            updateState('orderType', elArray.indexOf(option));
+        });
+    });
+    baseCurrency.forEach(option => {
+        option.addEventListener('click', ()=>{
+            baseCurrency.forEach(option => {
+                option.id = '';
+            });
+            option.id = 'c-ac';
+            let elArray = Array.from(baseCurrency);
+            updateState('baseCurrency', elArray.indexOf(option));
+        });
+    });
+    const quantityInput = $('#qt');
+    quantityInput.addEventListener('keyup', ()=>{
+        updateState('quantity', quantityInput.value);
+    });
+    const feeInput = $('.converter__fee');
+    let feeRes;
+    feeInput.addEventListener('keyup', ()=>{
+        feeRes = feeInput.value.replace(/,/g, '.');
+        updateState('fee', feeRes);
+    });
+} 
 export const askForDollars = ()=>{
     fetch('https://www.dolarsi.com/api/api.php?type=valoresprincipales')
     .then(response => response.json())
     .then(data => {
         let createValue;
         let elements = document.querySelectorAll('.dollar-info');
-        let setDolar = (el, id )=>{
+        let setdollar = (el, id )=>{
             console.log(data[id]);
             createValue = data[id].casa.venta;
             elements[el].querySelector(".buyDollar").innerHTML = createValue;
             createValue = data[id].casa.compra;
             elements[el].querySelector(".sellDollar").innerHTML = createValue;
         };
-        setDolar(0, 0);
-        setDolar(1, 1);
-        setDolar(4, 3);
-        setDolar(5, 4);
+        setdollar(0, 0);
+        setdollar(1, 1);
+        setdollar(4, 3);
+        setdollar(5, 4);
+        
         fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars')
             .then(response => response.json())
             .then(data2 => {
@@ -36,5 +219,6 @@ export const askForDollars = ()=>{
                 createValue = data4.data[0].adv.price;
                 elements[3].querySelector(".sellDollar").innerHTML = createValue;
             })
-    });
+        });
+        initCalculator();
 }

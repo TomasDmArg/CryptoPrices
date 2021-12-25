@@ -1,3 +1,4 @@
+// Algunas monedas soportadas por binance, (obviamente generadas con js, no las puse a mano)
 let supportedArr = [
     "BTC","LTC","ETH","NEO","BNB","QTUM","EOS","SNT","BNT","GAS","BCC","USDT",
     "HSR","OAX","DNT","MCO","ICN","ZRX","OMG","WTC","YOYO","LRC","TRX","SNGLS",

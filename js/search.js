@@ -50,11 +50,17 @@ const getPrice = (currencyId, symbol) => {
                     result = reduceDecimals(result);
                     $('.sale__results--amount').innerHTML = `$${result}${symbol}`;
                     $('.sale__results--equivalent').innerHTML = `~$${arsPlusFees}ARS`;
+                    // Add the ars amount to the cookie
+                    let sold = getCookie('totalSold');
+                    sold = parseFloat(sold);
+                    sold += ars;
+                    sold = sold.toFixed(2);
+                    document.cookie = `totalSold=${sold}; expires=Fri, 31 Dec 9999 23:59:59 GMT;"`;
                     // Generar PDF
                     $('.sale__results--button').addEventListener('click', ()=>{
                         let data = {
                             businessName: getCookie('name'),
-                            direction: getCookie('direction') || '-',
+                            direction: getCookie('address') || '-',
                             CUIT: getCookie('cuit'),
                             currency: symbol,
                             currencyQt: result,

@@ -5,6 +5,8 @@
     --up: #06D6A0;
     --down: #ff411f;
     --dark: #171A1F;
+    --dark2: #1F2124;
+    --dark3: #303030;
     --light: #eeeeee;
     --title: 'Inter', sans-serif;
     --title-w: 800;
@@ -319,7 +321,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .dollar-info{
     margin-bottom: 3rem;
-    height: 20rem;
+    height: 15rem;
     width: calc(80vw/3);
     // border: 5px solid var(--principal-green);
     background-color: #1F2124;
@@ -378,6 +380,14 @@ input[type=number]::-webkit-outer-spin-button {
             font-family: 'Inter', sans-serif;
         }
     }
+}
+.dollar-info-main{
+    @extend .dollar-info;
+    height: unset;
+}
+.dollar-name-cont-main{
+    @extend .dollar-name-cont;
+    margin-bottom: 0px;
 }
 
 @keyframes goToInd{

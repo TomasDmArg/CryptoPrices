@@ -74,7 +74,7 @@
   color: #eeeeee;
   display: grid;
   grid-template-columns: 10% 35% 55%;
-  grid-template-rows: 170px 400px;
+  grid-template-rows: 190px 400px;
 }
 .bs-dashboard__aside, .sale__aside {
   margin: 0 20px 0 0px;
@@ -93,6 +93,7 @@
 }
 .bs-dashboard__aside .aside__buttons--cart, .sale__aside .aside__buttons--cart, .bs-dashboard__aside .aside__buttons--invoices, .sale__aside .aside__buttons--invoices {
   margin-top: 50px;
+  opacity: 0.5;
 }
 .bs-dashboard__aside .aside__buttons--delete, .sale__aside .aside__buttons--delete {
   position: absolute;
@@ -178,6 +179,7 @@
 }
 .sale__aside .aside__buttons--cart, .sale__aside .aside__buttons--invoices {
   margin-top: 50px;
+  opacity: 0.5;
 }
 .sale__aside .aside__buttons--delete {
   position: absolute;

@@ -39,6 +39,7 @@ var isAnImage = function isAnImage(data) {
 
 var setCookies = function setCookies(data) {
   if (data.cuit == undefined) data.cuit = "-";
+  if (data.address == undefined) data.address = "-";
 
   if (data.profile == undefined || isAnImage(data.profile) == false) {
     data.profile = "https://tmdm.com.ar/u/business-profile.svg"; //Img por defecto
@@ -48,6 +49,8 @@ var setCookies = function setCookies(data) {
   document.cookie = "email=".concat(data.email, "; ").concat(EXP_DATE, " ").concat(PATH);
   document.cookie = "cuit=".concat(data.cuit, ";  ").concat(EXP_DATE, " ").concat(PATH);
   document.cookie = "profile=".concat(data.profile, "; ").concat(EXP_DATE, " ").concat(PATH);
+  document.cookie = "totalSold=0; ".concat(EXP_DATE, " ").concat(PATH);
+  document.cookie = "address=".concat(data.address, "; ").concat(EXP_DATE, " ").concat(PATH);
 };
 
 var DNIValidations = function DNIValidations(val, inp) {
@@ -74,7 +77,8 @@ var initBs = function initBs(type) {
             name: (0, _selector.$)('#name').value,
             email: (0, _selector.$)('#email').value,
             cuit: (0, _selector.$)('#cuit').value,
-            profile: (0, _selector.$)('#profile').value
+            profile: (0, _selector.$)('#profile').value,
+            address: (0, _selector.$)('#address').value
           };
           setCookies(data);
         });
@@ -86,9 +90,11 @@ var initBs = function initBs(type) {
           email: (0, _cookie.getCookie)("email"),
           cuit: (0, _cookie.getCookie)("cuit"),
           profile: (0, _cookie.getCookie)("profile"),
-          totalSold: (0, _cookie.getCookie)("total"),
-          history: (0, _cookie.getCookie)("history")
+          totalSold: 0,
+          history: (0, _cookie.getCookie)("history"),
+          address: (0, _cookie.getCookie)("address")
         };
+        all.totalSold = parseFloat((0, _cookie.getCookie)("totalSold"));
         if (all.totalSold == undefined) all.totalSold = 0; //Load the name and the total sales value in ars
 
         (0, _selector.$)("".concat(C, "__main--title")).innerHTML = "Hola, ".concat(all.name, "!");
