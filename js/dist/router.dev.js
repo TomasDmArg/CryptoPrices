@@ -41,6 +41,18 @@ function () {
   }
 
   _createClass(Router, [{
+    key: "setActive",
+    value: function setActive(index) {
+      // Set a button as active
+      var element = (0, _selector.$$)('#nav__container > li');
+      element.forEach(function (el) {
+        // Remove class if exist
+        el.classList.remove('active');
+        el.style.color = '#eee';
+      });
+      element[index].classList.add('active');
+    }
+  }, {
     key: "getUrl",
     value: function getUrl() {
       return window.location.href;
@@ -97,6 +109,7 @@ function () {
         switch (mod) {
           case '/#/precios':
             this.loadRoute(1, mod);
+            this.setActive(1);
             (0, _selector.$)('#seemoredollar').addEventListener('click', function () {
               _this2.loadRoute(4, '/#/dolar');
 
@@ -108,11 +121,13 @@ function () {
 
           case '/#/contacto':
             this.loadRoute(2, mod);
+            this.setActive(3);
             (0, _theme.matchColors)();
             break;
 
           case '/#/negocios':
             this.loadRoute(5, mod);
+            this.setActive(2);
             (0, _theme.matchColors)();
 
             if ((0, _cookie.getCookie)("name") != undefined) {
@@ -127,6 +142,7 @@ function () {
 
           case '/#/negocios/crear':
             this.loadRoute(6, mod);
+            setActive(2);
             (0, _theme.matchColors)();
             (0, _businessMain["default"])(1);
 
@@ -146,6 +162,7 @@ function () {
             this.loadRoute(7, mod);
             (0, _theme.matchColors)();
             (0, _businessMain["default"])(2);
+            setActive(2);
 
             if ((0, _cookie.getCookie)("name") == undefined) {
               this.loadRoute(5, '/#/negocios');
@@ -157,12 +174,14 @@ function () {
           case '/#/negocios/dashboard/venta':
             this.loadRoute(8, mod);
             (0, _businessMain["default"])(3);
+            setActive(2);
             (0, _theme.matchColors)();
             break;
 
           case '/#/dolar':
             this.loadRoute(4, mod);
             (0, _theme.matchColors)();
+            setActive(1);
             (0, _askForDolars.askForDollars)();
             break;
 

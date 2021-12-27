@@ -383,7 +383,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .dollar-info-main{
     @extend .dollar-info;
-    height: unset;
+    height: 200px;
 }
 .dollar-name-cont-main{
     @extend .dollar-name-cont;

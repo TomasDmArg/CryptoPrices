@@ -280,17 +280,17 @@ export const routes = [
                 <input type="text" class="sale__main--input" value="proximamente..." disabled>
                 <br>
                 <button type="button" class="sale__main--button">Generar</button>
+                <section class="sale__results">
+                    <h2 class="sale__results--title">Tu cliente te tiene que enviar: </h2>
+                    <p class="sale__results--amount">$0.0005BTC</p>
+                    <p class="sale__results--equivalent">~1000ARS</p>
+                    <button class="sale__results--button">Descargar PDF</button>
+                </section>
             </section>
-            <section class="sale__results">
-                <h2 class="sale__results--title">Tu cliente te tiene que enviar: </h2>
-                <p class="sale__results--amount">$0.0005BTC</p>
-                <p class="sale__results--equivalent">~1000ARS</p>
-                <button class="sale__results--button">Descargar PDF</button>
-            </section>
+        </section>
             <section class="sale__results-pdf">            
                 <iframe id="iframe" frameborder="0"></iframe>
             </section>
-        </section>
         ` 
     } 
 ];
