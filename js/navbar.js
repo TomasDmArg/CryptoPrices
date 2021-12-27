@@ -1,36 +1,37 @@
 import {$, $$} from './selector.js';
 const navScripts = ()=>{
     let vState = 0;
+    const resetNav = ()=>{
+        $('#header').style.cssText = 'padding-bottom: 0rem';
+        $('#nav__container').style.cssText = "display: inline-flex";
+        $('#nav-close').style.cssText = 'display: none';
+        $('#nav-open').style.cssText = 'display: none';
+    }
     const hideDropList = ()=>{
-        if (screen.width < 1000) {
+        if (window.innerWidth < 1000) {
             vState--;
-            $('.header').style.paddingBottom = '0rem';
-            $('.nav__container').style.display = "none";
-            $('.nav__container--hamb-icon').style.display = 'block';
-            $('.nav__container--close-icon').style.display = 'none';
+            $('#header').style.cssText = 'padding-bottom: 0rem';
+            $('#nav__container').style.cssText = 'display: none';
+            $('#nav-open').style.cssText = 'display: block';
+            $('#nav-close').style.cssText = 'display: none';
         }
     }
     const showDropList = ()=>{
-        if (screen.width < 1000) {
+        if (window.innerWidth < 1000) {
             vState++;
-            $('.header').style.paddingBottom = '30rem';
-            $('.nav__container').style.display = "inline-flex";
-            $('.nav__container--hamb-icon').style.display = 'none';
-            $('.nav__container--close-icon').style.display = 'block';
+            $('#header').style.paddingBottom = '30rem';
+            $('#nav__container').style.cssText = "display: inline-flex";
+            $('#nav-open').style.display = 'none';
+            $('#nav-close').style.display = 'block';
+        }else{
+            resetNav();
         }
-        // if (screen.width > 1000) {
-        //     vState++;
-        //     $('.header').style.paddingBottom = '30rem';
-        //     $('.nav__container').style.display = "inline-flex";
-        //     $('.nav__container--hamb-icon').style.display = 'none';
-        //     $('.nav__container--close-icon').style.display = 'none';
-        // }
     }
     hideDropList();
-    $('.nav__container--hamb-icon').addEventListener('click', ()=>{
+    $('#nav-open').addEventListener('click', ()=>{
         showDropList();
     })
-    $('.nav__container--close-icon').addEventListener('click', ()=>{
+    $('#nav-close').addEventListener('click', ()=>{
         (vState === 0) ? hideDropList() : showDropList();
     })
 }

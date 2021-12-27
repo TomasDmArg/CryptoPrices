@@ -12,7 +12,7 @@ async function createCard (name, symbol, price, change, image, id){
                 </section>
                 <h3 class="text price">$${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h3>
                 <p class="hidden-value">${price}</p>
-                <h4 class="up percent">${change.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "%"}</h4>
+                <h4 class="up percent">${parseFloat(change).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "%"}</h4>
                 <section class="card-image">
                     <img src="${image}" class="card-image-img" alt="">
                 </section>
@@ -29,6 +29,5 @@ async function createCard (name, symbol, price, change, image, id){
     </section>
     `;
     await $('#content').insertAdjacentHTML('beforeend', template);
-    (counter === 99) ? matchColors() : counter++;
 }
 export default createCard;

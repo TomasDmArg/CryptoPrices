@@ -70,8 +70,8 @@ const initBs = (type) =>{
             all.totalSold = parseFloat(getCookie("totalSold"));
             if(all.totalSold == undefined) all.totalSold = 0;
             //Load the name and the total sales value in ars
-            $(`${C}__main--title`).innerHTML = `Hola, ${all.name}!`;
-            $(`${C}__sales--ars`).innerHTML = `$${all.totalSold.toFixed(2)}ARS`;
+            $(`${C}__main--title`).innerText = `Hola, ${all.name}!`;
+            $(`${C}__sales--ars`).innerText = `$${all.totalSold.toFixed(2)}ARS`;
 
             //Load the total sales value in usd
             fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars')
@@ -94,7 +94,7 @@ const initBs = (type) =>{
                     fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars')
                         .then(response => response.json())
                         .then(data2 => {
-                                $(`${C}__sales--usd`).innerHTML = `$${(all.totalSold/data2.payload.bid).toFixed(3)}USD`;
+                                $(`${C}__sales--usd`).innerText = `$${(all.totalSold/data2.payload.bid).toFixed(3)}USD`;
                         });
                     $(`${C}__sales--hide`).innerText = "Ocultar";
                 }

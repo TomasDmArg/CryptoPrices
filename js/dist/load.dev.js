@@ -15,8 +15,6 @@ var _index = _interopRequireDefault(require("./index.js"));
 
 var _cookie = require("./cookie.js");
 
-var _landing = require("./landing.js");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -43,16 +41,12 @@ var initLoad = function initLoad() {
     _createClass(Page, [{
       key: "load",
       value: function load() {
+        (0, _selector.$)('.load-container').id = 'load-container--active';
+
         _index["default"].loadRoute(this.index, this.url);
 
-        (0, _selector.$)('.load-container').style.display = 'block';
-        (0, _selector.$)('.load-container').style.animationName = 'load-cont';
-        setInterval(function () {
-          (0, _selector.$)('.load-container').style.animationName = 'unload-cont';
-          (0, _selector.$)('.load-container').style.animationIterationCount = '1';
-          setInterval(function () {
-            (0, _selector.$)('.load-container').style.display = 'none';
-          }, 500);
+        setTimeout(function () {
+          (0, _selector.$)('.load-container').id = 'load-container--deactivated';
         }, 1000);
       }
     }, {
@@ -174,7 +168,6 @@ var initLoad = function initLoad() {
   var businessPage = new Page((0, _selector.$)('#business'), '/#/negocios', 5);
 
   if ((0, _selector.$$)('.main__content--button').length === 1) {
-    (0, _landing.program)();
     var seePrices = new Page((0, _selector.$)('.main__content--button'), '/#/precios', 1);
     seePrices.enableToggle();
   }

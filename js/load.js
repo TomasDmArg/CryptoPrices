@@ -4,7 +4,6 @@ const contactHTML = $('#contact-cont');
 import initBs from './businessMain.js';
 import router from './index.js';
 import {getCookie} from './cookie.js';
-import { program } from './landing.js';
 const initLoad = ()=>{
     class Page{
         constructor(toggle, url, index){
@@ -14,15 +13,10 @@ const initLoad = ()=>{
             this.state = 0;
         }
         load(){
+            $('.load-container').id = 'load-container--active';
             router.loadRoute(this.index, this.url)
-            $('.load-container').style.display = 'block';
-            $('.load-container').style.animationName = 'load-cont';
-            setInterval(() => {
-                $('.load-container').style.animationName = 'unload-cont';
-                $('.load-container').style.animationIterationCount = '1';
-                setInterval(() => {
-                    $('.load-container').style.display = 'none';  
-                }, 500);
+            setTimeout(() => {
+                $('.load-container').id = 'load-container--deactivated';
             }, 1000);
         }
         activeButton(){
@@ -111,7 +105,6 @@ const initLoad = ()=>{
     const pricesPage = new Page($('#prices'), '/#/precios', 1);
     const businessPage = new Page($('#business'), '/#/negocios', 5);
     if($$('.main__content--button').length === 1){
-        program();
         const seePrices = new Page($('.main__content--button'), '/#/precios', 1);
         seePrices.enableToggle();
     }

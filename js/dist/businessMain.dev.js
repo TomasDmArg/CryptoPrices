@@ -97,8 +97,8 @@ var initBs = function initBs(type) {
         all.totalSold = parseFloat((0, _cookie.getCookie)("totalSold"));
         if (all.totalSold == undefined) all.totalSold = 0; //Load the name and the total sales value in ars
 
-        (0, _selector.$)("".concat(C, "__main--title")).innerHTML = "Hola, ".concat(all.name, "!");
-        (0, _selector.$)("".concat(C, "__sales--ars")).innerHTML = "$".concat(all.totalSold.toFixed(2), "ARS"); //Load the total sales value in usd
+        (0, _selector.$)("".concat(C, "__main--title")).innerText = "Hola, ".concat(all.name, "!");
+        (0, _selector.$)("".concat(C, "__sales--ars")).innerText = "$".concat(all.totalSold.toFixed(2), "ARS"); //Load the total sales value in usd
 
         fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars').then(function (response) {
           return response.json();
@@ -118,7 +118,7 @@ var initBs = function initBs(type) {
             fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars').then(function (response) {
               return response.json();
             }).then(function (data2) {
-              (0, _selector.$)("".concat(C, "__sales--usd")).innerHTML = "$".concat((all.totalSold / data2.payload.bid).toFixed(3), "USD");
+              (0, _selector.$)("".concat(C, "__sales--usd")).innerText = "$".concat((all.totalSold / data2.payload.bid).toFixed(3), "USD");
             });
             (0, _selector.$)("".concat(C, "__sales--hide")).innerText = "Ocultar";
           }

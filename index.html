@@ -8,22 +8,23 @@
     <link rel="stylesheet" href="./css/dist/styles.css">
     <link rel="stylesheet" href="./css/dist/crypto-main.css">
     <link rel="stylesheet" href="./css/dist/dollar.css">
+    <link rel="stylesheet" href="./css/dist/business.css">
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon">
     <script async defer type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
     <script async defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
 </head>
 <body class="body dark">
-    <header class="header">
+    <header class="header" id="header">
         <nav class="header__nav">
             <section class="header__nav--logo-container"><img src="./" alt="" id="logoContainer"></section>
-            <ul class="nav__container">
+            <ul class="nav__container" id="nav__container">
                 <li class="nav__container--item active" id="home">Home</li>
                 <li class="nav__container--item text" id="prices">Precios</li>
                 <li class="nav__container--item text" id="business">Negocios</li>
                 <li class="nav__container--item text" id="contact">Contacto</li>                
             </ul>
-            <img src="./assets/navbar.svg" class="nav__container--hamb-icon" alt="">
-            <img src="./assets/close.svg" class="nav__container--close-icon" alt="">
+            <img src="./assets/navbar.svg" class="nav__container--hamb-icon" id="nav-open" alt="">
+            <img src="./assets/close.svg" class="nav__container--close-icon" id="nav-close" alt="">
         </nav>
     </header>
     <div class="load-container">
