@@ -15,9 +15,3 @@ para complementar con otro procesador de pagos, ya que estos solo aceptan poner 
 
 No se guardan ni se envía ningun dato, todo es guardado a través de cookies de forma local, y los comprobantes se puede elegir no enviarlos.
 
-## Funciones pendientes
-- Terminar parte de negocios
-- Crear modo HTML simple para conexiones lentas
-- Agregar sección "Mercados Locales" en páginas individuales
-- Agregar sección "Mercados Extranjeros" en páginas individuales
-- Sección de "Blog"
