@@ -100,10 +100,17 @@ var initBs = function initBs(type) {
         (0, _selector.$)("".concat(C, "__main--title")).innerText = "Hola, ".concat(all.name, "!");
         (0, _selector.$)("".concat(C, "__sales--ars")).innerText = "$".concat(all.totalSold.toFixed(2), "ARS"); //Load the total sales value in usd
 
-        fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars').then(function (response) {
+        fetch('https://criptoya.com/api/binancep2p/sell/usdt/ars/5').then(function (response) {
           return response.json();
         }).then(function (data2) {
-          setToC("sales--usd", "$".concat((all.totalSold / data2.payload.bid).toFixed(3), "USD"));
+          var promVent = 0;
+
+          for (var i = 0; i < 5; i++) {
+            promVent += parseFloat(data2.data[i].adv.price);
+          }
+
+          promVent = promVent / 5;
+          setToC("sales--usd", "$".concat((all.totalSold / promVent).toFixed(3), "USD"));
         }); //Load the profile image
 
         (0, _selector.$)("".concat(C, "__aside--profile")).setAttribute('src', (0, _cookie.getCookie)("profile")); // Button to show or hide the sales value
@@ -115,10 +122,17 @@ var initBs = function initBs(type) {
             (0, _selector.$)("".concat(C, "__sales--hide")).innerText = "Mostrar";
           } else {
             (0, _selector.$)("".concat(C, "__sales--ars")).innerHTML = "$".concat(all.totalSold.toFixed(2), "ARS");
-            fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars').then(function (response) {
+            fetch('https://criptoya.com/api/binancep2p/sell/usdt/ars/5').then(function (response) {
               return response.json();
             }).then(function (data2) {
-              (0, _selector.$)("".concat(C, "__sales--usd")).innerText = "$".concat((all.totalSold / data2.payload.bid).toFixed(3), "USD");
+              var promVent = 0;
+
+              for (var i = 0; i < 5; i++) {
+                promVent += parseFloat(data2.data[i].adv.price);
+              }
+
+              promVent = promVent / 5;
+              setToC("sales--usd", "$".concat((all.totalSold / promVent).toFixed(3), "USD"));
             });
             (0, _selector.$)("".concat(C, "__sales--hide")).innerText = "Ocultar";
           }

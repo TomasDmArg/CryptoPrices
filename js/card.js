@@ -119,14 +119,23 @@ const initCards = ()=>{
                     }
                 });
                     getValue();
-                    fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars')
+                    fetch('https://criptoya.com/api/binancep2p/sell/usdt/ars/5')
                         .then(response => response.json())
                         .then(data2 => {
-                            $('.buyDollar').innerHTML = "$" + data2.payload.ask;
-                            $('.sellDollar').innerHTML = "$" + data2.payload.bid;
+                            let promVent = 0;
+                            for(let i = 0; i < 5; i++){
+                                promVent+=parseFloat(data2.data[i].adv.price);
+                            }
+                            promVent = promVent/5;
+                            fetch('https://www.dolarsi.com/api/api.php?type=valoresprincipales')
+                                .then(response => response.json())
+                                .then(data3 => {
+                                    $('.buyDollar').innerHTML = "$" + data3[1].casa.venta;
+                                    $('.sellDollar').innerHTML = "$" + data3[1].casa.compra;
+                                });
                             const getCurrencyValue = (id)=>{
                                 let hiddenValue = $$('.hidden-value')[id].innerHTML;
-                                return hiddenValue*data2.payload.ask;
+                                return hiddenValue*promVent;
                             };
                             for (let i = 0; i < $$('input[type=number]').length; i++) {
                                 let input = $$('input[type=number')[i];

@@ -25,7 +25,7 @@ export const loadCrypto = (id)=>{
     fetch(IND_API + id)
         .then(response => response.json())
         .then(data => {
-            fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars')
+            fetch('https://criptoya.com/api/binancep2p/sell/usdt/ars/5')
                 .then(response => response.json())
                 .then(data2 => {
                     //Comprueba si el id existe
@@ -33,9 +33,13 @@ export const loadCrypto = (id)=>{
                         console.log(data);
                         console.log('No se encontró la criptomoneda');
                     }else{
-                        //data2 Es la api de Ripio, y localvalue hace referencia al 
-                        // valor de compra del dolar
-                        let localValue = data2.payload.ask;
+                        // valor de venta del dolar
+                        let promVent = 0;
+                        for(let i = 0; i < 5; i++){
+                            promVent+=parseFloat(data2.data[i].adv.price);
+                        }
+                        promVent = promVent/5;
+                        let localValue = promVent.toFixed(3);
                         //localValue = parseFloat(localValue);
                         let modSymbol = data[0].symbol;
                         modSymbol = modSymbol.toUpperCase();

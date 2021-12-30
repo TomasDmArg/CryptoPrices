@@ -54,7 +54,7 @@ var loadCrypto = function loadCrypto(id) {
   fetch(IND_API + id).then(function (response) {
     return response.json();
   }).then(function (data) {
-    fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars').then(function (response) {
+    fetch('https://criptoya.com/api/binancep2p/sell/usdt/ars/5').then(function (response) {
       return response.json();
     }).then(function (data2) {
       //Comprueba si el id existe
@@ -62,9 +62,15 @@ var loadCrypto = function loadCrypto(id) {
         console.log(data);
         console.log('No se encontró la criptomoneda');
       } else {
-        //data2 Es la api de Ripio, y localvalue hace referencia al 
-        // valor de compra del dolar
-        var localValue = data2.payload.ask; //localValue = parseFloat(localValue);
+        // valor de venta del dolar
+        var promVent = 0;
+
+        for (var i = 0; i < 5; i++) {
+          promVent += parseFloat(data2.data[i].adv.price);
+        }
+
+        promVent = promVent / 5;
+        var localValue = promVent.toFixed(3); //localValue = parseFloat(localValue);
 
         var modSymbol = data[0].symbol;
         modSymbol = modSymbol.toUpperCase();

@@ -74,10 +74,15 @@ const initBs = (type) =>{
             $(`${C}__sales--ars`).innerText = `$${all.totalSold.toFixed(2)}ARS`;
 
             //Load the total sales value in usd
-            fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars')
+            fetch('https://criptoya.com/api/binancep2p/sell/usdt/ars/5')
                 .then(response => response.json())
                 .then(data2 => {
-                        setToC("sales--usd", `$${(all.totalSold/data2.payload.bid).toFixed(3)}USD`);
+                        let promVent = 0;
+                        for(let i = 0; i < 5; i++){
+                            promVent+=parseFloat(data2.data[i].adv.price);
+                        }
+                        promVent = promVent/5;
+                        setToC("sales--usd", `$${(all.totalSold/promVent).toFixed(3)}USD`);
                 });
 
             //Load the profile image
@@ -91,10 +96,15 @@ const initBs = (type) =>{
                     $(`${C}__sales--hide`).innerText = "Mostrar";
                 }else{
                     $(`${C}__sales--ars`).innerHTML = `$${all.totalSold.toFixed(2)}ARS`;
-                    fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars')
+                    fetch('https://criptoya.com/api/binancep2p/sell/usdt/ars/5')
                         .then(response => response.json())
                         .then(data2 => {
-                                $(`${C}__sales--usd`).innerText = `$${(all.totalSold/data2.payload.bid).toFixed(3)}USD`;
+                                let promVent = 0;
+                                for(let i = 0; i < 5; i++){
+                                    promVent+=parseFloat(data2.data[i].adv.price);
+                                }
+                                promVent = promVent/5;
+                                setToC("sales--usd", `$${(all.totalSold/promVent).toFixed(3)}USD`);
                         });
                     $(`${C}__sales--hide`).innerText = "Ocultar";
                 }

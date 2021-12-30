@@ -40,7 +40,7 @@ export const routes = [
         <section id="content" class="all-card-container">
             <section class="dollar-info-main">
                 <section class="dollar-name-cont-main">
-                    <div style="display: inline-flex; align-items: baseline"><h2>USD</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Bitso</h4></div>
+                    <div style="display: inline-flex; align-items: baseline"><h2>Dolar Blue</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Dolar Si</h4></div>
                     <h3 class="quote">Compra: <span class="buyDollar">$0.00</h3>
                     <h3 class="quote">Venta: <span class="sellDollar">$0.00</h3>
                 </section>

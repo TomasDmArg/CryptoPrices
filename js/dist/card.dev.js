@@ -154,34 +154,46 @@ var initCards = function initCards() {
     }
   });
   (0, _binanceP2P["default"])();
-  fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars').then(function (response) {
+  fetch('https://criptoya.com/api/binancep2p/sell/usdt/ars/5').then(function (response) {
     return response.json();
   }).then(function (data2) {
-    (0, _selector.$)('.buyDollar').innerHTML = "$" + data2.payload.ask;
-    (0, _selector.$)('.sellDollar').innerHTML = "$" + data2.payload.bid;
+    var promVent = 0;
+
+    for (var i = 0; i < 5; i++) {
+      promVent += parseFloat(data2.data[i].adv.price);
+    }
+
+    promVent = promVent / 5;
+    fetch('https://www.dolarsi.com/api/api.php?type=valoresprincipales').then(function (response) {
+      return response.json();
+    }).then(function (data3) {
+      (0, _selector.$)('.buyDollar').innerHTML = "$" + data3[1].casa.venta;
+      (0, _selector.$)('.sellDollar').innerHTML = "$" + data3[1].casa.compra;
+    });
 
     var getCurrencyValue = function getCurrencyValue(id) {
       var hiddenValue = (0, _selector.$$)('.hidden-value')[id].innerHTML;
-      return hiddenValue * data2.payload.ask;
+      return hiddenValue * promVent;
     };
 
-    var _loop3 = function _loop3(i) {
-      var input = (0, _selector.$$)('input[type=number')[i];
-      (0, _selector.$$)('input[type=number]')[i].addEventListener('keydown', function () {
+    var _loop3 = function _loop3(_i2) {
+      var input = (0, _selector.$$)('input[type=number')[_i2];
+
+      (0, _selector.$$)('input[type=number]')[_i2].addEventListener('keydown', function () {
         setTimeout(function () {
           if (input.value > 20000000) {
             return false;
           }
 
-          var currency = getCurrencyValue(i);
+          var currency = getCurrencyValue(_i2);
           var value = (input.value * currency).toFixed(2);
-          (0, _selector.$$)('.value-converted')[i].innerHTML = "$".concat(value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+          (0, _selector.$$)('.value-converted')[_i2].innerHTML = "$".concat(value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
         }, 100);
       });
     };
 
-    for (var i = 0; i < (0, _selector.$$)('input[type=number]').length; i++) {
-      _loop3(i);
+    for (var _i2 = 0; _i2 < (0, _selector.$$)('input[type=number]').length; _i2++) {
+      _loop3(_i2);
     }
   });
 };
