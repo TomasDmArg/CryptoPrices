@@ -1,6 +1,25 @@
 import {numberWithCommas} from './html/currency.js';   
 import {$, $$} from './selector.js';
-
+//This is to be able to add more cards in a scalable way.
+const createDollarCard = (uObj)=>{
+    let card = document.createElement('section');
+    card.classList.add('dollar-info');
+    let child = document.createElement('section');
+    console.log(child);
+    child.classList.add('dollar-name-cont');
+    if(uObj.t == "Dolar Contado con Liqui") uObj.t = "Dolar CCL";
+    let templateHTML = `
+        <div class="dollar-name">
+            <h2>${uObj.t}</h2><h4 class="text">${uObj.p}</h4>
+        </div>
+        <h3 class="quote">Compra: <span class="buyDollar">${uObj.c}</h3>
+        <h3 class="quote">Venta: <span class="sellDollar">${uObj.v}</h3>
+    `;
+    child.innerHTML = templateHTML;
+    console.log(child);
+    card.appendChild(child);
+    document.querySelector('.all-card-container').insertAdjacentHTML('beforeend',card.outerHTML);
+}
 let states = {
     dollarType: 0,
     dollarPrices: { 
@@ -124,7 +143,7 @@ const initCalculator = ()=>{
             dollarTypeOptions.forEach(option => {
                 option.id = '';
             });
-            option.id = 'd-ac';
+            option.id = 'd-ac'; 
             let elArray = Array.from(dollarTypeOptions);
             updateState('dollarType', elArray.indexOf(option));
             // Get buy and sell values 
@@ -181,44 +200,110 @@ const initCalculator = ()=>{
         updateState('fee', feeRes);
     });
 } 
-export const askForDollars = ()=>{
-    fetch('https://www.dolarsi.com/api/api.php?type=valoresprincipales')
+export async function askForDollars(){
+    await fetch('https://www.dolarsi.com/api/api.php?type=valoresprincipales')
     .then(response => response.json())
     .then(data => {
         let createValue;
         let elements = document.querySelectorAll('.dollar-info');
         let setdollar = (el, id )=>{
-            console.log(data[id]);
-            createValue = data[id].casa.venta;
-            elements[el].querySelector(".buyDollar").innerHTML = createValue;
-            createValue = data[id].casa.compra;
-            elements[el].querySelector(".sellDollar").innerHTML = createValue;
+            let nombre = data[id].casa.nombre;
+            let comp = data[id].casa.venta;
+            let vent = data[id].casa.compra;
+            let rObj = {    
+                t: nombre,
+                p: "Dolar si",
+                c: comp,
+                v: vent,
+            };
+            createDollarCard(rObj);
         };
         setdollar(0, 0);
         setdollar(1, 1);
         setdollar(4, 3);
         setdollar(5, 4);
-        
-        fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars')
-            .then(response => response.json())
-            .then(data2 => {
-                createValue = data2.payload.ask;
-                elements[2].querySelector(".buyDollar").innerHTML = createValue;
-                createValue = data2.payload.bid;
-                elements[2].querySelector(".sellDollar").innerHTML = createValue;
-            });
-        fetch("https://criptoya.com/api/binancep2p/buy/usdt/ars/1")
-            .then(response => response.json())
-            .then(data3 => {
-                createValue = data3.data[0].adv.price;
-                elements[3].querySelector(".buyDollar").innerHTML = createValue;
-            });
-        fetch("https://criptoya.com/api/binancep2p/sell/usdt/ars/1")
-            .then(response => response.json())
-            .then(data4 => {
-                createValue = data4.data[0].adv.price;
-                elements[3].querySelector(".sellDollar").innerHTML = createValue;
-            })
+    });
+    await fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars')
+        .then(response => response.json())
+        .then(data2 => {
+            let comp = data2.payload.ask;
+            let vent = data2.payload.bid;
+            let rObj = {    
+                t: "USDT",
+                p: "Bitso",
+                c: comp,
+                v: vent,
+            };
+            createDollarCard(rObj);
         });
-        initCalculator();
-}
+    await fetch("https://criptoya.com/api/binancep2p/buy/usdt/ars/5")
+        .then(response => response.json())
+        .then(data3 => {
+            fetch("https://criptoya.com/api/binancep2p/sell/usdt/ars/5")
+                .then(response => response.json())
+                .then(data4 => {
+                    let promComp = 0, promVent = 0;
+                    for(let i = 0; i < 5; i++){
+                        promComp+=parseFloat(data3.data[i].adv.price);
+                        promVent+=parseFloat(data4.data[i].adv.price);
+                    }
+                    promComp = promComp/5;
+                    promVent = promVent/5;
+                    let rObj = {    
+                        t: "USDT",
+                        p: "Binance P2P",
+                        c: promComp.toFixed(3),
+                        v: promVent.toFixed(3),
+                    };
+                    createDollarCard(rObj);
+                })
+            });
+    await fetch("https://beta.belo.app/public/price")
+        .then(response => response.json())
+        .then(data5 => {
+            let counter = 0;
+            let value;
+            while (counter != data5.length) {
+                if (data5[counter].pairCode === "USDT/ARS") {
+                    value = {
+                        c: data5[counter].ask,
+                        v: data5[counter].bid,
+                    };
+                    console.log(value);
+                    counter = data5.length-1;
+                }
+                counter++;
+            }
+            let rObj = {    
+                t: "USDT",
+                p: "Belo",
+                c: parseFloat(value.c).toFixed(3),
+                v: parseFloat(value.v).toFixed(3),
+            };
+            createDollarCard(rObj);
+        });
+    await fetch("https://criptoya.com/api/buenbit/dai/ars")
+            .then(response => response.json())
+            .then(data6 => {
+                let rObj = {    
+                    t: "DAI",
+                    p: "Buenbit",
+                    c: data6.ask,
+                    v: data6.bid,
+                };
+                createDollarCard(rObj);
+            });
+    // Brubank API
+    await fetch("https://criptoya.com/api/brubank")
+        .then(response => response.json())
+        .then(data7 => {
+            let rObj = {
+                t: "Dolar",
+                p: "Brubank",
+                c: `${data7.totalAsk}`,
+                v: data7.bid,
+            };
+            createDollarCard(rObj);
+        });
+    initCalculator();
+}   

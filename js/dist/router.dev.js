@@ -142,7 +142,7 @@ function () {
 
           case '/#/negocios/crear':
             this.loadRoute(6, mod);
-            setActive(2);
+            this.setActive(2);
             (0, _theme.matchColors)();
             (0, _businessMain["default"])(1);
 
@@ -162,7 +162,7 @@ function () {
             this.loadRoute(7, mod);
             (0, _theme.matchColors)();
             (0, _businessMain["default"])(2);
-            setActive(2);
+            this.setActive(2);
 
             if ((0, _cookie.getCookie)("name") == undefined) {
               this.loadRoute(5, '/#/negocios');
@@ -174,14 +174,14 @@ function () {
           case '/#/negocios/dashboard/venta':
             this.loadRoute(8, mod);
             (0, _businessMain["default"])(3);
-            setActive(2);
+            this.setActive(2);
             (0, _theme.matchColors)();
             break;
 
           case '/#/dolar':
             this.loadRoute(4, mod);
             (0, _theme.matchColors)();
-            setActive(1);
+            this.setActive(1);
             (0, _askForDolars.askForDollars)();
             break;
 

@@ -3,11 +3,26 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.askForDollars = void 0;
+exports.askForDollars = askForDollars;
 
 var _currency = require("./html/currency.js");
 
 var _selector = require("./selector.js");
+
+//This is to be able to add more cards in a scalable way.
+var createDollarCard = function createDollarCard(uObj) {
+  var card = document.createElement('section');
+  card.classList.add('dollar-info');
+  var child = document.createElement('section');
+  console.log(child);
+  child.classList.add('dollar-name-cont');
+  if (uObj.t == "Dolar Contado con Liqui") uObj.t = "Dolar CCL";
+  var templateHTML = "\n        <div class=\"dollar-name\">\n            <h2>".concat(uObj.t, "</h2><h4 class=\"text\">").concat(uObj.p, "</h4>\n        </div>\n        <h3 class=\"quote\">Compra: <span class=\"buyDollar\">").concat(uObj.c, "</h3>\n        <h3 class=\"quote\">Venta: <span class=\"sellDollar\">").concat(uObj.v, "</h3>\n    ");
+  child.innerHTML = templateHTML;
+  console.log(child);
+  card.appendChild(child);
+  document.querySelector('.all-card-container').insertAdjacentHTML('beforeend', card.outerHTML);
+};
 
 var states = {
   dollarType: 0,
@@ -205,47 +220,146 @@ var initCalculator = function initCalculator() {
   });
 };
 
-var askForDollars = function askForDollars() {
-  fetch('https://www.dolarsi.com/api/api.php?type=valoresprincipales').then(function (response) {
-    return response.json();
-  }).then(function (data) {
-    var createValue;
-    var elements = document.querySelectorAll('.dollar-info');
+function askForDollars() {
+  return regeneratorRuntime.async(function askForDollars$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          _context.next = 2;
+          return regeneratorRuntime.awrap(fetch('https://www.dolarsi.com/api/api.php?type=valoresprincipales').then(function (response) {
+            return response.json();
+          }).then(function (data) {
+            var createValue;
+            var elements = document.querySelectorAll('.dollar-info');
 
-    var setdollar = function setdollar(el, id) {
-      console.log(data[id]);
-      createValue = data[id].casa.venta;
-      elements[el].querySelector(".buyDollar").innerHTML = createValue;
-      createValue = data[id].casa.compra;
-      elements[el].querySelector(".sellDollar").innerHTML = createValue;
-    };
+            var setdollar = function setdollar(el, id) {
+              var nombre = data[id].casa.nombre;
+              var comp = data[id].casa.venta;
+              var vent = data[id].casa.compra;
+              var rObj = {
+                t: nombre,
+                p: "Dolar si",
+                c: comp,
+                v: vent
+              };
+              createDollarCard(rObj);
+            };
 
-    setdollar(0, 0);
-    setdollar(1, 1);
-    setdollar(4, 3);
-    setdollar(5, 4);
-    fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars').then(function (response) {
-      return response.json();
-    }).then(function (data2) {
-      createValue = data2.payload.ask;
-      elements[2].querySelector(".buyDollar").innerHTML = createValue;
-      createValue = data2.payload.bid;
-      elements[2].querySelector(".sellDollar").innerHTML = createValue;
-    });
-    fetch("https://criptoya.com/api/binancep2p/buy/usdt/ars/1").then(function (response) {
-      return response.json();
-    }).then(function (data3) {
-      createValue = data3.data[0].adv.price;
-      elements[3].querySelector(".buyDollar").innerHTML = createValue;
-    });
-    fetch("https://criptoya.com/api/binancep2p/sell/usdt/ars/1").then(function (response) {
-      return response.json();
-    }).then(function (data4) {
-      createValue = data4.data[0].adv.price;
-      elements[3].querySelector(".sellDollar").innerHTML = createValue;
-    });
+            setdollar(0, 0);
+            setdollar(1, 1);
+            setdollar(4, 3);
+            setdollar(5, 4);
+          }));
+
+        case 2:
+          _context.next = 4;
+          return regeneratorRuntime.awrap(fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars').then(function (response) {
+            return response.json();
+          }).then(function (data2) {
+            var comp = data2.payload.ask;
+            var vent = data2.payload.bid;
+            var rObj = {
+              t: "USDT",
+              p: "Bitso",
+              c: comp,
+              v: vent
+            };
+            createDollarCard(rObj);
+          }));
+
+        case 4:
+          _context.next = 6;
+          return regeneratorRuntime.awrap(fetch("https://criptoya.com/api/binancep2p/buy/usdt/ars/5").then(function (response) {
+            return response.json();
+          }).then(function (data3) {
+            fetch("https://criptoya.com/api/binancep2p/sell/usdt/ars/5").then(function (response) {
+              return response.json();
+            }).then(function (data4) {
+              var promComp = 0,
+                  promVent = 0;
+
+              for (var i = 0; i < 5; i++) {
+                promComp += parseFloat(data3.data[i].adv.price);
+                promVent += parseFloat(data4.data[i].adv.price);
+              }
+
+              promComp = promComp / 5;
+              promVent = promVent / 5;
+              var rObj = {
+                t: "USDT",
+                p: "Binance P2P",
+                c: promComp.toFixed(3),
+                v: promVent.toFixed(3)
+              };
+              createDollarCard(rObj);
+            });
+          }));
+
+        case 6:
+          _context.next = 8;
+          return regeneratorRuntime.awrap(fetch("https://beta.belo.app/public/price").then(function (response) {
+            return response.json();
+          }).then(function (data5) {
+            var counter = 0;
+            var value;
+
+            while (counter != data5.length) {
+              if (data5[counter].pairCode === "USDT/ARS") {
+                value = {
+                  c: data5[counter].ask,
+                  v: data5[counter].bid
+                };
+                console.log(value);
+                counter = data5.length - 1;
+              }
+
+              counter++;
+            }
+
+            var rObj = {
+              t: "USDT",
+              p: "Belo",
+              c: parseFloat(value.c).toFixed(3),
+              v: parseFloat(value.v).toFixed(3)
+            };
+            createDollarCard(rObj);
+          }));
+
+        case 8:
+          _context.next = 10;
+          return regeneratorRuntime.awrap(fetch("https://criptoya.com/api/buenbit/dai/ars").then(function (response) {
+            return response.json();
+          }).then(function (data6) {
+            var rObj = {
+              t: "DAI",
+              p: "Buenbit",
+              c: data6.ask,
+              v: data6.bid
+            };
+            createDollarCard(rObj);
+          }));
+
+        case 10:
+          _context.next = 12;
+          return regeneratorRuntime.awrap(fetch("https://criptoya.com/api/brubank").then(function (response) {
+            return response.json();
+          }).then(function (data7) {
+            var rObj = {
+              t: "Dolar",
+              p: "Brubank",
+              c: "".concat(data7.totalAsk),
+              v: data7.bid
+            };
+            createDollarCard(rObj);
+          }));
+
+        case 12:
+          initCalculator();
+
+        case 13:
+        case "end":
+          return _context.stop();
+      }
+    }
   });
-  initCalculator();
-};
-
-exports.askForDollars = askForDollars;
+}

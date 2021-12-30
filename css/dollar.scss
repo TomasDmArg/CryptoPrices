@@ -135,3 +135,11 @@
 #result-disclaimer{
     font-size: .9rem;
 }
+.dollar-name{
+    display: inline-flex; 
+    align-items: baseline;
+    h4{
+        font-weight: 300; 
+        margin-left: 10px;
+    }
+}

@@ -88,7 +88,7 @@ class Router {
                     break;
                 case '/#/negocios/crear':
                     this.loadRoute(6, mod);
-                    setActive(2);
+                    this.setActive(2);
                     matchColors();
                     initBs(1);
                     if(getCookie("name") != undefined){
@@ -104,7 +104,7 @@ class Router {
                     this.loadRoute(7, mod);
                     matchColors();
                     initBs(2);
-                    setActive(2);
+                    this.setActive(2);
                     if(getCookie("name") == undefined){
                         this.loadRoute(5, '/#/negocios');
                         initBs(1);
@@ -114,13 +114,13 @@ class Router {
                 case '/#/negocios/dashboard/venta':
                     this.loadRoute(8, mod);
                     initBs(3);
-                    setActive(2);
+                    this.setActive(2);
                     matchColors();
                     break;
                 case '/#/dolar':
                     this.loadRoute(4, mod);
                     matchColors();
-                    setActive(1);
+                    this.setActive(1);
                     askForDollars();
                     break;
                 case '/':

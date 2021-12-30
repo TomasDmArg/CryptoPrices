@@ -149,3 +149,12 @@
 #result-disclaimer {
   font-size: 0.9rem;
 }
+
+.dollar-name {
+  display: inline-flex;
+  align-items: baseline;
+}
+.dollar-name h4 {
+  font-weight: 300;
+  margin-left: 10px;
+}

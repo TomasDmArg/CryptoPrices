@@ -87,48 +87,7 @@ export const routes = [
         <h1 class="top-title">Cotizaciones dolar hoy</h1>
         <p class="top-text text">Estas son las diferentes cotizaciones del dolar al dia de hoy. Fuentes: Cryptoya/DolarSi/Ripio</p>
         <section id="content" class="all-card-container">
-        <section class="dollar-info">
-        <section class="dollar-name-cont">
-        <div style="display: inline-flex; align-items: baseline"><h2>Oficial</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Banco Nación*</h4></div>
-                    <h3 class="quote">Compra: <span class="buyDollar">$0.00</h3>
-                    <h3 class="quote">Venta: <span class="sellDollar">$0.00</h3>
-                </section>
-            </section>
-            <section class="dollar-info">
-                <section class="dollar-name-cont">
-                    <div style="display: inline-flex; align-items: baseline"><h2>Blue</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">DolarSi</h4></div>
-                    <h3 class="quote">Compra: <span class="buyDollar">$0.00</h3>
-                    <h3 class="quote">Venta: <span class="sellDollar">$0.00</h3>
-                </section>
-                </section>
-            <section class="dollar-info">
-                <section class="dollar-name-cont">
-                    <div style="display: inline-flex; align-items: baseline"><h2>DAI</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Ripio</h4></div>
-                    <h3 class="quote">Compra: <span class="buyDollar">$0.00</h3>
-                    <h3 class="quote">Venta: <span class="sellDollar">$0.00</h3>
-                </section>
-            </section>
-            <section class="dollar-info">
-            <section class="dollar-name-cont">
-            <div style="display: inline-flex; align-items: baseline"><h2>USDT</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Binance P2P*</h4></div>
-            <h3 class="quote">Compra: <span class="buyDollar">$0.00</h3>
-            <h3 class="quote">Venta: <span class="sellDollar">$0.00</h3>
-            </section>
-            </section>
-            <section class="dollar-info">
-                <section class="dollar-name-cont">
-                    <div style="display: inline-flex; align-items: baseline"><h2>Dolar Bolsa</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Dolarsi</h4></div>
-                    <h3 class="quote">Compra: <span class="buyDollar">$0.00</h3>
-                    <h3 class="quote">Venta: <span class="sellDollar">$0.00</h3>
-                </section>
-            </section>
-            <section class="dollar-info">
-                <section class="dollar-name-cont">
-                    <div style="display: inline-flex; align-items: baseline"><h2>Dolar CCL</h2><h4 class="text" style="font-weight: 300; margin-left: 10px;">Dolarsi</h4></div>
-                    <h3 class="quote">Compra: <span class="buyDollar">$0.00</h3>
-                    <h3 class="quote">Venta: <span class="sellDollar">$0.00</h3>
-                </section>
-            </section>
+            
         </section>
         <section class="dollar-converter">
             <div class="dollar-name-cont"><img src="assets/calculator-outline.svg" alt="" class="emoji-img" /><h2>Calculadora</h2></div>
@@ -138,10 +97,13 @@ export const routes = [
                         <button type="button">Oficial</button> 
                         <button type="button"  title="Oficial + imp. pais + percepcion ganancias">Tarjeta</button> 
                         <button type="button" >Blue</button> 
+                        <button type="button" >CCL</button> 
+                        <button type="button" >Bolsa</button> 
                         <button type="button" >USDT Bitso</button> 
                         <button type="button" >USDT Binance P2P</button> 
-                        <button type="button" >Bolsa</button> 
-                        <button type="button" >CCL</button> 
+                        <button type="button" >USDT Belo</button> 
+                        <button type="button" >USDT Buenbit</button> 
+                        <button type="button" >Brubank</button> 
                 </div>
                 <section class="converter__options">
                     <div class="converter__options--first">
