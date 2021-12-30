@@ -93,7 +93,7 @@ export const loadCrypto = (id)=>{
                         }, 10000);
                         document.title = `${modSymbol}: $${modifiedPriceUSD} - CryptoPrices`;
                         let percent = data[0].price_change_percentage_24h;
-                        percent = percent.toFixed(2);
+                        percent = parseFloat(percent).toFixed(2);
                         percent = numberWithCommas(percent);
                         let val1 = data[0].high_24h - data[0].low_24h;
                         let val2 = data[0].current_price - data[0].low_24h;

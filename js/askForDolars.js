@@ -5,7 +5,6 @@ const createDollarCard = (uObj)=>{
     let card = document.createElement('section');
     card.classList.add('dollar-info');
     let child = document.createElement('section');
-    console.log(child);
     child.classList.add('dollar-name-cont');
     if(uObj.t == "Dolar Contado con Liqui") uObj.t = "Dolar CCL";
     let templateHTML = `
@@ -16,7 +15,6 @@ const createDollarCard = (uObj)=>{
         <h3 class="quote">Venta: <span class="sellDollar">${uObj.v}</h3>
     `;
     child.innerHTML = templateHTML;
-    console.log(child);
     card.appendChild(child);
     document.querySelector('.all-card-container').insertAdjacentHTML('beforeend',card.outerHTML);
 }
@@ -269,7 +267,6 @@ export async function askForDollars(){
                         c: data5[counter].ask,
                         v: data5[counter].bid,
                     };
-                    console.log(value);
                     counter = data5.length-1;
                 }
                 counter++;

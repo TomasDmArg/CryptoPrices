@@ -25,8 +25,7 @@ var cardsArr = (0, _selector.$$)('.all-card-container');
 
 var initCards = function initCards() {
   var setDown = function setDown(i) {
-    (0, _selector.$$)('.percent')[i].style.color = '#ff411f'; // $$('.card-container')[i].style.border = '5px solid #ff411f';
-
+    (0, _selector.$$)('.percent')[i].style.color = '#ff411f';
     (0, _selector.$$)('.card__name-container > h2')[i].style.color = '#ff411f';
     (0, _selector.$$)('.buttons > .active')[i].style.backgroundColor = '#ff411f';
     (0, _selector.$$)('.buttons > .active')[i].style.border = '5px solid #ff411f';
@@ -35,8 +34,7 @@ var initCards = function initCards() {
   };
 
   var setUp = function setUp(i) {
-    (0, _selector.$$)('.percent')[i].style.color = '#06D6A0'; // $$('.card-container')[i].style.border = '5px solid #06D6A0';
-
+    (0, _selector.$$)('.percent')[i].style.color = '#06D6A0';
     (0, _selector.$$)('.card__name-container > h2')[i].style.color = '#06D6A0';
     (0, _selector.$$)('.buttons > .active')[i].style.backgroundColor = '#06D6A0';
     (0, _selector.$$)('.buttons > .active')[i].style.border = '5px solid #06D6A0';

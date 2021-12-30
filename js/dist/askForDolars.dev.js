@@ -14,12 +14,10 @@ var createDollarCard = function createDollarCard(uObj) {
   var card = document.createElement('section');
   card.classList.add('dollar-info');
   var child = document.createElement('section');
-  console.log(child);
   child.classList.add('dollar-name-cont');
   if (uObj.t == "Dolar Contado con Liqui") uObj.t = "Dolar CCL";
   var templateHTML = "\n        <div class=\"dollar-name\">\n            <h2>".concat(uObj.t, "</h2><h4 class=\"text\">").concat(uObj.p, "</h4>\n        </div>\n        <h3 class=\"quote\">Compra: <span class=\"buyDollar\">").concat(uObj.c, "</h3>\n        <h3 class=\"quote\">Venta: <span class=\"sellDollar\">").concat(uObj.v, "</h3>\n    ");
   child.innerHTML = templateHTML;
-  console.log(child);
   card.appendChild(child);
   document.querySelector('.all-card-container').insertAdjacentHTML('beforeend', card.outerHTML);
 };
@@ -309,7 +307,6 @@ function askForDollars() {
                   c: data5[counter].ask,
                   v: data5[counter].bid
                 };
-                console.log(value);
                 counter = data5.length - 1;
               }
 

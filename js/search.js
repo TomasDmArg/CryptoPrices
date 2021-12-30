@@ -117,23 +117,28 @@ const initSearch = (type = 1)=>{
                         INP.value);
                 }
             }
+            let el = $$('.search-result');
+            for(let i = 0; i < el.length-1; i++){
+                el[i].addEventListener('click', ()=>{
+                    load();
+                })
+            }
+            INP.addEventListener('focus', ()=>{
+                for (let i = 0; i < el.length-1; i++){
+                    if(el[i].innerText != '') $$('.results-container')[i].style.display = 'block';
+                }
+            })
+            INP.addEventListener('blur', ()=>{
+                setTimeout(()=>{
+                    if(el.length != 0) $('.results-container').style.display = 'none';
+                }, 600);
+            })
+
             const showResults = (arr)=>{
                 if (arr.length > max) {
                     for (let i = 0; i < max; i++){
                         $$('.search-result')[i].innerHTML = `${arr[i].name}`;
                         $$('.search-result')[i].style.display = 'block';
-                        $$('.search-result')[i].addEventListener('click', ()=>{
-                            load();
-                        })
-                        INP.addEventListener('focus', ()=>{
-                            $$('.search-result')[i].style.display = 'block';
-                        })
-                        INP.addEventListener('blur', ()=>{
-                            $$('.search-result')[i].style.display = 'block';
-                            setTimeout(() => {
-                                $$('.search-result')[i].style.display = 'none !important';
-                            }, 1200)
-                        })
                     }
                 }else{
                     for (let i = 0; i < arr.length; i++){
@@ -147,9 +152,7 @@ const initSearch = (type = 1)=>{
                         if(arr[i].name === " "){
                             $$('.search-result')[i].style.display = 'none';
                         }
-                        $$('.search-result')[i].addEventListener('click', ()=>{
-                            load();
-                        })
+                        
                         INP.addEventListener('focus', ()=>{
                             $$('.search-result')[i].style.display = 'block';
                         })

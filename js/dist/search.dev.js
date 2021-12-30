@@ -141,64 +141,63 @@ var initSearch = function initSearch() {
       }
     };
 
+    var el = (0, _selector.$$)('.search-result');
+
+    for (var i = 0; i < el.length - 1; i++) {
+      el[i].addEventListener('click', function () {
+        load();
+      });
+    }
+
+    INP.addEventListener('focus', function () {
+      for (var _i = 0; _i < el.length - 1; _i++) {
+        if (el[_i].innerText != '') (0, _selector.$$)('.results-container')[_i].style.display = 'block';
+      }
+    });
+    INP.addEventListener('blur', function () {
+      setTimeout(function () {
+        if (el.length != 0) (0, _selector.$)('.results-container').style.display = 'none';
+      }, 600);
+    });
+
     var showResults = function showResults(arr) {
       if (arr.length > max) {
-        var _loop = function _loop(i) {
-          (0, _selector.$$)('.search-result')[i].innerHTML = "".concat(arr[i].name);
-          (0, _selector.$$)('.search-result')[i].style.display = 'block';
-          (0, _selector.$$)('.search-result')[i].addEventListener('click', function () {
-            load();
-          });
-          INP.addEventListener('focus', function () {
-            (0, _selector.$$)('.search-result')[i].style.display = 'block';
-          });
-          INP.addEventListener('blur', function () {
-            (0, _selector.$$)('.search-result')[i].style.display = 'block';
-            setTimeout(function () {
-              (0, _selector.$$)('.search-result')[i].style.display = 'none !important';
-            }, 1200);
-          });
-        };
-
-        for (var i = 0; i < max; i++) {
-          _loop(i);
+        for (var _i2 = 0; _i2 < max; _i2++) {
+          (0, _selector.$$)('.search-result')[_i2].innerHTML = "".concat(arr[_i2].name);
+          (0, _selector.$$)('.search-result')[_i2].style.display = 'block';
         }
       } else {
-        var _loop2 = function _loop2(_i) {
+        var _loop = function _loop(_i3) {
           if (arr.length < max) {
             arr.push({
               name: " "
             });
           }
 
-          (0, _selector.$$)('.search-result')[_i].innerHTML = "".concat(arr[_i].name);
-          (0, _selector.$$)('.search-result')[_i].style.display = 'block';
+          (0, _selector.$$)('.search-result')[_i3].innerHTML = "".concat(arr[_i3].name);
+          (0, _selector.$$)('.search-result')[_i3].style.display = 'block';
 
-          if (arr[_i].name === " ") {
-            (0, _selector.$$)('.search-result')[_i].style.display = 'none';
+          if (arr[_i3].name === " ") {
+            (0, _selector.$$)('.search-result')[_i3].style.display = 'none';
           }
 
-          (0, _selector.$$)('.search-result')[_i].addEventListener('click', function () {
-            load();
-          });
-
           INP.addEventListener('focus', function () {
-            (0, _selector.$$)('.search-result')[_i].style.display = 'block';
+            (0, _selector.$$)('.search-result')[_i3].style.display = 'block';
           }); // INP.addEventListener('blur', ()=>{
           //     $$('.search-result')[i].style.display = 'none';
           // })
         };
 
-        for (var _i = 0; _i < arr.length; _i++) {
-          _loop2(_i);
+        for (var _i3 = 0; _i3 < arr.length; _i3++) {
+          _loop(_i3);
         }
       }
     };
 
-    for (var i = 0; i < list.length; i++) {
-      var name = list[i].name;
-      var symbol = list[i].symbol;
-      list[i].name = "".concat(name.toUpperCase());
+    for (var _i4 = 0; _i4 < list.length; _i4++) {
+      var name = list[_i4].name;
+      var symbol = list[_i4].symbol;
+      list[_i4].name = "".concat(name.toUpperCase());
     }
 
     INP.addEventListener('focus', function () {
@@ -249,16 +248,16 @@ var initSearch = function initSearch() {
         }
 
         if (e.key === 'Escape') {
-          for (var _i2 = 0; _i2 < max; _i2++) {
-            (0, _selector.$$)('.search-result')[_i2].style.display = 'none';
+          for (var _i5 = 0; _i5 < max; _i5++) {
+            (0, _selector.$$)('.search-result')[_i5].style.display = 'none';
             INP.blur();
           }
         }
 
         if (e.key === 'Ctrl') {
           if (e.key === 'b') {
-            for (var _i3 = 0; _i3 < max; _i3++) {
-              (0, _selector.$$)('.search-result')[_i3].style.display = 'none';
+            for (var _i6 = 0; _i6 < max; _i6++) {
+              (0, _selector.$$)('.search-result')[_i6].style.display = 'none';
             }
 
             INP.blur();

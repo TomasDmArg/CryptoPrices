@@ -9,7 +9,6 @@ let cardsArr = $$('.all-card-container');
 const initCards = ()=>{
     const setDown = i =>{
         $$('.percent')[i].style.color = '#ff411f';
-        // $$('.card-container')[i].style.border = '5px solid #ff411f';
         $$('.card__name-container > h2')[i].style.color = '#ff411f';
         $$('.buttons > .active')[i].style.backgroundColor = '#ff411f';
         $$('.buttons > .active')[i].style.border = '5px solid #ff411f';
@@ -18,7 +17,6 @@ const initCards = ()=>{
     }
     const setUp = i =>{
         $$('.percent')[i].style.color = '#06D6A0';
-        // $$('.card-container')[i].style.border = '5px solid #06D6A0';
         $$('.card__name-container > h2')[i].style.color = '#06D6A0';
         $$('.buttons > .active')[i].style.backgroundColor = '#06D6A0';
         $$('.buttons > .active')[i].style.border = '5px solid #06D6A0';

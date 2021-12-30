@@ -129,7 +129,7 @@ var loadCrypto = function loadCrypto(id) {
         }, 10000);
         document.title = "".concat(modSymbol, ": $").concat(modifiedPriceUSD, " - CryptoPrices");
         var percent = data[0].price_change_percentage_24h;
-        percent = percent.toFixed(2);
+        percent = parseFloat(percent).toFixed(2);
         percent = numberWithCommas(percent);
         var val1 = data[0].high_24h - data[0].low_24h;
         var val2 = data[0].current_price - data[0].low_24h;
