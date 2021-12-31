@@ -8,16 +8,16 @@ import {routes} from './routes.js';
 let cardsArr = $$('.all-card-container');
 const initCards = ()=>{
     const setDown = i =>{
-        $$('.percent')[i].style.color = '#ff411f';
-        $$('.card__name-container > h2')[i].style.color = '#ff411f';
+        $$('.price')[i].style.color = '#ff411f';
+        // $$('.card__name-container > h2')[i].style.color = '#ff411f';
         $$('.buttons > .active')[i].style.backgroundColor = '#ff411f';
         $$('.buttons > .active')[i].style.border = '5px solid #ff411f';
         $$('.bg')[i].style.backgroundColor = '#ff411f';
         $$('.card-image-img')[i].style.border = '4px solid #ff411f';
     }
     const setUp = i =>{
-        $$('.percent')[i].style.color = '#06D6A0';
-        $$('.card__name-container > h2')[i].style.color = '#06D6A0';
+        $$('.price')[i].style.color = '#06D6A0';
+        // $$('.card__name-container > h2')[i].style.color = '#06D6A0';
         $$('.buttons > .active')[i].style.backgroundColor = '#06D6A0';
         $$('.buttons > .active')[i].style.border = '5px solid #06D6A0';
         $$('.bg')[i].style.backgroundColor = '#06D6A0';

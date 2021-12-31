@@ -15,14 +15,18 @@ const load = ()=>
 {
     initCookie();
     router.loadPage();
+    window.onpopstate = function() {
+      router.loadPage();
+    };
     if ($('[data-router]').innerHTML !== "") {
       initLoad();
       navScripts();
       obtain();
     }
-    setTimeout(() => {
-      matchColors();
-    }, 1000);
+    // setTimeout(() => {
+    //   matchColors();
+    // }, 1000);
+
 }
 load();
 export default router;

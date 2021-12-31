@@ -7,12 +7,12 @@ async function createCard (name, symbol, price, change, image, id){
     <section class="card-container">
         <section>
                 <section class="card__name-container">
-                    <h2>${name}</h2>
+                    <h2 class="card__name-container--title">${name}</h2>
                     <h4 class="text">${symbol}</h4>
                 </section>
-                <h3 class="text price">$${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h3>
+                <h3 class="price">$${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h3>
                 <p class="hidden-value">${price}</p>
-                <h4 class="up percent">${parseFloat(change).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "%"}</h4>
+                <h4 class="percent">${parseFloat(change).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "%"}</h4>
                 <section class="card-image">
                     <img src="${image}" class="card-image-img" alt="">
                 </section>

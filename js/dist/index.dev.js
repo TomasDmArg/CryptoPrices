@@ -34,15 +34,18 @@ var load = function load() {
   (0, _cookie.initCookie)();
   router.loadPage();
 
+  window.onpopstate = function () {
+    router.loadPage();
+  };
+
   if ((0, _selector.$)('[data-router]').innerHTML !== "") {
     (0, _load["default"])();
     (0, _navbar["default"])();
     (0, _obtain["default"])();
-  }
+  } // setTimeout(() => {
+  //   matchColors();
+  // }, 1000);
 
-  setTimeout(function () {
-    (0, _theme.matchColors)();
-  }, 1000);
 };
 
 load();
