@@ -13,7 +13,7 @@ const initCards = ()=>{
         $$('.buttons > .active')[i].style.backgroundColor = '#ff411f';
         $$('.buttons > .active')[i].style.border = '5px solid #ff411f';
         $$('.bg')[i].style.backgroundColor = '#ff411f';
-        $$('.card-image-img')[i].style.border = '4px solid #ff411f';
+        // $$('.card-image-img')[i].style.border = '4px solid #ff411f';
     }
     const setUp = i =>{
         $$('.price')[i].style.color = '#06D6A0';
@@ -21,7 +21,7 @@ const initCards = ()=>{
         $$('.buttons > .active')[i].style.backgroundColor = '#06D6A0';
         $$('.buttons > .active')[i].style.border = '5px solid #06D6A0';
         $$('.bg')[i].style.backgroundColor = '#06D6A0';
-        $$('.card-image-img')[i].style.border = '4px solid #06D6A0';
+        // $$('.card-image-img')[i].style.border = '4px solid #06D6A0';
         $$('.buttons > .active')[i].style.border = '5px solid #06D6A0';
     }
     fetch('https://api.coingecko.com/api/v3/coins/markets/?vs_currency=usd')
@@ -82,8 +82,6 @@ const initCards = ()=>{
                     $$('.card__name-container')[i].style.animationDuration = '0s';
                     $$('.price')[i].style.animationDuration = '0s';
                     $$('.card-image')[i].style.animationDuration = '0s';
-                    $$('.card-image')[i].style.backgroundColor = '#eeeeee50';
-                    $$('.card-image-img')[i].style.borderRadius = '50%';
                     }
                     for (let i = 0; i < cardsArr.length; i++) {
                         ($$('.percent')[i].innerHTML.indexOf("-") >= 0) ? setDown(i) : setUp(i);

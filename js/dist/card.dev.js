@@ -29,8 +29,7 @@ var initCards = function initCards() {
 
     (0, _selector.$$)('.buttons > .active')[i].style.backgroundColor = '#ff411f';
     (0, _selector.$$)('.buttons > .active')[i].style.border = '5px solid #ff411f';
-    (0, _selector.$$)('.bg')[i].style.backgroundColor = '#ff411f';
-    (0, _selector.$$)('.card-image-img')[i].style.border = '4px solid #ff411f';
+    (0, _selector.$$)('.bg')[i].style.backgroundColor = '#ff411f'; // $$('.card-image-img')[i].style.border = '4px solid #ff411f';
   };
 
   var setUp = function setUp(i) {
@@ -38,8 +37,8 @@ var initCards = function initCards() {
 
     (0, _selector.$$)('.buttons > .active')[i].style.backgroundColor = '#06D6A0';
     (0, _selector.$$)('.buttons > .active')[i].style.border = '5px solid #06D6A0';
-    (0, _selector.$$)('.bg')[i].style.backgroundColor = '#06D6A0';
-    (0, _selector.$$)('.card-image-img')[i].style.border = '4px solid #06D6A0';
+    (0, _selector.$$)('.bg')[i].style.backgroundColor = '#06D6A0'; // $$('.card-image-img')[i].style.border = '4px solid #06D6A0';
+
     (0, _selector.$$)('.buttons > .active')[i].style.border = '5px solid #06D6A0';
   };
 
@@ -106,8 +105,6 @@ var initCards = function initCards() {
         (0, _selector.$$)('.card__name-container')[i].style.animationDuration = '0s';
         (0, _selector.$$)('.price')[i].style.animationDuration = '0s';
         (0, _selector.$$)('.card-image')[i].style.animationDuration = '0s';
-        (0, _selector.$$)('.card-image')[i].style.backgroundColor = '#eeeeee50';
-        (0, _selector.$$)('.card-image-img')[i].style.borderRadius = '50%';
       };
 
       for (var i = 0; i < 100; i++) {
