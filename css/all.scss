@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;700&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Inter:regular,500,600,700,800);
+:root{
+    --principal-green: #06D6A0;
+    --up: #06D6A0;
+    --down: #ff411f;
+    --dark: #171A1F;
+    --dark2: #1F2124;
+    --dark3: #303030;
+    --light: #eeeeee;
+    --title: 'Inter', sans-serif;
+    --title-w: 800;
+    --text: 'Outfit', sans-serif;
+    --text-w: '300';
+}
+// Import all files
+@import 'card.scss';
+@import 'styles-2.scss';
+@import 'crypto-main.scss';
+@import 'dollar.scss';
+@import 'business.scss';
