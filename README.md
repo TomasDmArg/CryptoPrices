@@ -3,6 +3,8 @@
 
 ### Ver presentación: https://tmdm.com.ar/u/cryptoprices.pdf
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/768f4d03-6080-4745-b0cc-2f170abfc32c/deploy-status)](https://app.netlify.com/sites/relaxed-bell-989abe/deploys)
+
 Crypto Prices es un sitio web (SPA) Open Source de criptomonedas enfocado a argentinos, tanto personas como empresas o pequeños emprendedores. 
 Permite ver precios de los distintos dólares (crypto y no crypto), ver precios de criptomonedas tanto en dólares como en pesos (al tipo de cambio real)(+9000 monedas)
 Convertir las mismas, ver gráficos, estadisticas y demás. 
