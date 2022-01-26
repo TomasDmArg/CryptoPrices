@@ -270,7 +270,7 @@ function askForDollars() {
           return regeneratorRuntime.awrap(fetch("https://criptoya.com/api/binancep2p/buy/usdt/ars/5").then(function (response) {
             return response.json();
           }).then(function (data3) {
-            fetch("https://criptoya.com/api/binancep2p/sell/usdt/ars/5").then(function (response) {
+            fetch("https://beta.belo.app/public/price").then(function (response) {
               return response.json();
             }).then(function (data4) {
               var promComp = 0,

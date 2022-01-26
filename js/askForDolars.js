@@ -237,7 +237,7 @@ export async function askForDollars(){
     await fetch("https://criptoya.com/api/binancep2p/buy/usdt/ars/5")
         .then(response => response.json())
         .then(data3 => {
-            fetch("https://criptoya.com/api/binancep2p/sell/usdt/ars/5")
+            fetch("https://beta.belo.app/public/price")
                 .then(response => response.json())
                 .then(data4 => {
                     let promComp = 0, promVent = 0;
