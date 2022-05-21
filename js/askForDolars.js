@@ -221,7 +221,7 @@ export async function askForDollars(){
         setdollar(4, 3);
         setdollar(5, 4);
     });
-    await fetch('https://bitso-api-v3.herokuapp.com/api/ticker?book=usd_ars')
+    await fetch('https://api.bitso.com/v3/ticker?book=usd_ars')
         .then(response => response.json())
         .then(data2 => {
             let comp = data2.payload.ask;
