@@ -221,11 +221,11 @@ export async function askForDollars(){
         setdollar(4, 3);
         setdollar(5, 4);
     });
-    await fetch('https://api.bitso.com/v3/ticker?book=usd_ars')
+    await fetch('https://criptoya.com/api/bitso/dai/ars')
         .then(response => response.json())
         .then(data2 => {
-            let comp = data2.payload.ask;
-            let vent = data2.payload.bid;
+            let comp = data2.ask;
+            let vent = data2.bid;
             let rObj = {    
                 t: "USDT",
                 p: "Bitso",
